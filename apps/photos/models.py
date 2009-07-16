@@ -4,7 +4,7 @@ from PIL      import Image
 from django.contrib.auth.models import User
 from django.db                  import models
 
-from apps.portal.models import Entity
+from mamochkam.apps.portal.models import Entity
 
 #GALLERY MODEL
 class Gallery(models.Model):

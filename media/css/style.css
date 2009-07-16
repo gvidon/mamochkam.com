@@ -1,0 +1,230 @@
+@import url('reset.css');
+@import url('type.css');
+
+/*
+** Layout
+******************************************************************************/
+body {
+	background: #ffffff none;
+	min-width: 1000px;
+}
+
+.tpl-header {
+	height: 285px;
+	position: relative;
+
+	background: transparent url('../images/header-bg.png') 0 0 repeat-x;
+}
+	.logo a {
+		position: absolute;
+		top: 55px; left: 265px;
+		width:300px; height:100px;
+	}
+	
+	.common-navigation {
+		position: relative;
+		top: 180px;
+		width: 780px;
+		margin: 0 auto;
+		padding-left: 220px;
+		overflow: hidden;
+	}
+
+	.common-navigation li {
+		float: left;
+
+		font-size: 1.571em;
+		line-height: 1em;
+
+		margin-right: 40px;
+	}
+
+		.common-navigation li a {
+			color: #9e30d7;
+			text-decoration: none;
+		}
+
+		.common-navigation li a:hover {
+			text-decoration: underline;
+		}
+		
+		.common-navigation li a:active {
+			outline: none !important;
+		}
+
+.tpl-content {
+	padding: 0 20px;
+	overflow: hidden;
+}
+
+/* 
+******************************************************************************/
+
+	.tpl-news {
+		margin-left: 40px;
+		margin-top: 40px;
+		margin-right: 300px;
+		margin-bottom: 10px;
+	}
+
+		.tpl-news li {
+			margin-bottom: 17px;
+		}
+
+		.tpl-news .title a {
+			color: #aa6c8b;
+			font-size: 1.4em;
+			text-decoration: none;		
+		}
+
+/* 
+******************************************************************************/
+
+	.tpl-other-articles {
+		float: right;
+		width: 300px;
+		
+		margin-bottom: 10px;
+	}
+
+/* 
+******************************************************************************/
+
+	.tpl-gallery {
+		clear: both;
+
+		margin-bottom: 10px;
+
+		border: 1px solid #7e7e7e;
+		border-bottom-width: 4px;
+		background: #fbe2ef url('../images/gallery-bg.gif') 0 center repeat-x;
+	}
+
+/* 
+******************************************************************************/
+
+	.tpl-article {
+		margin-right: 300px;
+		margin-bottom: 10px;
+	}
+	
+/* 
+******************************************************************************/
+
+	.tpl-board {
+		float: right;
+		width: 360px;
+
+		margin-bottom: 10px;
+	}
+		.tpl-board li {
+			margin-bottom: 1em;
+		}
+
+/*
+** Footer
+******************************************************************************/
+
+.tpl-footer {
+	min-height: 150px;
+	margin-top: 60px;
+	padding: 30px 150px;
+
+	background: #b87b99 url('../images/footer-bg.gif') 0 0 repeat-x;
+	
+	clear: both;
+	position: relative;
+}
+
+.tpl-footer ul {
+	overflow: hidden;
+}
+
+	.tpl-footer ul li {
+		float: left;
+		width: 200px;
+		margin-right: 30px;
+	}
+
+	.tpl-footer ul ul {
+	}
+
+		.tpl-footer ul .title {
+			color: #ffffff;
+			font-weight: bold;
+			border-bottom: 1px solid;
+		}
+
+		.tpl-footer ul ul li {
+			float: none;
+			width: auto;
+			margin: 0;
+			line-height: 2em;
+		}
+
+			.tpl-footer ul ul li a {
+				text-decoration: none;
+				color: #ffffff;
+			}
+
+			.tpl-footer ul ul li a:hover {
+				text-decoration: underline;
+			}
+
+/*
+** Different special elements
+******************************************************************************/
+
+/* Cornered block ************************************************************/
+
+.corners {
+	width: 300px;
+	position: relative;
+	padding: 12px 0 17px 0;
+}
+	.corners .t-r {
+		position: absolute; top: 0;
+		width: 300px; height: 12px;
+		z-index: -1;
+
+		background: transparent url('../images/corners-cf.png') 0 0 no-repeat;
+	}
+	
+	.corners .b-r {
+		position: absolute; bottom: 0;
+		width: 300px; height: 36px;
+		z-index: -1;
+
+		background: transparent url('../images/corners-cf.png') 0 bottom no-repeat;
+	}
+
+	.corners .wrap {
+		padding: 0 20px;
+		background: transparent url('../images/corners-bg.gif') 0 0 repeat-y;
+	}
+
+
+/* Logo and clouds in header *************************************************/
+
+.logo {
+	position: absolute;
+	top: 0px; left: 0px;
+	width: 652px; height: 285px;
+	background: transparent url('../images/logo.png') 0 0 no-repeat;
+}
+
+.cloud-corner {
+	position: absolute;
+	top: 0; right: 0;
+	width: 152px; height: 82px;
+	
+	background: transparent url('../images/cloud-corner.gif') 0 0 no-repeat;
+}
+
+.guy {
+	position: absolute;
+	top: -42px; right: 0;
+	width: 220px; height: 252px;
+	
+	background: transparent url('../images/guy.png') 0 bottom no-repeat;
+}

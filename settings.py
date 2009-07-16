@@ -43,7 +43,7 @@ MEDIA_ROOT = PROJECT_ROOT+'media/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://192.168.0.100:8081/'
+MEDIA_URL = 'http://media.mamochkam:8081'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -58,6 +58,12 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
 #     'django.template.loaders.eggs.load_template_source',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+	'django.core.context_processors.auth',
+	'django.core.context_processors.request',
+	'mamochkam.context_processors.media_url',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,14 +81,16 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    
-    #'mamochkam.apps.pressroom',
-    'mamochkam.apps.photos',
-    'mamochkam.apps.tags',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.sites',
+	
+	'mamochkam.apps.portal',
+	'mamochkam.apps.pressroom',
+	'mamochkam.apps.photos',
+	'mamochkam.apps.tags',
+	'mamochkam.apps.templatetags',
 )
 
 ITEMS_PER_PAGE = 10

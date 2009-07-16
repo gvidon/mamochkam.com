@@ -1,0 +1,23 @@
+/*	16px = 1em
+	14px = .875em
+	12px = .75em
+	10px = .625em
+	 8px = .5em*/
+
+body {
+	font: normal .875em/1.42em Tahoma, Verdana, sans-serif;
+	color: #515151;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+h2 {
+	font-size: 1.227em;
+}
+
+.date {
+	color: #b2b2b2;
+	font-size: .727em;
+}

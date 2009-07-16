@@ -1,8 +1,11 @@
 from datetime import datetime
 
-from django.db import models
-from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+from django.db                  import models
+from django.conf                import settings
+from django.core.urlresolvers   import reverse
+
+from mamochkam.apps.portal.models import Entity
 
 # Get relative media path
 try:
@@ -18,7 +21,15 @@ class ArticleManager(models.Manager):
 	def get_drafts(self):
 		return self.filter(publish=False)
 
-class Article(models.Model):
+class ArticleComment(models.Model):
+	user = models.ForeignKey(User)
+	text = models.CharField(max_length=255)
+	
+	#META
+	class Meta:
+		db_table = 'article_comment'
+
+class Article(models.Model, Entity):
 	is_news  = models.BooleanField(default=False)
 	pub_date = models.DateTimeField('Publish date', default=datetime.now)
 	headline = models.CharField(max_length=200)
@@ -41,6 +52,7 @@ class Article(models.Model):
 	objects = ArticleManager()
 		
 	class Meta:
+		db_table      = 'article'
 		ordering      = ['-pub_date']
 		get_latest_by = 'pub_date'
 	
@@ -62,6 +74,7 @@ class Section(models.Model):
 	slug = models.SlugField()
 
 	class Meta:
+		db_table = 'article_section'
 		ordering = ['title']
 
 	class Admin:
@@ -73,12 +86,4 @@ class Section(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('pr-section', args=[self.slug])
-
-class ArticleComment(models.Model):
-	user = models.ForeignKey(User)
-	text = models.CharField(max_length=255)
-	
-	#META
-	class Meta:
-		db_table = 'article_comment'
 	

@@ -5,7 +5,7 @@ import datetime
 from django.template  import RequestContext
 from django.shortcuts import render_to_response
 
-from mamochkam.apps.forum.models     import Thread
+#from mamochkam.apps.forum.models     import Thread
 from mamochkam.apps.pressroom.models import Article
 from mamochkam.apps.photos.models    import Photo
 from mamochkam.apps.tags.models      import Tag
@@ -13,7 +13,7 @@ from mamochkam.apps.tags.models      import Tag
 comments_mapping = {
 	'photo'  : Photo,
 	'article': Article,
-	'forum'  : Thread,
+	#'forum'  : Thread,
 }
 
 #AJAX: COMMENTING INTERFACE
@@ -37,6 +37,12 @@ def comment(request, type, id):
 
 #PORTAL MAIN PAGE
 def index(request):
-	return render_to_response('portal/index.html', {
-		'news': Article.objects.latest('pub_date').filter(is_news=True)[:7],
-	}, context_instance = RequestContext(request))
+	try:
+		return render_to_response('portal/index.html', {
+			'news': Article.objects.latest('pub_date').filter(is_news=True),
+		}, context_instance = RequestContext(request))
+	
+	except Article.DoesNotExist:
+		return render_to_response('portal/index.html', {
+			'news': [],
+		}, context_instance = RequestContext(request))

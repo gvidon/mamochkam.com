@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>{% block title %}mamochkam.com: материнский портал{% endblock %}</title>
+		
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/style.css" />
+		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css" /> -->
+	</head>
+	
+	<body>
+		<div class="tpl-header">
+			<div class="cloud-corner"></div>
+			<div class="logo"></div>
+			<ul class="common-navigation">
+				<li><a href="">Статьи</a></li>
+				<li><a href="">Фото</a></li>
+				<li><a href="">Видео</a></li>
+				<li><a href="">Магазин</a></li>
+				<li><a href="">Объявления</a></li>
+				<li><a href="">Форум</a></li>
+			</ul>
+			<ul class="section-navigation"></ul>
+		</div>
+
+		<div class="tpl-content">
+		{% block content %}{% endblock %}
+		</div>
+
+		<div class="tpl-footer">
+			<ul>
+				<li>
+					<div class="title">О нас</div>
+					<ul>
+						<li><a href="">Кто мы</a></li>
+						<li><a href="">Контактная информация</a></li>
+						<li><a href="">Как нас найти</a></li>
+					</ul>
+				</li>
+				
+				<li>
+					<div class="title">Помощь</div>
+					<ul>
+						<li><a href="">Регистрация</a></li>
+						<li><a href="">Восстановление пароля</a></li>
+						<li><a href="">Использование ресурса</a></li>
+						<li><a href="">Правила пользования</a></li>
+					</ul>
+				</li>
+				
+				<li>
+					<div class="title">О журнале</div>
+					<ul>
+						<li><a href="">Какая-то статья</a></li>
+						<li><a href="">Еще статья</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="guy"></div>
+		</div>
+	</body>
+</html>
