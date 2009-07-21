@@ -46,7 +46,7 @@ def upload(request):
 			
 			return render_to_response(
 				'photos/uploaded.html',
-				{ 'img_src': model.photo.path[len(settings.MEDIA_ROOT)-1:] },
+				{ 'img_src': model.url() },
 				context_instance=RequestContext
 			)
 	

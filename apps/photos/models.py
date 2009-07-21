@@ -2,6 +2,7 @@ from datetime import datetime
 from PIL      import Image
 
 from django.contrib.auth.models import User
+from django.conf                import settings
 from django.db                  import models
 
 from mamochkam.apps.portal.models import Entity
@@ -57,6 +58,14 @@ class Photo(models.Model, Entity):
 		image.save(output, image.format)
 	
 		return output
+	
+	#PREPARE URL
+	def url(self):
+		try:
+			return settings.MEDIA_URL+self.photo.path[len(settings.MEDIA_ROOT)-1:]
+		
+		except KeyError:
+			return ''
 	
 	#META
 	class Meta:

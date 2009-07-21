@@ -1,0 +1,10 @@
+{% load locale %}
+
+<ul>
+	{% for bulletin in bulletins %}
+		<li>
+			<div class="title"><a href="">{{ bulletin.title }}</a></div>
+			<div><span class="date">{{ bulletin.pub_date|date:"d F Y"|ru_monthes }}</span></div>
+		</li>
+	{% endfor %}
+</ul>

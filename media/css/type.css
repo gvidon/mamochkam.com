@@ -5,7 +5,7 @@
 	 8px = .5em*/
 
 body {
-	font: normal .875em/1.42em Tahoma, Verdana, sans-serif;
+	font: normal .775em/1.42em Tahoma, Verdana, sans-serif;
 	color: #515151;
 }
 
@@ -13,11 +13,34 @@ p {
 	margin-bottom: 1em;
 }
 
+h1 {
+	padding-bottom: 15px;
+	font-size: 1.940em;
+	color: #18537c;
+}
+
 h2 {
-	font-size: 1.227em;
+	padding-bottom: 10px;
+	font-size: 1.340em;
+	color: #18537c;
+}
+
+a {
+	color: #aa6c8b;
+	text-decoration: underline;
+}
+		
+a:hover {
+	color: #7b1748;
+	text-decoration: none;		
 }
 
 .date {
 	color: #b2b2b2;
 	font-size: .727em;
+}
+
+.section-link {
+	color: #496b82;
+	font: normal .875em Verdana;
 }

@@ -1,0 +1,5 @@
+{% load locale %}
+
+{% for photo in photos %}
+	<a href="#" title="{{ photo.title }}"><img src="{{ photo.url }}_thumb" /></a>
+{% endfor %}

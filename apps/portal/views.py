@@ -39,7 +39,7 @@ def comment(request, type, id):
 def index(request):
 	try:
 		return render_to_response('portal/index.html', {
-			'news': Article.objects.latest('pub_date').filter(is_news=True),
+			'news': Article.objects.filter(is_news=True).order_by('-pub_date'),
 		}, context_instance = RequestContext(request))
 	
 	except Article.DoesNotExist:

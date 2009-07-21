@@ -1,87 +1,44 @@
 {% extends 'base.html' %}
-{% load articles_last %}
+
+{% load bulletins %}
+{% load articles %}
+{% load photos %}
 
 {% block content %}
 <div class="tpl-other-articles corners">
 	<div class="t-r"></div><div class="b-r"></div>
 	
 	<div class="wrap">
-		<h2><a>Статьи</a></h2>
-
-		<ul>
-			<li>
-				<div class="title"><a href="">Название статьи</a></div>
-				<div><span class="date">13 ноября 2009</span></div>
-				<div class="description"><p>Краткое описание</p></div>
-			</li>
-			
-			<li>
-				<div class="title"><a href="">Название статьи</a></div>
-				<div><span class="date">13 ноября 2009</span></div>
-				<div class="description"><p>Краткое описание</p></div>
-			</li>
-			
-			<li>
-				<div class="title"><a href="">Название статьи</a></div>
-				<div><span class="date">13 ноября 2009</span></div>
-				<div class="description"><p>Краткое описание</p></div>
-			</li>
-			
-			<li>
-				<div class="title"><a href="">Название статьи</a></div>
-				<div><span class="date">13 ноября 2009</span></div>
-				<div class="description"><p>Краткое описание</p></div>
-			</li>
-		</ul>
+		<h2>Последние статьи</h2>
+		{% articles 5 0 %}<br/>
+	
+		<a class="section-link" href="#">Все статьи →</a>
 	</div>
 </div>
 
 <div class="tpl-news">
-	<ul>
-		<li>
-			<div class="title"><a href="">Формирование самооценки у детей</a></div>
-			<div><span class="date">13 ноября 2009</span></div>
-		</li>
-		
-		<li>
-			<div class="title"><a href="">В ответе за любовь к своему ребенку</a></div>
-			<div><span class="date">13 ноября 2009</span></div>
-		</li>
-		
-		<li>
-			<div class="title">
-				<a href="">Любить, нельзя потворствовать! или как вырастить психологически здорового ребенка </a>
-			</div>
-			
-			<div><span class="date">13 ноября 2009</span></div>
-		</li>
-	</ul>
+	{% articles 5 1 %}
+	
+	<a href="#">Все новости →</a>
 </div>
 
-<div class="tpl-gallery">1</div>
-	<div class="tpl-board corners">
+<div class="tpl-gallery">
+	{% random_photos 7 %}
+</div>
+
+<div class="tpl-board corners">
 	<div class="t-r"></div><div class="b-r"></div>
+
 	<div class="wrap">
-		<ul>
-			<li>
-				<div class="title"><a href="">Какой-то заголовок новости</a></div>
-				<div><span class="date">13 ноября 2009</span></div>
-			</li>
-			
-			<li>
-				<div class="title"><a href="">Какой-то заголовок новости</a></div>
-				<div><span class="date">13 ноября 2009</span></div>
-			</li>
-			
-			<li>
-				<div class="title"><a href="">Какой-то заголовок новости</a></div>
-				<div><span class="date">13 ноября 2009</span></div>
-			</li>
-		</ul>
+		<h2>Объявления пользователей</h2>
+		{% bulletins 5 %}
+	
+		<a class="section-link" href="#">Все объявления →</a>
 	</div>
 </div>
 
 <div class="tpl-article">
+	<h1>Журнал "Мамочкам"</h1>
 	<p>Прямое восхождение отражает сложный принцип восприятия, что отмечают такие крупнейшие ученые как Фрейд, Адлер, Юнг, Эриксон, Фромм. Мышление, на первый взгляд, фундаментально дает ионный хвост, в частности, "тюремные психозы", индуцируемые при различных психопатологических типологиях. Движение, несмотря на внешние воздействия, подрывает социальный Юпитер, ломая рамки привычных представлений. Сознание, по определению, неустойчиво транспонирует спектральный класс, тем не менее, уже 4,5 млрд лет расстояние нашей планеты от Солнца практически не меняется.</p>
 </div>
 {% endblock %}

@@ -90,7 +90,7 @@ INSTALLED_APPS = (
 	'mamochkam.apps.pressroom',
 	'mamochkam.apps.photos',
 	'mamochkam.apps.tags',
-	'mamochkam.apps.templatetags',
+	'mamochkam.apps.bulletins',
 )
 
 ITEMS_PER_PAGE = 10
