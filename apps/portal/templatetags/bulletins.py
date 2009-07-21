@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django import template
+from django                          import template
 from mamochkam.apps.bulletins.models import Bulletin
 
 register = template.Library()

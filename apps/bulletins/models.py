@@ -14,3 +14,7 @@ class Bulletin(models.Model, Entity):
 	
 	title        = models.CharField(max_length=70)
 	description  = models.CharField(max_length=255)
+	
+	#META
+	class Meta:
+		db_table = 'bulletin'

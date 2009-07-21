@@ -1,5 +1,5 @@
-from django.db        import models
-from apps.tags.models import Tag
+from django.db                  import models
+from mamochkam.apps.tags.models import Tag
 
 class Entity():
 	def attach_tags(self, tags_string):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django import template
+from django                       import template
 from mamochkam.apps.photos.models import Photo
 
 register = template.Library()
