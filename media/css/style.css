@@ -61,11 +61,18 @@ body {
 		.common-navigation li a:active {
 			outline: none !important;
 		}
+		
+/* Content
+******************************************************************************/
 
-.tpl-content {
-	padding: 0 20px;
-	overflow: hidden;
-}
+	.tpl-wrap {
+		padding: 0 20px;
+		overflow: hidden;
+	}
+
+		.tpl-content {
+			margin-right: 300px;
+		}
 
 /*
 ** Footer
@@ -117,16 +124,12 @@ body {
 				text-decoration: underline;
 			}
 
-/*
-** Different special elements
-******************************************************************************/
-
 /* Cornered block ************************************************************/
 
 .corners {
 	width: 300px;
 	position: relative;
-	padding: 12px 0 17px 0;
+	padding: 12px 0 20px 0;
 }
 	.corners .t-r {
 		position: absolute; top: 0;
@@ -150,7 +153,7 @@ body {
 	}
 
 
-/* Logo and clouds in header *************************************************/
+/* Logo and clouds in header/ guy in footer **********************************/
 
 .logo {
 	position: absolute;
@@ -174,3 +177,5 @@ body {
 	
 	background: transparent url('../images/guy.png') 0 bottom no-repeat;
 }
+
+.clear { clear: both; }
