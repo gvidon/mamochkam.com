@@ -1,0 +1,12 @@
+.tpl-news-archive,
+.tpl-article-categories,
+.tpl-footer,
+.tpl-board,
+.tpl-gallery,
+.tpl-news,
+.tpl-other-articles,
+.common-navigation {
+	display: none;
+}
+
+a { text-decoration: underline; }

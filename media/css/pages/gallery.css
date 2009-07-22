@@ -1,0 +1,23 @@
+/* 
+******************************************************************************/
+
+.tpl-photo-of-month,
+.tpl-best-authors {
+	float: right;
+	clear: right;
+	margin-bottom: 10px;
+}
+
+.tpl-photos {
+	overflow: hidden;
+}
+
+.tpl-photos li {
+	float: left;
+	width: 150px; margin: 0 30px 30px 0;
+}
+
+.tpl-photos ul li {
+	float: none;
+	margin: 0;
+}

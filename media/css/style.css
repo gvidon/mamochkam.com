@@ -1,13 +1,21 @@
 @import url('reset.css');
 @import url('type.css');
 
+@import url('pages/index.css');
+@import url('pages/articles.css');
+@import url('pages/gallery.css');
+
 /*
 ** Layout
 ******************************************************************************/
+
 body {
 	background: #ffffff none;
 	min-width: 1000px;
 }
+
+/* Header
+******************************************************************************/
 
 .tpl-header {
 	height: 285px;
@@ -19,6 +27,8 @@ body {
 		position: absolute;
 		top: 55px; left: 265px;
 		width:300px; height:100px;
+
+		overflow: hidden; text-indent: -100%;
 	}
 	
 	.common-navigation {
@@ -56,78 +66,6 @@ body {
 	padding: 0 20px;
 	overflow: hidden;
 }
-
-/* 
-******************************************************************************/
-
-	.tpl-news {
-		margin-left: 40px;
-		margin-top: 40px;
-		margin-right: 300px;
-		margin-bottom: 10px;
-	}
-
-		.tpl-news li {
-			margin-bottom: 17px;
-		}
-
-		.tpl-news .title a {
-			font-size: 1.65em;		
-		}
-
-/* 
-******************************************************************************/
-
-	.tpl-other-articles {
-		float: right;
-		width: 300px;
-		
-		margin-bottom: 10px;
-	}
-	
-		.tpl-other-articles li {
-			margin-bottom: 10px;
-		}
-
-/* 
-******************************************************************************/
-
-	.tpl-gallery {
-		clear: both;
-
-		margin-bottom: 10px;
-
-		border: 1px solid #7e7e7e;
-		border-bottom-width: 4px;
-		background: #fbe2ef url('../images/gallery-bg.gif') 0 center repeat-x;
-	}
-		
-		.tpl-gallery img {
-			padding: 20px 20px 20px 20px;
-		}
-
-/* 
-******************************************************************************/
-
-	.tpl-article {
-		margin-left: 40px;
-		margin-top: 40px;
-		margin-right: 340px;
-		margin-bottom: 10px;
-	}
-	
-/* 
-******************************************************************************/
-
-	.tpl-board {
-		float: right;
-		width: 360px;
-
-		margin-bottom: 10px;
-	}
-		.tpl-board li {
-			margin-bottom: 1em;
-		}
 
 /*
 ** Footer

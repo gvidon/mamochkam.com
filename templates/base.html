@@ -8,12 +8,17 @@
 		
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/style.css" />
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css" /> -->
+		<link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
 	</head>
 	
 	<body>
 		<div class="tpl-header">
 			<div class="cloud-corner"></div>
-			<div class="logo"></div>
+			
+			<h1 class="logo">
+				<a href="index.html">Мамочка</a>
+			</h1>
+			
 			<ul class="common-navigation">
 				<li><a href="">Статьи</a></li>
 				<li><a href="">Фото</a></li>
@@ -25,7 +30,7 @@
 			<ul class="section-navigation"></ul>
 		</div>
 
-		<div class="tpl-content">
+		<div class="tpl-wrap">
 		{% block content %}{% endblock %}
 		</div>
 
