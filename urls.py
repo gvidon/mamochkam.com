@@ -7,6 +7,6 @@ urlpatterns = patterns('mamochkam.apps.portal.views',
 
 urlpatterns += patterns('',
 	url(r'^bulletins/?', include('apps.bulletins.urls')),
-	url(r'^articles/?' , include('apps.pressroom.urls')),
+	url(r'^pressroom/?', include('apps.pressroom.urls')),
 	url(r'^photos/?'   , include('apps.photos.urls')),
 )

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load articles %}
+{% load photos %}
+
+{% block content %}
+	<div class="tpl-article-categories corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		<div class="wrap">
+			<h2>Тематика</h2>
+			
+			<ul>
+				<li><a>Брак и семья</a></li>
+				<li><a>Семья и контроль качества</a></li>
+				<li><a>Стандарты качества для семьи</a></li>
+				<li><a>Тестирование семейного обеспечения</a></li>
+			</ul><br/>
+		</div>
+	</div>
+	
+	<div class="tpl-news-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		<div class="wrap">
+			<h2>Архив</h2>
+			
+			<ul>
+				<li><a>Брак и семья</a></li>
+				<li><a>Семья и контроль качества</a></li>
+				<li><a>Стандарты качества для семьи</a></li>
+				<li><a>Тестирование семейного обеспечения</a></li>
+			</ul><br/>
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		<div class="tpl-article">
+			{% include 'pressroom/_article.html' %}
+		</div>
+	</div>
+{% endblock %}

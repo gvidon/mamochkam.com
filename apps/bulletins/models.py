@@ -1,7 +1,7 @@
 from datetime                     import datetime
 from django.contrib.auth.models   import User
 from django.db                    import models
-from mamochkam.apps.portal.models import Entity
+from mamochkam.apps.common.models import Entity
 
 class Bulletin(models.Model, Entity):
 	user         = models.ForeignKey(User)

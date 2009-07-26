@@ -1,0 +1,6 @@
+{% load dates %}
+
+<div class="title"><a href="/pressroom/{{ object.slug }}">{{ object.headline }}</a></div>
+<div><span class="date">{{ object.pub_date|date:"d F Y"|ru_months }}</span></div>
+
+{{ object.summary }}

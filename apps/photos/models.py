@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.conf                import settings
 from django.db                  import models
 
-from mamochkam.apps.portal.models import Entity
+from mamochkam.apps.common.models import Entity
 
 #GALLERY MODEL
 class Gallery(models.Model):

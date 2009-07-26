@@ -1,0 +1,26 @@
+тут <b>странички</b>:
+
+{% if prev_layer.end %}
+	{% ifnotequal prev_layer.start 1 %}
+		<a href="1">1</a>
+	{% endifnotequal %}
+	
+	<a href="{{ url }}/page/{{ prev_layer.end }}">{{ prev_layer.start }} - {{ prev_layer.end }}</a>
+{% endif %}
+
+{% for i in page_range %}
+	{% ifequal page_obj.number i %}
+		<span>{{ i }}</span>
+	{% else %}
+		<a href="{{ url }}/page/{{ i }}">{{ i }}</a>
+	{% endifequal %}
+{% endfor %}
+
+{% if next_layer.start %}
+	<a href="{{ url }}/page/{{ next_layer.start }}">
+		{{ next_layer.start }}{% ifnotequal next_layer.start next_layer.end %} - {{ next_layer.end }}{% endifnotequal %}</a>
+	
+	{% ifnotequal next_layer.start next_layer.end %}
+		<a href="{{ url }}/page/{{ page_obj.end_index }}">последняя</a>
+	{% endifnotequal %}
+{% endif %}

@@ -25,6 +25,12 @@ h2 {
 	color: #18537c;
 }
 
+h3 {
+	padding-bottom: 10px;
+	font-size: 1.240em;
+	color: #18537c;
+}
+
 a {
 	color: #aa6c8b;
 	text-decoration: underline;

@@ -77,6 +77,7 @@ ROOT_URLCONF = 'mamochkam.urls'
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
     os.path.join(PROJECT_ROOT, 'apps/portal/templates'),
+    os.path.join(PROJECT_ROOT, 'apps/pressroom/templates'),
     os.path.join(PROJECT_ROOT, 'apps/photos/templates'),
 )
 
@@ -86,6 +87,7 @@ INSTALLED_APPS = (
 	'django.contrib.sessions',
 	'django.contrib.sites',
 	
+	'mamochkam.apps.common',
 	'mamochkam.apps.portal',
 	'mamochkam.apps.pressroom',
 	'mamochkam.apps.photos',
@@ -93,4 +95,6 @@ INSTALLED_APPS = (
 	'mamochkam.apps.bulletins',
 )
 
-ITEMS_PER_PAGE = 10
+# Pager settings
+ITEMS_PER_PAGE = 5
+MAX_SHOW_PAGES = 2

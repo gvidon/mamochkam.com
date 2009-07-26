@@ -4,12 +4,31 @@
 .tpl-article-categories,
 .tpl-news-archive {
 	float: right; clear: right;
-	
 	margin-bottom: 10px;
 }
+	.tpl-news-archive ul li {
+		margin-left: 7px;
+	}
 
 /* 
 ******************************************************************************/
 
-.tpl-articles li {
+.tpl-article {
+	margin-left: 40px;
+	margin-top: 20px;
 }
+
+	.tpl-article p {
+		margin-left: 15px;
+		margin-right: 35%;
+	}
+
+.tpl-articles {
+	margin-left: 40px;
+	margin-top: 20px;
+}
+
+	.tpl-articles li {
+		margin-left: 15px;
+		margin-bottom: 40px;
+	}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block content %}
+	<div class="tpl-article-categories corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		<div class="wrap">
+			<h2>Тематика</h2>
+			
+			<ul>
+				<li><a>Брак и семья</a></li>
+				<li><a>Семья и контроль качества</a></li>
+				<li><a>Стандарты качества для семьи</a></li>
+				<li><a>Тестирование семейного обеспечения</a></li>
+			</ul><br/>
+		</div>
+	</div>
+	
+	<div class="tpl-news-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		<div class="wrap">
+			<h2>Архив за {% now "Y" %} год</h2>
+			
+			<ul>
+				{% this_year_months url %}<br/>
+				
+				<li><a class="section-link" href="{{ url }}/archive">Весь архив →</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		<ul class="tpl-articles">
+			<h1>{% ifequal type 'articles' %}Статьи для мамочек{% else %}Новости{% endifequal %}</h1><br/>
+			{% if object_list %}
+				{% include 'pressroom/_articles.html' %}
+			{% else %}
+			
+				{% if date_list %}
+					<h3>Нет материалов за указанную дату</h3>
+				{% else %}
+					<h3>По вашем запросу материалов нет</h3>
+				{% endif %}
+				
+			{% endif %}
+			
+			{% if page_obj.has_other_pages %}
+				<li class="pages">{% pages paginator page_obj url %}</li>
+			{% endif %}
+		</ul>
+	</div>
+{% endblock %}

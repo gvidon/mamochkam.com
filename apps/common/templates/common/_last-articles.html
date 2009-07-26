@@ -1,0 +1,11 @@
+{% load dates %}
+
+{% for article in articles %}
+	<li>
+		<div class="title"><a href="">{{ article.headline }}</a></div>
+		<div><span class="date">{{ article.pub_date|date:"d F Y"|ru_months }}</span></div>
+		{% if show_summary %}
+			{{ article.summary }}
+		{% endif %}
+	</li>
+{% endfor %}
