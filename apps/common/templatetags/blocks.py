@@ -2,7 +2,15 @@
 from django.template.defaultfilters  import stringfilter
 from django.conf                     import settings
 from django                          import template
+
 from mamochkam.apps.pressroom.models import Article
+from mamochkam.apps.pressroom.models import Section
+
+# Querysets are executed only when objects are iterated
+queryset = {
+	'articles': Section.objects.all(),
+	'news'    : Section.objects.all(),
+}
 
 register = template.Library()
 
@@ -15,3 +23,14 @@ def last_articles(count, is_news):
 	
 	except ValueError:
 		return { 'articles': [] }
+
+@register.inclusion_tag('common/_categories.html')
+def categories(type, url):
+	try:
+		return {
+			'categories': queryset[type],
+			'url'       : url + '/' + queryset[type][0].__class__.__name__.lower(),
+		}
+	
+	except ValueError:
+		return { 'categories': [] }

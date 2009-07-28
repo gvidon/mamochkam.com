@@ -1,5 +1,5 @@
 {% load dates %}
 
 {% for month in months %}
-	<li><a href="{{ url }}/archive/{{ year }}/{{ month.1|lower }}">{{ month.0|ru_months }}</a></li>
+	<li><a href="{{ url }}/archive/{{ year }}/{{ month.3|lower }}">{{ month.1 }}</a></li>
 {% endfor %}

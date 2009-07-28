@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% load bulletins %}
-{% load articles %}
 {% load photos %}
+{% load blocks %}
 
 {% block content %}
 <div class="tpl-other-articles corners">
@@ -20,7 +20,7 @@
 	<h1>Новости от Мамочек</h1><br/>
 	<ul>
 		{% last_articles 5 1 %}
-		<li><a href="#">Все новости →</a></li>
+		<li><a href="/pressroom/news">Все новости →</a></li>
 	</ul>
 </div>
 

@@ -6,8 +6,10 @@
 	float: right; clear: right;
 	margin-bottom: 10px;
 }
+	.tpl-article-categories ul li,
 	.tpl-news-archive ul li {
 		margin-left: 7px;
+		padding-top: 5px;
 	}
 
 /* 
@@ -31,4 +33,18 @@
 	.tpl-articles li {
 		margin-left: 15px;
 		margin-bottom: 40px;
+	}
+
+/*
+******************************************************************************/
+
+.tpl-full-archive ul {
+	float: none;
+	margin-top: -7px;
+	padding-bottom: 25px;
+}
+
+	.tpl-full-archive ul li {
+		float: left;
+		padding-left: 7px;
 	}

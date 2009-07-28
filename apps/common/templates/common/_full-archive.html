@@ -1,0 +1,17 @@
+{% load dates %}
+
+<div class="jqmClose"><a href="#">закрыть</a></div>
+
+{% for year in past_years %}
+	<h1>{{ year }}</h1>
+	
+	<ul>
+		{% for month in months %}
+			<li><a href="{{ url }}/archive/{{ year }}/{{ month.3|lower }}">{{ month.1 }}</a></li>
+		{% endfor %}
+	</ul>
+	<br/><br/>
+{% endfor %}
+	
+<h1>{% now "Y" %}</h1>
+<ul>{% this_year_months url %}</ul>

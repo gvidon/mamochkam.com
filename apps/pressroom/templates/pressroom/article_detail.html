@@ -1,40 +1,44 @@
 {% extends 'base.html' %}
 
 {% load bulletins %}
-{% load articles %}
 {% load photos %}
+{% load blocks %}
 
 {% block content %}
-	<div class="tpl-article-categories corners">
-		<div class="t-r"></div><div class="b-r"></div>
-		<div class="wrap">
-			<h2>Тематика</h2>
-			
-			<ul>
-				<li><a>Брак и семья</a></li>
-				<li><a>Семья и контроль качества</a></li>
-				<li><a>Стандарты качества для семьи</a></li>
-				<li><a>Тестирование семейного обеспечения</a></li>
-			</ul><br/>
+	{% if not object.is_news %}
+		<div class="tpl-article-categories corners">
+			<div class="t-r"></div><div class="b-r"></div>
+			<div class="wrap">
+				{% with "/pressroom/articles" as url %}
+					{% include 'pressroom/_sections-block.html' %}
+				{% endwith %}
+			</div>
 		</div>
-	</div>
+	{% endif %}
 	
 	<div class="tpl-news-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
+		
 		<div class="wrap">
-			<h2>Архив</h2>
+			{% if object.is_news %}
 			
-			<ul>
-				<li><a>Брак и семья</a></li>
-				<li><a>Семья и контроль качества</a></li>
-				<li><a>Стандарты качества для семьи</a></li>
-				<li><a>Тестирование семейного обеспечения</a></li>
-			</ul><br/>
+				{% with "/pressroom/news" as url %}
+				
+					{% include 'pressroom/_archive-block.html' %}
+				{% endwith %}
+			{% else %}
+			
+				{% with "/pressroom/articles" as url %}
+				
+					{% include 'pressroom/_archive-block.html' %}
+				{% endwith %}
+			{% endif %}
 		</div>
 	</div>
 	
 	<div class="tpl-content">
 		<div class="tpl-article">
+			<a href="javascript:history.go(-1)">назад</a><br/><br/>
 			{% include 'pressroom/_article.html' %}
 		</div>
 	</div>

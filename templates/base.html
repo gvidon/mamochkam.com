@@ -9,6 +9,10 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/style.css" />
 		<!-- <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css" /> -->
 		<link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
+		
+		<script src="{{ media_url }}/js/lib/jquery.js"></script>
+		<script src="{{ media_url }}/js/lib/livequery.js"></script>
+		{% block js %}{% endblock %}
 	</head>
 	
 	<body>
@@ -20,7 +24,7 @@
 			</h1>
 			
 			<ul class="common-navigation">
-				<li><a href="">Статьи</a></li>
+				<li><a href="/pressroom/articles">Статьи</a></li>
 				<li><a href="">Фото</a></li>
 				<li><a href="">Видео</a></li>
 				<li><a href="">Магазин</a></li>

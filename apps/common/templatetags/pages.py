@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 from django.template.defaultfilters  import stringfilter
 from django.conf                     import settings
 from django                          import template
@@ -19,7 +21,7 @@ def pages(paginator, page_obj, url):
 		'count_items': paginator.count,
 		'page_obj'   : page_obj,
 		'many_pages' : paginator.num_pages > settings.MAX_SHOW_PAGES,
-		'url'        : url,
+		'url'        : re.sub(r'/(page/[0-9]+/?)?$', '', url),
 		
 		'next_layer': {
 			'start': next_layer <= paginator.num_pages and next_layer or 0,

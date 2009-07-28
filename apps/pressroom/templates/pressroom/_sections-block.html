@@ -1,0 +1,10 @@
+{% load blocks %}
+
+<h2>Тематика</h2>
+
+<ul>
+	<li><a href="/pressroom/news">Новости</a></li>
+	{% categories type "/pressroom/articles" %}<br/>
+	
+	<li><a class="section-link" href="{{ url }}">Все статьи →</a></li>
+</ul>
