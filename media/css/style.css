@@ -105,7 +105,7 @@ body {
 	}
 
 		.tpl-footer ul .title {
-			color: #ffffff;
+			color: #664f1c;
 			font-weight: bold;
 			border-bottom: 1px solid;
 		}
@@ -119,7 +119,7 @@ body {
 
 			.tpl-footer ul ul li a {
 				text-decoration: none;
-				color: #ffffff;
+				color: #664f1c;
 			}
 
 			.tpl-footer ul ul li a:hover {
