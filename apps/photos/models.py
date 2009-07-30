@@ -43,6 +43,7 @@ class Photo(models.Model, Entity):
 	photo    = models.ImageField(upload_to='/home/nide/code/mamochkam/media/upload/photos')
 	title    = models.CharField(max_length=50)
 	comments = models.ManyToManyField(PhotoComment, blank=True)
+	publish  = models.BooleanField('Publish on site', default=False)
 	
 	#GENERATE PHOTO THUMBNAIL
 	def generate_thumb(self, output=None):
@@ -63,6 +64,14 @@ class Photo(models.Model, Entity):
 	def url(self):
 		try:
 			return settings.MEDIA_URL+self.photo.path[len(settings.MEDIA_ROOT)-1:]
+		
+		except KeyError:
+			return ''
+	
+	#PREPARE URL
+	def thumb_url(self):
+		try:
+			return settings.MEDIA_URL+self.photo.path[len(settings.MEDIA_ROOT)-1:]+'_thumb'
 		
 		except KeyError:
 			return ''

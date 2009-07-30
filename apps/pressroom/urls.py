@@ -2,14 +2,14 @@ from django.conf.urls.defaults    import *
 from django.conf                  import settings
 from models                       import Article
 
-# just articles 
+# Section urls
 urlpatterns = patterns('mamochkam.apps.pressroom.views',
     url(r'^$', 'index', name="pr-index"),
     url(r'^articles/section/(?P<slug>[\-\d\w]+)/$'                      , 'view_section', name="pr-section"),
     url(r'^articles/section/(?P<slug>[\-\d\w]+)/page/(?P<page>[0-9]+)/$', 'view_section', name="pr-section-page")
 )
 
-# articles and news
+# Articles and news querysets
 querysets = {
 	'articles': Article.objects.filter(is_news=False, publish=True),
 	'news'    : Article.objects.filter(is_news=True, publish=True),

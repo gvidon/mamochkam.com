@@ -1,0 +1,12 @@
+{% load dates %}
+
+{% for photo in object_list %}
+	<li>
+		<ul>
+			<li><a href="?"><img src="{{ photo.thumb_url }}" alt="Фото" /></a></li>
+			<li class="date">{{ photo.pub_date|date:"d F Y"|ru_months }}</li>
+			<li>{{ photo.title }}</li>
+			<li>Отправил <a href="?">Автор</a></li>
+		</ul>
+	</li>
+{% endfor %}

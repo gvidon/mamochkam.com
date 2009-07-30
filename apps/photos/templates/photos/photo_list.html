@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.tpl-full-archive').jqm();
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-most-commented corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		<div class="wrap">
+			<h2>Самое обсуждаемое</h2>
+			<a href="?"><img src="images/example.gif" alt="" /></a>
+			<div><span class="label">Автор:</span></div>
+			<div><span class="label">Рейтинг:</span></div>
+		</div>
+	</div>
+			
+	<div class="tpl-galleries corners">
+		<div class="t-r"></div><div class="b-r"></div>
+	
+		<div class="wrap">
+			{% include 'photos/_galleries-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-photo-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			{% include 'photos/_archive-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		<ul class="tpl-photos">
+			<h1>Фото от наших мамочек</h1>
+			
+			{% if month %}
+				<h3>
+					архив {{ month|date:"F Y"|ru_months }}
+					<a href="/photos">все фото</a>
+				</h3>
+			{% else %}
+				{% if gallery %}
+					<h3>{{ gallery.title }}</h3>
+				{% endif %}
+			{% endif %}
+			
+			<br/>
+			
+			{% if object_list %}
+				{% include 'photos/_photos.html' %}
+			{% else %}
+			
+				{% if date_list %}
+					<h3 style="color: red">Нет изображений за указанную дату</h3>
+				{% else %}
+					<h3 style="color: red">К сожалению эта категория пуста</h3>
+				{% endif %}
+				
+			{% endif %}
+			
+			{% if page_obj.has_other_pages %}
+				<li class="pages">{% pages paginator page_obj request.path %}</li>
+			{% endif %}
+		</ul>
+	</div>
+	
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive "/photos" %}
+	</div>
+{% endblock %}

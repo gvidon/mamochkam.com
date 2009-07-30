@@ -16,9 +16,6 @@ def view_section(request, slug, page=1):
 	except Section.DoesNotExist:
 		raise Http404
 	
-	print section.title
-	print articles.count()
-	
 	return list_detail.object_list(request,
 		queryset      = articles,
 		paginate_by   = settings.ITEMS_PER_PAGE,

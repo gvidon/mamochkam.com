@@ -5,24 +5,27 @@ from django.conf             import settings
 from django.template.context import RequestContext
 from django.views.generic    import list_detail
 from django.shortcuts        import render_to_response
-from django.http             import HttpResponse
+from django.http             import HttpResponse, Http404
 
 from models import Gallery
 from forms  import PhotoForm
 
 #GALLERY'S PHOTOS LIST
 def photos(request, slug, page=1):
-	gallery = Gallery.objects.get(slug__exact=slug)
-	photos = gallery.photos.all()
+	try:
+		gallery = Gallery.objects.get(slug__exact=slug)
+		photos = gallery.photos.all()
 	
-	return list_detail.object_list(
-		request,
-		queryset      = articles,
+	except Gallery.DoesNotExist:
+		raise Http404
+	
+	return list_detail.object_list(request,
+		queryset      = photos,
 		paginate_by   = settings.ITEMS_PER_PAGE,
 		page          = page,
 		allow_empty   = True,
-		template_name = 'photos/photos.html',
-		extra_context = { 'section': section }
+		template_name = 'photos/photo_list.html',
+		extra_context = { 'gallery': gallery }
 	)
 
 #UPLOAD USER'S PHOTO

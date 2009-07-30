@@ -3,13 +3,14 @@ from django.template.defaultfilters  import stringfilter
 from django.conf                     import settings
 from django                          import template
 
-from mamochkam.apps.pressroom.models import Article
-from mamochkam.apps.pressroom.models import Section
+from mamochkam.apps.pressroom.models import Article, Section
+from mamochkam.apps.photos.models    import Gallery
 
 # Querysets are executed only when objects are iterated
 queryset = {
 	'articles': Section.objects.all(),
 	'news'    : Section.objects.all(),
+	'photos'  : Gallery.objects.all(),
 }
 
 register = template.Library()
