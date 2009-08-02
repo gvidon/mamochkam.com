@@ -39,12 +39,14 @@
 
 	.tpl-gallery {
 		clear: both;
+		height: 200px;
 		
 		margin-bottom: 25px;
 
 		border: 1px solid #7e7e7e;
 		border-bottom-width: 4px;
-		background: #fbe2ef url('../../images/gallery-bg.gif') 0 center repeat-x;
+		
+		background: #ebf6fb url('../../images/gallery-bg.png') 0 center repeat-x;
 	}
 		
 		.tpl-gallery img {
