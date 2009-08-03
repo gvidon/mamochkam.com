@@ -202,3 +202,45 @@ body {
 		
 		font-size: 2em;
 	}
+
+/* Pages ******************************************************************/
+.cloud-1,
+.cloud-2,
+.cloud-3,
+.cloud-4 {
+	position: absolute;
+	bottom: 22px;
+	height: 43px;
+	background: transparent url('../images/clouds.png') no-repeat;
+}
+
+.cloud-1 {
+	left: 0;
+	width: 39px;
+	background-position: 0 0;
+}
+
+.cloud-2 {
+	left: 25%;
+	width: 94px;
+	background-position: -39px 0;
+}
+
+.cloud-3 {
+	left: 50%;
+	width: 121px;
+	background-position: -133px 0;
+}
+
+.cloud-4 {
+	left: 75%;
+	width: 139px;
+	background-position: -255px 0;
+}
+
+.cloud-5 {
+	position: absolute;
+	top: 0; left: 0;
+	width: 110px; height: 43px;
+	background: transparent url('../images/clouds.png') -394px 0 no-repeat;
+}
