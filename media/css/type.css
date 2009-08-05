@@ -41,7 +41,7 @@ a:hover {
 	text-decoration: none;		
 }
 
-.date {
+.date, .comment {
 	color: #b2b2b2;
 	font-size: .727em;
 }

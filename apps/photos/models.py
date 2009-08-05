@@ -37,7 +37,7 @@ class PhotoComment(models.Model):
 
 #MAIN PHOTO MODEL
 class Photo(models.Model, Entity):
-	#user     = models.ForeignKey(User)
+	user     = models.ForeignKey(User)
 	pub_date = models.DateTimeField(default=datetime.now)
 	gallery  = models.ForeignKey(Gallery)
 	photo    = models.ImageField(upload_to='/home/nide/code/mamochkam/media/upload/photos')

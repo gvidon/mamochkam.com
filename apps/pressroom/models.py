@@ -46,7 +46,6 @@ class Article(models.Model, Entity):
 	)
 	
 	sections = models.ManyToManyField('Section', related_name='articles')
-	#photos = models.ManyToManyField(Photo, related_name='articles', null=True, blank=True)
 	
 	# Custom article manager
 	objects = ArticleManager()

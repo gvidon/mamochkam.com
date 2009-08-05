@@ -41,38 +41,19 @@
 	</div>
 	
 	<div class="tpl-content">
-		<ul class="tpl-photos">
+		<ul class="tpl-photo-detail">
 			<h1>Фото от наших мамочек</h1>
+			<h3>{{ object.title }}</h3>
 			
-			{% if month %}
-				<h3>
-					архив {{ month|date:"F Y"|ru_months }}
-					<a href="/photos">все фото</a>
-				</h3>
-			{% else %}
-				{% if gallery %}
-					<h3>{{ gallery.title }}</h3>
-				{% endif %}
-			{% endif %}
+			<li>
+				<img src="{{ object.url }}" alt="{{ object.title }}" /><br/>
 			
-			<br/>
-			
-			{% if object_list %}
-				{% include 'photos/_photos.html' %}
-			{% else %}
-			
-				{% if date_list %}
-					<h3 style="color: red">Нет изображений за указанную дату</h3>
-				{% else %}
-					<h3 style="color: red">К сожалению эта категория пуста</h3>
-				{% endif %}
-				
-			{% endif %}
+				<span class="comment">
+					Отправил <a href="#">{{ object.user.username }}</a>
+					{{ object.pub_date|date:"j-го F Y"|ru_months }}
+				</span>
+			</li>
 		</ul>
-		
-		{% if page_obj.has_other_pages %}
-			<div class="pages">{% pages paginator page_obj request.path %}</div>
-		{% endif %}
 	</div>
 	
 	<div class="tpl-full-archive jqmWindow">

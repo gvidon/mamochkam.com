@@ -20,7 +20,7 @@
 	margin-top: 20px;
 	overflow: hidden;
 }
-
+	
 	.tpl-photos li {
 		padding-left: 7px;
 		float: left;
@@ -29,7 +29,19 @@
 	}
 
 	.tpl-photos ul li {
+		text-align: center;
+		width: 170px;
 		float: none;
 		font-size: 0.7em;
 		margin: 0;
+	}
+
+.tpl-photo-detail {
+	width: 100%;
+	margin-left: 40px;
+	margin-top: 20px;
+	overflow: hidden;
+}
+	.tpl-photo-detail li {
+		text-align: center;
 	}

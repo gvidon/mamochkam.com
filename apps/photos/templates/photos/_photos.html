@@ -2,11 +2,11 @@
 
 {% for photo in object_list %}
 	<li>
-		<ul>
-			<li><a href="?"><img src="{{ photo.thumb_url }}" alt="Фото" /></a></li>
-			<li class="date">{{ photo.pub_date|date:"d F Y"|ru_months }}</li>
-			<li>{{ photo.title }}</li>
-			<li>Отправил <a href="?">Автор</a></li>
+		<ul class="photo">
+			<li><a href="/photos/view/{{ photo.id }}">
+				<img src="{{ photo.thumb_url }}" title="{{ photo.title }}" />
+			</a></li>
+			<li><a href="?">Автор sdaas dasd asdsa das d</a></li>
 		</ul>
 	</li>
 {% endfor %}

@@ -9,15 +9,14 @@ urlpatterns = patterns('mamochkam.apps.photos.views',
 
 # Photo list and details
 urlpatterns += patterns('django.views.generic.list_detail',
-	url(r'/?$', 'object_list', {
-		'paginate_by'  : settings.ITEMS_PER_PAGE,
-		'allow_empty'  : True,
-		'queryset'     : Photo.objects.filter(publish=True),
+	url(r'^(page/(?P<page>[0-9]+))?/?$', 'object_list', {
+		'paginate_by': settings.ITEMS_PER_PAGE,
+		'allow_empty': True,
+		'queryset'   : Photo.objects.filter(publish=True),
 	}, name='ph-photo-list'),
 	
-	url(r'^(?P<slug>[\-\d\w]+)/$', 'object_detail', {
-		'slug_field'   : 'slug',
-		'queryset'     : Photo.objects.all(),
+	url(r'view/(?P<object_id>[0-9]+)/?$', 'object_detail', {
+		'queryset' : Photo.objects.all(),
 	}, name='ph-photo-detail'),
 )
 
