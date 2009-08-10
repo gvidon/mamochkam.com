@@ -50,3 +50,8 @@ a:hover {
 	color: #496b82;
 	font: normal .875em Verdana;
 }
+
+.selected-link {
+	font-weight: bold;
+	text-decoration: none;
+}

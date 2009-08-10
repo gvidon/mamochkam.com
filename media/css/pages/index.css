@@ -5,7 +5,7 @@
 		margin-left: 40px;
 		margin-top: 20px;
 		margin-right: 300px;
-		margin-bottom: 30px;
+		margin-bottom: 54px;
 	}
 
 		.tpl-news li,
@@ -39,8 +39,9 @@
 
 	.tpl-gallery {
 		clear: both;
-		height: 200px;
+		height: 140px;
 		
+		text-align: center;
 		margin-bottom: 25px;
 
 		border: 1px solid #7e7e7e;
@@ -48,9 +49,12 @@
 		
 		background: #ebf6fb url('../../images/gallery-bg.png') 0 center repeat-x;
 	}
+		.digest {
+			display: none;
+		}
 		
 		.tpl-gallery img {
-			padding: 20px 20px 20px 20px;
+			padding: 20px 27px 20px 20px;
 		}
 	
 /* 

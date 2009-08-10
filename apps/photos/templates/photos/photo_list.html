@@ -2,6 +2,7 @@
 
 {% load pages %}
 {% load dates %}
+{% load photos %}
 
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
@@ -16,11 +17,9 @@
 {% block content %}
 	<div class="tpl-most-commented corners">
 		<div class="t-r"></div><div class="b-r"></div>
+		
 		<div class="wrap">
-			<h2>Самое обсуждаемое</h2>
-			<a href="?"><img src="images/example.gif" alt="" /></a>
-			<div><span class="label">Автор:</span></div>
-			<div><span class="label">Рейтинг:</span></div>
+			{% include 'photos/_lastphoto-block.html' %}
 		</div>
 	</div>
 			

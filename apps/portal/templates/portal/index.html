@@ -4,6 +4,16 @@
 {% load photos %}
 {% load blocks %}
 
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/portal.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			Portal.bindEvents();
+		})	
+	</script>
+{% endblock %}
+
 {% block content %}
 <div class="tpl-other-articles corners">
 	<div class="t-r"></div><div class="b-r"></div>
@@ -19,14 +29,30 @@
 <div class="tpl-news">
 	<h1>Новости от Мамочек</h1><br/>
 	<ul>
-		{% last_articles 5 1 %}
+		{% last_articles 7 1 %}
 		<li><a href="/pressroom/news">Все новости →</a></li>
 	</ul>
 </div>
 
-<h3>Наши мамочки <a href="#">фотографируют</a>, <a href="#">снимают видео</a> и <a href="#">общаются</a></h3>
+<h3>
+	Наши мамочки
+	<a id="show-photos" href="#" class="selected-link">фотографируют</a>,
+	<a id="show-video" href="#">снимают видео</a> и
+	<a id="show-forum" href="#">общаются</a>
+</h3>
+
 <div class="tpl-gallery">
-	{% random_photos 7 %}
+	<div id="photos" class="digest" style="display: block">
+		{% random_photos 8 %}
+	</div>
+	
+	<div id="video" class="digest">
+		видео тут
+	</div>
+	
+	<div id="forum" class="digest">
+		сообщения с форума
+	</div>
 </div>
 
 <div class="tpl-board corners">
@@ -34,7 +60,7 @@
 
 	<div class="wrap">
 		<h2>Объявления пользователей</h2>
-		{% bulletins 5 %}
+		{% last_bulletins 5 %}
 	
 		<a class="section-link" href="#">Все объявления →</a>
 	</div>

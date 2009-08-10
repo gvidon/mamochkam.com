@@ -36,6 +36,10 @@
 		margin: 0;
 	}
 
+		.tpl-photos ul li strong {
+			font-weight: bold;
+		}
+
 .tpl-photo-detail {
 	width: 100%;
 	margin-left: 40px;
@@ -43,5 +47,6 @@
 	overflow: hidden;
 }
 	.tpl-photo-detail li {
+		margin-top: 20px;
 		text-align: center;
 	}

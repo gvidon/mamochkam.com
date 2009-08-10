@@ -4,6 +4,7 @@ from mamochkam.apps.photos.models import Photo
 
 register = template.Library()
 
+#RANDOM PHOTOS
 @register.inclusion_tag('portal/_random-photos.html')
 def random_photos(count):
 	try:
@@ -11,4 +12,13 @@ def random_photos(count):
 	
 	except ValueError:
 		return { 'photos': [] }
+
+#LAST PHOTO TAG
+@register.inclusion_tag('photos/_last-photo.html')
+def last_photo():
+	try:
+		return { 'photo'   : Photo.objects.order_by('-pub_date')[0] }
+	
+	except ValueError:
+		return { 'photo': {} }
 

@@ -6,7 +6,7 @@ from mamochkam.apps.common.models import Entity
 class Bulletin(models.Model, Entity):
 	user         = models.ForeignKey(User)
 	pub_date     = models.DateTimeField(default=datetime.now)
-	is_published = models.BooleanField(default=None)
+	publish      = models.BooleanField(default=None)
 	
 	phone        = models.CharField(max_length=15)
 	email        = models.EmailField(max_length=40)

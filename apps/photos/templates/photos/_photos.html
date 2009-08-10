@@ -6,7 +6,8 @@
 			<li><a href="/photos/view/{{ photo.id }}">
 				<img src="{{ photo.thumb_url }}" title="{{ photo.title }}" />
 			</a></li>
-			<li><a href="?">Автор sdaas dasd asdsa das d</a></li>
+			
+			<li>Автор <strong>{{ photo.user.username }}</strong></li>
 		</ul>
 	</li>
 {% endfor %}

@@ -4,10 +4,10 @@ from mamochkam.apps.bulletins.models import Bulletin
 
 register = template.Library()
 
-@register.inclusion_tag('portal/_last-bulletins.html')
-def bulletins(count):
+@register.inclusion_tag('common/_last-bulletins.html')
+def last_bulletins(count):
 	try:
-		return { 'bulletins': Bulletin.objects.filter(is_published=1).order_by('-pub_date')[:int(count)] }
+		return { 'bulletins': Bulletin.objects.filter(publish=1).order_by('-pub_date')[:int(count)] }
 	
 	except ValueError:
 		return { 'bulletins': [] }

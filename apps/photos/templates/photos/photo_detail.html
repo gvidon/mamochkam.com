@@ -8,7 +8,6 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.tooltip.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.bgiframe.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.dimensions.js"></script>
-	<script type="text/javascript" src="{{ media_url }}/js/lib/chili-1.7.pack.js"></script>
 	
 	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
 {% endblock %}
@@ -16,11 +15,9 @@
 {% block content %}
 	<div class="tpl-most-commented corners">
 		<div class="t-r"></div><div class="b-r"></div>
+		
 		<div class="wrap">
-			<h2>Самое обсуждаемое</h2>
-			<a href="?"><img src="images/example.gif" alt="" /></a>
-			<div><span class="label">Автор:</span></div>
-			<div><span class="label">Рейтинг:</span></div>
+			{% include 'photos/_lastphoto-block.html' %}
 		</div>
 	</div>
 			
@@ -43,11 +40,12 @@
 	<div class="tpl-content">
 		<ul class="tpl-photo-detail">
 			<h1>Фото от наших мамочек</h1>
-			<h3>{{ object.title }}</h3>
+			<a href="javascript:history.go(-1)">назад</a>
 			
 			<li>
 				<img src="{{ object.url }}" alt="{{ object.title }}" /><br/>
-			
+				
+				<span>{{ object.title }}</span><br/>
 				<span class="comment">
 					Отправил <a href="#">{{ object.user.username }}</a>
 					{{ object.pub_date|date:"j-го F Y"|ru_months }}

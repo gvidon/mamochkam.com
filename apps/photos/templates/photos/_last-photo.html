@@ -1,0 +1,9 @@
+{% load dates %}
+
+<div align="center">
+	<a href="/photos/view/{{ photo.id }}"><img src="{{ photo.thumb_url }}" alt="" /></a>
+	 
+	<div><span class="comment">
+		{{ photo.pub_date|date:"d F Y"|ru_months }}
+	</span></div>
+</div>

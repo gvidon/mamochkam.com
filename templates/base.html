@@ -11,8 +11,8 @@
 		
 		<link rel="stylesheet" type="text/css" media="print" href="{{ media_url }}/css/print.css" />
 		
-		<script src="{{ media_url }}/js/lib/jquery.js"></script>
-		<script src="{{ media_url }}/js/lib/livequery.js"></script>
+		<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.js"></script>
+		<script type="text/javascript" src="{{ media_url }}/js/lib/livequery.js"></script>
 		{% block js %}{% endblock %}
 	</head>
 	
@@ -26,13 +26,15 @@
 			
 			<ul class="common-navigation">
 				<li><a href="/pressroom/articles">Статьи</a></li>
-				<li><a href="">Фото</a></li>
+				<li><a href="/photos">Фото</a></li>
 				<li><a href="">Видео</a></li>
 				<li><a href="">Магазин</a></li>
 				<li><a href="">Объявления</a></li>
 				<li><a href="">Форум</a></li>
 			</ul>
+			
 			<ul class="section-navigation"></ul>
+			
 			<div class="cloud-1"></div>
 			<div class="cloud-2"></div>
 			<div class="cloud-3"></div>
