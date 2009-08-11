@@ -1,0 +1,8 @@
+{% load dates %}
+
+<h2>Объявления за {% now "Y" %} год</h2>
+<ul>
+	{% this_year_months "/bulletins" %}<br/>
+	
+	<li><a class="section-link jqModal" href="{{ url }}/archive">Весь архив →</a></li>
+</ul>

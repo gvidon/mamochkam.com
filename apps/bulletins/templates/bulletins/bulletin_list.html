@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="tpl-news-archive corners">
+	<div class="tpl-bulletins-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
 		
 		<div class="wrap">
@@ -23,20 +23,20 @@
 	</div>
 	
 	<div class="tpl-content">
-		<ul class="tpl-articles">
-			<h1>{% ifequal type 'articles' %}Статьи для мамочек{% else %}Новости{% endifequal %}</h1>
+		<ul class="tpl-bulletins">
+			<h1>Объявления для мамочек</h1>
 			
 			{% if month %}
 				<h3>
 					архив {{ month|date:"F Y"|ru_months }}
-					{% ifequal type 'news' %} <a href="/pressroom/news">все новости</a>{% endifequal %}
+					<a href="/bulletins">все объявления</a>
 				</h3>
-			{% else %}
+			{% endif %}
 			
 			<br/>
 			
 			{% if object_list %}
-				{% include 'pressroom/_articles.html' %}
+				{% include 'bulletins/_bulletins.html' %}
 			{% else %}
 			
 				{% if date_list %}
@@ -54,6 +54,6 @@
 	</div>
 	
 	<div class="tpl-full-archive jqmWindow">
-		{% full_archive url %}
+		{% full_archive '/bulletins' %}
 	</div>
 {% endblock %}

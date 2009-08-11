@@ -1,0 +1,13 @@
+{% load dates %}
+
+<div class="title"><a href="/bulletins/{{ object.id }}">{{ object.title }}</a></div>
+<div><span class="date">{{ object.pub_date|date:"d F Y"|ru_months }}</span></div>
+
+<p>
+	{{ object.description }}<br/><br/>
+	<strong>оставил {{ object.user.username }}</strong>
+</p>
+
+<a href="#">ответить на объявление</a>
+
+

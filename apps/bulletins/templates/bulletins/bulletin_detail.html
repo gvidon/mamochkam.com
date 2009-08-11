@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load photos %}
+{% load blocks %}
+
+{% block content %}
+	<div class="tpl-bulletins-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			{% include 'bulletins/_archive-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		<div class="tpl-bulletin">
+			<a href="javascript:history.go(-1)">назад</a><br/><br/>
+			{% include 'bulletins/_bulletin.html' %}
+		</div>
+	</div>
+{% endblock %}

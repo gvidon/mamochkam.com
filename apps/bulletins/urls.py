@@ -25,6 +25,6 @@ urlpatterns += patterns('django.views.generic.date_based',
 		'date_field'   : 'pub_date',
 		'allow_empty'  : True,
 		'queryset'     : Bulletin.objects.filter(publish=True),
-		'template_name': 'bulletins/bulletins_list.html',
+		'template_name': 'bulletins/bulletin_list.html',
 	}, name='bt-archive-month'),
 )

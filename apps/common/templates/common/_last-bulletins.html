@@ -3,7 +3,7 @@
 <ul>
 	{% for bulletin in bulletins %}
 		<li>
-			<div class="title"><a href="">{{ bulletin.title }}</a></div>
+			<div class="title"><a href="/bulletins/view/{{ bulletin.id }}">{{ bulletin.title }}</a></div>
 			<div><span class="date">{{ bulletin.pub_date|date:"d F Y"|ru_months }}</span></div>
 		</li>
 	{% endfor %}
