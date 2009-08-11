@@ -8,6 +8,26 @@
 	<strong>оставил {{ object.user.username }}</strong>
 </p>
 
-<a href="#">ответить на объявление</a>
+<a id="reply-button" href="#">ответить на объявление</a>
 
+<div class="reply-form jqmForm">
+	<div class="jqmClose"><a href="#">закрыть</a></div>
+	
+	<div id="error" class="error"></div>
+	
+	<form id="reply-form">
+		<div>
+			<label>Контактная информация</label>
+			<input id="contacts" type="text" name="contacts" />
+		</div>
+		
+		<div>
+			<label>Ответ на объявление</label>
+			<textarea id="reply" name="reply"></textarea>
+		</div>
+		
+		<input type="submit" value="Отправить" />
+		<span class="wait">Отправка ответа...</span>
+	</form>
+</div>
 

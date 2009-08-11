@@ -24,14 +24,25 @@ def add(request):
 		).pub_date
 	}))
 
-#VIEW BULLETIN INFO
-def view(request, id):
-	try:
-		return render_to_response(
-			'bulletins/view.html',
-			{ 'bulletins': Bulletin.objects.get(id=id) }
-			context_instance = RequestContext
-		)
-	
-	except Bulletin.DoesNotExist:
-		return render_to_response('bulletins/does-not-exist.html', context_instance=RequestContext)
+#SEND BULLETIN REPLY TO OWNER'S EMAIL
+def reply(request):
+	if request.POST:
+		try:
+			bulletin = Bulletin.objects.get(id=request.POST['id'])
+			
+			try:
+				server = smtplib.SMTP('localhost')
+				server.sendmail(
+					'From: no-reply@mamochkam.com',
+					'To: '+bulletin.user.email,
+					'Subject: На ваше объявление ответили\r\n'+request.POST['reply']
+				)
+				server.quit()
+			
+			except KeyError:
+				return HttpResponse(u'{ success: 0, error: "Необходимо заполнить все поля" }')
+			
+			return HttpResponse('{ success: 1 }')
+			
+		except Bulletin.DoesNotExist, KeyError:
+			return HttpResponse('{ success: 0 }')

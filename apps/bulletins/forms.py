@@ -13,10 +13,10 @@ class BulletinForm(ModelForm):
 	
 	description = forms.CharField(required=True, max_length=255, error_messages={
 		'invalid'   : u'Вы использовали запрещенные символы в тексте объявления',
-		'max_length': u'Слишком длинная подпись, более 50-ти символов',
+		'max_length': u'Слишком длинная подпись, более 255-ти символов',
 		'empty'     : u'А где сам текст объявления?',
 	})
 
 	class Meta:
-		model = Photo
+		model = Bulletin
 

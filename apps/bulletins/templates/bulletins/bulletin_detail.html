@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 
-{% load bulletins %}
-{% load photos %}
-{% load blocks %}
+{% load pages %}
+{% load dates %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/bulletins.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			Bulletins.bindEvents();
+		});
+	</script>
+{% endblock %}
 
 {% block content %}
 	<div class="tpl-bulletins-archive corners">
@@ -18,5 +28,9 @@
 			<a href="javascript:history.go(-1)">назад</a><br/><br/>
 			{% include 'bulletins/_bulletin.html' %}
 		</div>
+	</div>
+	
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive '/bulletins' %}
 	</div>
 {% endblock %}

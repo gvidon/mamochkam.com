@@ -2,8 +2,9 @@ from django.conf.urls.defaults import *
 from django.conf               import settings
 from models                    import Bulletin
 
-urlpatterns = patterns('mamochkam.apps.bulletins',
-	url(r'add/?', 'add'),
+urlpatterns = patterns('mamochkam.apps.bulletins.views',
+	url(r'reply/?', 'reply'),
+	url(r'add/?'  , 'add'),
 )
 
 # Bulletins list and details
