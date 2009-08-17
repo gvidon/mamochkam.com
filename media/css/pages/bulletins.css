@@ -68,6 +68,11 @@ form {
 
 form div { padding-bottom: 40px; }
 				
+	form .erroneus input, form .erroneus textarea {
+		border: solid red 2px;
+		background-color: #ffbaba;
+	}
+				
 	form div label {
 		color: #18537c;
 		display: block;

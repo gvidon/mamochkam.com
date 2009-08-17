@@ -29,7 +29,11 @@ Bulletins = {
 			'type'       : 'post',
 			'contentType': 'text/x-json',
 			'dataType'   : 'json',
-			'data'       : { 'contacts': $('#contacts').val(), 'reply': $('#reply').val() },
+			'data'       : {
+				'id'      : $('#id').val(),
+				'contacts': $('#contacts').val(),
+				'reply'   : $('#reply').val()
+			},
 			
 			'error'      : function () {
 				form.children('input[@type="submit"]').fadeTo('fast', 1, function() {
@@ -40,12 +44,20 @@ Bulletins = {
 			},
 			
 			'success': function (data) {
-				form.children('#error').html('');
+				$('#error').html('');
+				
+				form.children('input[@type="submit"]').fadeTo('fast', 1, function() {
+					$(this).show().siblings('.wait').hide();
+				});
 				
 				if( ! data.success) {
 					$('#error').html(data.error);
 				} else {
-					alert('гут');
+					alert('Сообщение отправлено!');
+					
+					$('.reply-form').jqmHide();
+					$('#contacts').val('');
+					$('#reply').val('');
 				}
 			}
 		});

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.tpl-full-archive').jqm();
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-bulletins-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			{% include 'bulletins/_archive-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		<ul class="tpl-bulletins">
+			<h1>Новое объявление | <a href="/bulletins">все объявления</a></h1>
+			
+			<br/>
+			
+			{% if form %}
+				<li>
+					<form action="" method="post">
+						<div {% if form.errors.title %}class="erroneus"{% endif %}>
+							<label for="email">Заголовок</label>
+							{{ form.title }}
+							<span class="error">{{ form.errors.title.as_text|safe|cut:"*" }}</span>
+						</div>
+					
+						{% for error in form.non_field_errors %}
+							<div class="error">{{ error|safe }}</div>
+						{% endfor %}
+					
+						<div class="phone {% if form.errors.description %}erroneus{% endif %}">
+							<label for="phone">Текст объявления</label>
+							{{ form.description }}
+							<span class="error">{{ form.errors.description.as_text|safe|cut:"*" }}</span>
+						</div>
+					
+						<input type="submit" value="Добавить" />
+					</form>
+				</li>
+			{% else %}
+				<h2>Ваше объявление сохранено и после модерации будет опубликовано либо отвергнуто.</h2>
+			{% endif %}
+		</ul>
+	</div>
+	
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive '/bulletins' %}
+	</div>
+{% endblock %}
