@@ -54,13 +54,14 @@ body {
 	}
 
 		.common-navigation li a {
-			color: #9e30d7;
-			text-decoration: none;
+			font-style: italic;
+			text-decoration: underline;
 		}
 
 		.common-navigation li a:hover {
-			text-decoration: underline;
+			text-decoration: none;
 		}
+		
 		
 		.common-navigation li a:active {
 			outline: none !important;

@@ -11,6 +11,10 @@ class Bulletin(models.Model, Entity):
 	title        = models.CharField(max_length=70)
 	description  = models.CharField(max_length=255)
 	
+	#STRING REPRESENTATION OF BULLETIN
+	def __unicode__(self):
+		return self.title
+	
 	#META
 	class Meta:
 		db_table = 'bulletin'

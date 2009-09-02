@@ -13,8 +13,8 @@ class Gallery(models.Model):
 	description = models.CharField(max_length=255)
 	slug        = models.CharField(max_length=50)
 	
-	#TEXT REPRESENTATION
-	def __str__(self):
+	#STRING REPRESENTATION
+	def __unicode__(self):
 		return self.title
 	
 	#ADMIN
@@ -44,6 +44,10 @@ class Photo(models.Model, Entity):
 	title    = models.CharField(max_length=50)
 	comments = models.ManyToManyField(PhotoComment, blank=True)
 	publish  = models.BooleanField('Publish on site', default=False)
+	
+	#STRING REPRESENTATION
+	def __unicode__(self):
+		return self.title
 	
 	#GENERATE PHOTO THUMBNAIL
 	def generate_thumb(self, output=None):
