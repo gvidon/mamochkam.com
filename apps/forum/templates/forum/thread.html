@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-forum-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			{% include 'forum/_archive-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		<div class="tpl-thread">
+			<a href="javascript:history.go(-1)">назад</a><br/><br/>
+			
+			<div class="title"><a href="{% url thread-view id=thread.id %}">{{ thread.title }}</a></div>
+			<div><span class="date">{{ thread.created_at|date:"d F Y"|ru_months }}</span></div>
+			
+			<p>
+				{{ thread.description }}<br/><br/>
+				<strong>тему создал {{ thread.author.username }}</strong>
+			</p>
+		</div>
+		
+		<div class="tpl-comments">
+			<h2>Комментарии({{ thread.comments.count }})</h2>
+			{% include 'forum/_comments.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive '/forum' %}
+	</div>
+{% endblock %}

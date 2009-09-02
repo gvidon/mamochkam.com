@@ -79,6 +79,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'apps/portal/templates'),
     os.path.join(PROJECT_ROOT, 'apps/pressroom/templates'),
     os.path.join(PROJECT_ROOT, 'apps/photos/templates'),
+    os.path.join(PROJECT_ROOT, 'apps/forum/templates'),
 )
 
 INSTALLED_APPS = (
@@ -93,6 +94,7 @@ INSTALLED_APPS = (
 	'mamochkam.apps.photos',
 	'mamochkam.apps.tags',
 	'mamochkam.apps.bulletins',
+	'mamochkam.apps.forum',
 )
 
 # Pager settings

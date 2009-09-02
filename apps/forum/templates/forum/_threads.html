@@ -1,0 +1,25 @@
+{% load dates %}
+
+{% for thread in object_list %}
+	<li>
+		<div class="title">
+			<a href="{% url thread-view id=thread.id %}">
+				{{ thread.title }}
+				
+				{% ifnotequal thread.comments.count 0 %}
+					({{ thread.comments.count }})
+				{% endifnotequal %}
+			</a>
+		</div>
+		
+		<div><span class="date">
+			{{ thread.created_at|date:"d F Y"|ru_months }}
+			<b>создал</b> {{ thread.author.username }}<br/>
+			
+			{% ifnotequal thread.comments.count 0 %}
+				{{ thread.last_comment.created_at|date:"d F Y"|ru_months }}
+				<b>последний комментарий</b> от {{ thread.last_comment.author.username }}
+			{% endifnotequal %}
+		</span></div>
+	</li>
+{% endfor %}

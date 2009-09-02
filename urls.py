@@ -9,4 +9,5 @@ urlpatterns += patterns('',
 	url(r'^bulletins/?', include('mamochkam.apps.bulletins.urls')),
 	url(r'^pressroom/?', include('mamochkam.apps.pressroom.urls')),
 	url(r'^photos/?'   , include('mamochkam.apps.photos.urls')),
+	url(r'^forum/'     , include('mamochkam.apps.forum.urls')),
 )

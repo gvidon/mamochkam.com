@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.tpl-full-archive').jqm();
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-forum-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			{% include 'forum/_archive-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		<ul class="tpl-threads">
+			<h1>Наши мамочки обсуждают</h1>
+			
+			{% if month %}
+				<h3>
+					архив {{ month|date:"F Y"|ru_months }}
+					<a href="/forum">все сообщения</a>
+				</h3>
+			{% endif %}
+			
+			<br/>
+			
+			{% if object_list %}
+				{% include 'forum/_threads.html' %}
+			{% else %}
+			
+				{% if date_list %}
+					<h3>Нет материалов за указанную дату</h3>
+				{% else %}
+					<h3 style="color: red">По вашем запросу материалов нет</h3>
+				{% endif %}
+				
+			{% endif %}
+			
+			{% if page_obj.has_other_pages %}
+				<li class="pages">{% pages paginator page_obj request.path %}</li>
+			{% endif %}
+		</ul>
+	</div>
+	
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive '/forum' %}
+	</div>
+{% endblock %}

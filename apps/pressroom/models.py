@@ -7,6 +7,7 @@ from django.core.urlresolvers   import reverse
 
 from mamochkam.apps.common.models import Entity
 
+'''
 # Get relative media path
 try:
 	PRESSROOM_DIR = settings.PRESSROOM_DIR
@@ -20,10 +21,12 @@ class ArticleManager(models.Manager):
 	
 	def get_drafts(self):
 		return self.filter(publish=False)
+'''
 
 class ArticleComment(models.Model):
-	user = models.ForeignKey(User)
-	text = models.CharField(max_length=255)
+	created_at = models.DateTimeField(auto_now_add=True)
+	user       = models.ForeignKey(User)
+	text       = models.TextField()
 	
 	#META
 	class Meta:
@@ -48,8 +51,8 @@ class Article(models.Model, Entity):
 	sections = models.ManyToManyField('Section', related_name='articles')
 	
 	# Custom article manager
-	objects = ArticleManager()
-		
+	# objects = ArticleManager()
+	
 	class Meta:
 		db_table      = 'article'
 		ordering      = ['-pub_date']

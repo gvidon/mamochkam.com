@@ -18,7 +18,9 @@
 		.tpl-articles .title a,
 		.tpl-article .title a,
 		.tpl-bulletins .title a,
-		.tpl-bulletin .title a   {
+		.tpl-bulletin .title a,
+		.tpl-threads .title a,
+		.tpl-thread .title a   {
 			font-size: 1.65em;		
 		}
 
