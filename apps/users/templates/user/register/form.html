@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load blocks %}
+
+{% block content %}
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Объявления пользователей</h2>
+			{% last_bulletins 5 %}
+	
+			<a class="section-link" href="/bulletins">Все объявления →</a>
+		</div>
+	</div>
+	
+	<form action="" method="post">
+		<h1>Регистрация нового пользователя</h1>
+		
+		<p><span class="required">*</span> - обязательно нужно заполнить</p>
+		
+		<div {% if form.errors.username %}class="erroneus"{% endif %}>
+			<span class="required">*</span><label for="username">Каким будет ваш псевдоним на сайте?</label>
+			{{ form.username }}
+			<span class="error">{{ form.errors.username.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div {% if form.errors.email %}class="erroneus"{% endif %}>
+			<span class="required">*</span><label for="email">Ваш email</label>
+			{{ form.email }}
+			<span class="error">{{ form.errors.email.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div class="name-inputset">
+			<label for="name">Ваше имя</label>
+			
+			<div {% if form.errors.first_name %}class="erroneus"{% endif %}>
+				{{ form.first_name }}
+				<span class="comment">имя</span>
+			</div>
+			
+			<div {% if form.errors.sur_name %}class="erroneus"{% endif %}>
+				{{ form.sur_name }}
+				<span class="comment">отчество</span>
+			</div>
+			
+			<div {% if form.errors.last_name %}class="erroneus"{% endif %} style="float: none">
+				{{ form.last_name }}
+				<span class="comment">фамилия</span>
+			</div>
+		</div>
+		
+		<input type="submit" value="Регистрация" />
+	</form>
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load blocks %}
+
+{% block content %}
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Объявления пользователей</h2>
+			{% last_bulletins 5 %}
+	
+			<a class="section-link" href="/bulletins">Все объявления →</a>
+		</div>
+	</div>
+	
+	<h1>Учетная запись активирована</h1>
+	
+	<p style="margin-left: 40px; width: 60%; height: 280px;">
+		Ваша учетная запись зарегистрирована и активирована. Пожалуйста, <a href="/user/profile">добавьте
+		дополнительные сведения о себе</a>. Это может быть полезным при использовании наших сервисов.
+	</p>
+{% endblock %}
+

@@ -50,7 +50,10 @@
 				</h3>
 			{% else %}
 				{% if gallery %}
-					<h3>{{ gallery.title }}</h3>
+					<h3>
+						{{ gallery.title }}
+						<a href="/photos">все фото</a>
+					</h3>
 				{% endif %}
 			{% endif %}
 			

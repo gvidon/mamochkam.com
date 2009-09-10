@@ -4,7 +4,6 @@ from models                       import Article
 
 # Section urls
 urlpatterns = patterns('mamochkam.apps.pressroom.views',
-    url(r'^$', 'index', name="pr-index"),
     url(r'^articles/section/(?P<slug>[\-\d\w]+)/$'                      , 'view_section', name="pr-section"),
     url(r'^articles/section/(?P<slug>[\-\d\w]+)/page/(?P<page>[0-9]+)/$', 'view_section', name="pr-section-page")
 )

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from django import forms
-from django.forms import ModelForm
-from apps.photos.models import Photo
+from django                       import forms
+from django.forms                 import ModelForm
+from mamochkam.apps.photos.models import Photo
 
 #FULL PROFILE
 class PhotoForm(ModelForm):

@@ -30,6 +30,10 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
+AUTH_PROFILE_MODULE = 'users.Profile'
+
+LOGIN_URL = '/user/login'
+LOGIN_REDIRECT_URL = '/'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -38,7 +42,9 @@ USE_I18N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 PROJECT_ROOT = '/home/nide/code/mamochkam/'
+
 MEDIA_ROOT = PROJECT_ROOT+'media/'
+UPLOAD_ROOT = PROJECT_ROOT+'media/upload/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -96,6 +102,7 @@ INSTALLED_APPS = (
 	'mamochkam.apps.tags',
 	'mamochkam.apps.bulletins',
 	'mamochkam.apps.forum',
+	'mamochkam.apps.users',
 )
 
 # Pager settings

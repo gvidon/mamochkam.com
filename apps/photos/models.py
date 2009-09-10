@@ -17,9 +17,11 @@ class Gallery(models.Model):
 	def __unicode__(self):
 		return self.title
 	
+	'''
 	#ADMIN
 	class Admin:
 		prepopulated_fields = {'slug': ('title',)}
+	'''
 	
 	#META
 	class Meta:
@@ -40,7 +42,7 @@ class Photo(models.Model, Entity):
 	user     = models.ForeignKey(User)
 	pub_date = models.DateTimeField(default=datetime.now)
 	gallery  = models.ForeignKey(Gallery)
-	photo    = models.ImageField(upload_to='/home/nide/code/mamochkam/media/upload/photos')
+	photo    = models.ImageField(upload_to='upload/photos')
 	title    = models.CharField(max_length=50)
 	comments = models.ManyToManyField(PhotoComment, blank=True)
 	publish  = models.BooleanField('Publish on site', default=False)

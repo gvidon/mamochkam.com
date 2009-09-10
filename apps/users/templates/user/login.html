@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load blocks %}
+
+{% block content %}
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Объявления пользователей</h2>
+			{% last_bulletins 5 %}
+	
+			<a class="section-link" href="/bulletins">Все объявления →</a>
+		</div>
+	</div>
+	
+	<form action="" method="post">
+		<h1>Скажите нам кто вы?</h1>
+		
+		{% if form.errors %}
+			<h2 class="error">Неверные реквизиты</h2>
+		{% endif %}
+			<div>
+			<label for="email">Ваш <b>логин</b>, использованный при регистрации</label>
+			{{ form.username }}
+		</div>
+		
+		<div>
+			<label for="phone"><b>Пароль</b>(мы высылали вам на email)</label>
+			{{ form.password }}
+		</div>
+		
+		<input type="submit" value="Войти" /> <!--или <a href="/user/recover">вспомнить пароль</a>-->
+	</form>
+{% endblock %}
+

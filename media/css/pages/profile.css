@@ -1,0 +1,87 @@
+h1 { font: normal 2em Tahoma, Verdana, sans-serif; color: #377f9d }
+
+.comment { color: gray; font-size: 0.7em; }
+.error { color: red; }
+.required { color: red; float: left; }
+
+form { margin-left: 10%; }
+
+form div.error {
+	padding-bottom: 0px;
+	margin-left: 20px; margin-bottom: 20px;
+	font-size: 1.1em;
+}
+	
+form div {
+	float: none;
+	display: block;
+	padding-bottom: 40px;
+}
+	
+	form div img {
+		float: left;
+		margin-right: 20px;
+	}
+				
+	form div label {
+		color: #3a5ea0;
+		display: block;
+		font: normal 1.2em Tahoma, Verdana, sans-serif;
+	}
+	
+	form div input {
+		width: 440px;
+		height: 25px;
+		color: #47472A;
+		display: block;
+		padding: 0px 2px 0px 0px;
+		border: solid #aa6c8b 1px;
+		background-color: #fcde7d;
+		font-size: 20px;
+	}
+	
+	form input[type='submit'] {
+		margin-top: 30px;
+	}
+	
+	form div textarea {
+		width: 440px;
+		height: 100px;
+		display: block;
+		border: solid #1d5a16 1px;
+		background-color: #ecffec;
+	}
+	
+	form div .error {
+		font-size: 0.9em;
+	}
+	
+	form .erroneus input, form .erroneus textarea {
+		border: solid red 2px;
+		background-color: #ffbaba;
+	}
+	
+	.name-inputset {
+		padding-bottom: 0px;
+	}
+		
+		.name-inputset div  {
+			float: left;
+			padding-right: 10px;
+		}
+	
+			.name-inputset div input {
+				width: 137px;
+			}
+			
+	.phone input {
+		width: 425px;
+	}
+			
+		.phone .code {
+			float: left;
+			margin-top: -2px;
+			padding-right: 5px;
+			font: normal 1.8em Tahoma, Verdana, sans-serif; color: gray
+		}
+

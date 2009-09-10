@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load blocks %}
+
+{% block content %}
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Объявления пользователей</h2>
+			{% last_bulletins 5 %}
+	
+			<a class="section-link" href="/bulletins">Все объявления →</a>
+		</div>
+	</div>
+	
+	<form enctype="multipart/form-data" method="post" action="">
+		{{ form.id }}
+		
+		<h1>Изменение учетной записи пользователя</h1>
+		
+		{% if form.is_valid %}
+			<h2 style="margin: 20px; color: #7b1748;">
+				Мы <strong>сохранили</strong> все, что вы указали о себе
+			</h2>
+		{% endif %}
+		
+		<p><span class="required">*</span> - обязательно нужно заполнить</p>
+		
+		<div {% if form.errors.username %}class="erroneus"{% endif %}>
+			<span class="required">*</span><label for="username">Каким будет ваш псевдоним на сайте?</label>
+			{{ form.username }}
+			<span class="error">{{ form.errors.username.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div {% if form.errors.email %}class="erroneus"{% endif %}>
+			<span class="required">*</span><label for="email">Ваш email</label>
+			{{ form.email }}
+			<span class="error">{{ form.errors.email.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div class="name-inputset">
+			<label for="name">Ваше имя</label>
+			
+			<div {% if form.errors.first_name %}class="erroneus"{% endif %}>
+				{{ form.first_name }}
+				<span class="comment">имя</span>
+			</div>
+			
+			<div {% if form.errors.sur_name %}class="erroneus"{% endif %}>
+				{{ form.sur_name }}
+				<span class="comment">отчество</span>
+			</div>
+			
+			<div {% if form.errors.last_name %}class="erroneus"{% endif %} style="float: none">
+				{{ form.last_name }}
+				<span class="comment">фамилия</span>
+			</div>
+		</div>
+		
+		<div {% if form.errors.gender %}class="erroneus"{% endif %}>
+			<label for="age">Вы мама или папа?</label>
+			{{ form.gender }}
+			<span class="error">{{ form.errors.gender.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div {% if form.errors.birthdate %}class="erroneus"{% endif %}>
+			<label for="birthdate">Дата вашего рождения</label>
+			{{ form.birthdate }}
+			<span class="comment">Пример: 22.12.1985</span>
+			<span class="error">{{ form.errors.birthdate.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div class="icq {% if form.errors.icq %}erroneus{% endif %}">
+			<label for="icq">Ваш ICQ нам пригодится</label>
+			{{ form.icq }}
+			<span class="error">{{ form.errors.icq.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div class="phone {% if form.errors.phone %}erroneus{% endif %}">
+			<label for="phone">Можно и телефон оставить</label>
+			<span class="code">8</span>{{ form.phone }}
+			<span class="error">{{ form.errors.phone.as_text|safe|cut:"*" }}</span>
+		</div>
+		
+		<div {% if form.errors.avatar %}class="erroneus"{% endif %}>
+			<label for="age">Аватар - возможно ваше фото</label>
+			{% if profile.avatar %} <img src="{{ profile.avatar.url }}" /> {% endif %}
+			{{ form.avatar }}
+			<span class="error">{{ form.errors.avatar.as_text|safe|cut:"*" }}</span>
+		</div><br/>
+		
+		<input type="submit" value="Сохранить" />
+	</form>
+{% endblock %}
+

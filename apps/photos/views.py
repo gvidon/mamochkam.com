@@ -53,7 +53,7 @@ def upload(request):
 	
 	if(request.POST):
 		form = PhotoForm({
-			#'user'    : 1,
+			'user'    : 1,
 			'pub_date': datetime.now(),
 			'gallery' : request.POST['gallery'],
 			'title'   : request.POST['title'],

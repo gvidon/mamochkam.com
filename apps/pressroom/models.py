@@ -39,8 +39,8 @@ class Article(models.Model, Entity):
 	slug     = models.SlugField(help_text='A "Slug" is a unique URL-friendly title for an object.')
 	summary  = models.TextField(help_text="A single paragraph summary or preview of the article.")
 	body     = models.TextField('Body text')
-	author   = models.CharField(max_length=100)
-	comments = models.ManyToManyField(ArticleComment)
+	author   = models.CharField(max_length=100, blank=True)
+	comments = models.ManyToManyField(ArticleComment, blank=True)
 	
 	publish = models.BooleanField(
 		'Publish on site',

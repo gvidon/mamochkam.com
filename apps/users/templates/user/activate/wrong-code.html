@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load blocks %}
+
+{% block content %}
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Объявления пользователей</h2>
+			{% last_bulletins 5 %}
+	
+			<a class="section-link" href="/bulletins">Все объявления →</a>
+		</div>
+	</div>
+	
+	<h1 style="color: red;">Неверный код активации</h1>
+	
+	<p style="margin-left: 40px; width: 60%; height: 280px;">
+		Вы воспользовались неверной или устаревшей ссылкой активации учетной записи. 
+		Пожалуйста, проверьте ссылку и свяжитесь с нами в случае повторения ошибки. 
+	</p>
+{% endblock %}
+
