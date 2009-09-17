@@ -41,15 +41,14 @@ form div {
 	}
 	
 	form input[type='submit'] {
-		margin-top: 30px;
 	}
 	
 	form div textarea {
 		width: 440px;
 		height: 100px;
 		display: block;
-		border: solid #1d5a16 1px;
-		background-color: #ecffec;
+		border: solid #aa6c8b 1px;
+		background-color: #fcde7d;
 	}
 	
 	form div .error {
@@ -71,6 +70,19 @@ form div {
 		}
 	
 			.name-inputset div input {
+				width: 137px;
+			}
+	
+	.date-inputset {
+		padding-bottom: 0px;
+	}
+		
+		.date-inputset div  {
+			float: left;
+			padding-right: 10px;
+		}
+	
+			.date-inputset div input, .date-inputset div select {
 				width: 137px;
 			}
 			

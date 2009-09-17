@@ -37,18 +37,15 @@ def form(request):
 		form = ProfileForm(auto_id='%s', data=request.POST, files=request.FILES)
 		
 		if(form.is_valid()):
-			
 			# update user info and profile
-			User(
-				id         = request.user.id,
+			User.objects.filter(id=request.user.id).update(
 				username   = form.cleaned_data.get('username'),
 				email      = form.cleaned_data.get('email'),
 				first_name = form.cleaned_data.get('first_name'),
 				last_name  = form.cleaned_data.get('last_name')
-			).save()
+			)
 			
-			Profile(
-				id        = form.cleaned_data.get('id'),
+			Profile.objects.filter(id=form.cleaned_data.get('id')).update(
 				user      = request.user,
 				avatar    = request.FILES and 'upload/avatars/'+request.POST['username'] or '',
 				sur_name  = form.cleaned_data.get('sur_name'),
@@ -56,7 +53,7 @@ def form(request):
 				birthdate = form.cleaned_data.get('birthdate'),
 				phone     = form.cleaned_data.get('phone'),
 				icq       = form.cleaned_data.get('icq')
-			).save()
+			)
 			
 			# resize and save uploaded avatar
 			if request.FILES:
@@ -71,11 +68,16 @@ def form(request):
 				if image.mode not in ('L', 'RGB'):
 					image = image.convert('RGB')
 				
-				image.thumbnail((100, 100), Image.ANTIALIAS)
+				image.thumbnail((70, 70), Image.ANTIALIAS)
 				image.save(filename, image.format)
+				
+				Profile.objects.filter(id=form.cleaned_data.get('id')).update(
+					avatar='upload/avatars/'+request.POST['username']
+				)
 			
+			profile = Profile.objects.get(user=request.user)
+				
 	return render_to_response('user/profile.html', {
 		'form'   : form,
 		'profile': profile,
-	}, context_instance=RequestContext(request)
-	)
+	}, context_instance=RequestContext(request))

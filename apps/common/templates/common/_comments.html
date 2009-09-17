@@ -1,0 +1,38 @@
+{% load dates %}
+<div class="tpl-comments">
+	<h2>Комментарии</h2>
+	
+	{% if comments %}
+		<ul>{% for comment in comments %}
+			<li>
+				<span class="comment">
+					написал <a href="#">{{ comment.user.username }}</a>
+					{{ comment.pub_date|date:"j-го F Y H:i"|ru_months }}
+				</span><br/>
+		
+				{% if comment.user.get_profile.avatar %}
+					<img src="{{ media_url }}/{{ comment.user.get_profile.avatar }}" />
+				{% endif %}
+		
+				<p>{{ comment.text }}</p>
+			</li>
+		{% endfor %}</ul>
+	{% else %}
+		Комментариев пока нет
+	{% endif %}
+	
+	{% if request.user.id %}
+		<form id="comment-form" action="/comment/{{ entry_type }}/{{ entry_id }}">
+			<div>
+				<label for="comment">Оставить свой комментарий</label>
+				<textarea id="comment" name="comment"></textarea>
+			</div>
+			
+			<input type="submit" value="Оставить" />
+			<img class="ajax-load" src="{{ media_url }}/images/ajax-loader.gif" />
+		</form>
+	{% else %}
+		Чтобы оставить свой комментарий <a href="/user/register">зарегистрируйтесь</a> или
+		<a href="/user/login?next={{ request.path }}">скажите кто вы</a>.
+	{% endif %}
+</div>

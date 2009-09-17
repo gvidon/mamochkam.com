@@ -1,10 +1,23 @@
-$(document).ready(function () {
-	$('.tpl-full-archive').jqm();
+var date = new Date();
+
+requestDateTime = {
+	'year': date.getYear()
+};
+
+Photos = {
+	'bindEvents': function(){
+		Comments.bindTo($('#comment-form'), $('.tpl-comments ul'), requestDateTime);
+	},
 	
-	$('.photo img').tooltip({
-    track     : true,
-    delay     : 0,
-    showURL   : false,
-    fixPNG    : true
-	});
-});
+	'plugins': function(){	
+		$('.tpl-full-archive').jqm();
+	
+		$('.photo img').tooltip({
+		  track     : true,
+		  delay     : 0,
+		  showURL   : false,
+		  fixPNG    : true
+		});
+	}
+};
+

@@ -3,6 +3,10 @@
 {% load pages %}
 {% load dates %}
 
+{% block css %}
+		<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/bulletins.css" />
+{% endblock %}
+
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/bulletins.js"></script>

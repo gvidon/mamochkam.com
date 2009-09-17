@@ -33,6 +33,10 @@ class PhotoComment(models.Model):
 	pub_date = models.DateTimeField(default=datetime.now)
 	text     = models.CharField(max_length=255)
 	
+	#STRING REPRESENTATION
+	def __unicode__(self):
+		return self.text
+	
 	#META
 	class Meta:
 		db_table = 'photo_comment'

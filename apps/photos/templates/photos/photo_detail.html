@@ -3,13 +3,25 @@
 {% load pages %}
 {% load dates %}
 
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
+{% endblock %}
+
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.tooltip.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.bgiframe.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.dimensions.js"></script>
 	
+	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			Photos.bindEvents();
+			Photos.plugins();
+		});
+	</script>
 {% endblock %}
 
 {% block content %}
@@ -53,6 +65,14 @@
 			</li>
 		</ul>
 	</div>
+	
+	{% with object.id as entry_id %}
+		{% with "photo" as entry_type %}
+			{% with object.comments.all as comments %}
+				{% include 'common/_comments.html' %}
+			{% endwith %}
+		{% endwith %}
+	{% endwith %}
 	
 	<div class="tpl-full-archive jqmWindow">
 		{% full_archive "/photos" %}

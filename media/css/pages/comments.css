@@ -1,0 +1,30 @@
+.ajax-load { display: none; }
+
+.tpl-comments {
+	width: 50%;
+	margin-left: 70px;
+}
+
+	.tpl-comments ul li {
+		margin-left: 25px;
+		margin-bottom: 55px;
+	}
+
+		.tpl-comments ul li img {
+			margin-top: 5px;
+			margin-right: 10px;
+			float: left;
+		}
+
+		.tpl-comments ul li p {
+			margin-top: 5px;
+		}
+	
+	.tpl-comments form {
+		margin-left: 0px;
+		margin-top: 70px;
+	}
+	
+		.tpl-comments form div {
+			padding-bottom: 10px;
+		}

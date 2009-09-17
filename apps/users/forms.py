@@ -55,8 +55,8 @@ class ProfileForm(forms.Form):
 		'min_length': MESSAGES['min_length'](2),
 	})
 	
-	birthdate  = forms.IntegerField(required=False, widget=forms.DateTimeInput(attrs={
-		'maxlength': 10
+	birthdate  = forms.DateTimeField(required=False, widget=forms.DateTimeInput(attrs={
+		'maxlength': 20
 	}), error_messages={
 		'required': MESSAGES['required'],
 		'invalid' : MESSAGES['invalid'],
@@ -115,4 +115,4 @@ class ProfileForm(forms.Form):
 	#VALIDATE PHONE LENGTH
 	def clean_phone(self):
 		if self.cleaned_data.get('phone'):
-			return assert_length(self.cleaned_data.get('phone'), 9)
+			return assert_length(self.cleaned_data.get('phone'), 10)
