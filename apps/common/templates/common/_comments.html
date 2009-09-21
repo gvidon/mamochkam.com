@@ -2,30 +2,20 @@
 <div class="tpl-comments">
 	<h2>Комментарии</h2>
 	
+	<ul>
 	{% if comments %}
-		<ul>{% for comment in comments %}
-			<li>
-				<span class="comment">
-					написал <a href="#">{{ comment.user.username }}</a>
-					{{ comment.pub_date|date:"j-го F Y H:i"|ru_months }}
-				</span><br/>
-		
-				{% if comment.user.get_profile.avatar %}
-					<img src="{{ media_url }}/{{ comment.user.get_profile.avatar }}" />
-				{% endif %}
-		
-				<p>{{ comment.text }}</p>
-			</li>
-		{% endfor %}</ul>
+		{% include 'common/_comments-core.html' %}
 	{% else %}
-		Комментариев пока нет
+		<li class="empty-msg">Комментариев пока нет</div>
 	{% endif %}
+	</ul>
 	
 	{% if request.user.id %}
 		<form id="comment-form" action="/comment/{{ entry_type }}/{{ entry_id }}">
 			<div>
 				<label for="comment">Оставить свой комментарий</label>
-				<textarea id="comment" name="comment"></textarea>
+				<textarea class="text" name="comment"></textarea>
+				<span class="error">{{ form.errors.username.as_text|safe|cut:"*" }}</span>
 			</div>
 			
 			<input type="submit" value="Оставить" />

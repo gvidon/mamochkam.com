@@ -12,11 +12,13 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.tooltip.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.bgiframe.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.dimensions.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/lib/date-format.js"></script>
 	
 	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
 	
 	<script type="text/javascript">
+		
 		$(document).ready(function () {
 			Photos.bindEvents();
 			Photos.plugins();
@@ -68,7 +70,7 @@
 	
 	{% with object.id as entry_id %}
 		{% with "photo" as entry_type %}
-			{% with object.comments.all as comments %}
+			{% with object.ordered_comments as comments %}
 				{% include 'common/_comments.html' %}
 			{% endwith %}
 		{% endwith %}

@@ -7,8 +7,8 @@ from django.views.generic    import list_detail
 from django.shortcuts        import render_to_response
 from django.http             import HttpResponse, Http404
 
-from models import Gallery, Photo
-from forms  import PhotoForm
+from models                  import Gallery, Photo
+from forms                   import PhotoForm
 
 #GALLERY'S PHOTOS LIST
 def photos(request, slug, page=1):

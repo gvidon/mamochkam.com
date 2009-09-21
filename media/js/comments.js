@@ -1,14 +1,20 @@
 Comments = {
-	'bindTo': function(form, comments, requestDateTime) {
+	'bindTo': function(form, comments) {
+		var date = new Date();
+		this.requestDateTime = date.format('yyyy-mm-dd HH:MM:ss');
+		
 		form.submit(function() {
-			if(comments = Comments.send(form, comments, requestDateTime))
-				Comments.updateWith(comments)
+			// send comment and recieve all comments since requestDateTime
+			Comments.update(form, comments);
 				
 			return false;
 		})	
 	},
 	
-	'send': function(form, comments, requestDateTime) {
+	'update': function(form, comments) {
+		comment = form.find('.text')
+		error   = form.find('.error')
+		
 		$('.ajax-load, input[type="submit"]').toggle();
 		
 		$.ajax({
@@ -16,31 +22,31 @@ Comments = {
 			'type'       : 'post',
 			'contentType': 'text/x-json',
 			'dataType'   : 'json',
-			'data'       : { 'comment': form.children('textarea').val() },
+			'data'       : { 'comment': comment.val(), 'since': Comments.requestDateTime },
 			
 			'error'      : function () {
 				$('.ajax-load, input[type="submit"]').toggle();
-				$('#error').html('<strong>Ошибка</strong> соединения с сервером');
+				error.html('<strong>Ошибка</strong> соединения с сервером');
 			},
 			
 			'success': function (data) {
-				$('#error').html('');
+				error.html('');
 				$('.ajax-load, input[type="submit"]').toggle();
 				
-				if( ! data.success) {
-					$('#error').html(data.error);
-				} else {
-					alert('Сообщение отправлено!');
+				if( ! data.success)
+					error.html(data.error);
+				else {
+					date = new Date();
+					Comments.requestDateTime = date.format('yyyy-mm-dd HH:MM:ss');
 					
-					$('.reply-form').jqmHide();
-					$('#contacts').val('');
-					$('#reply').val('');
+					comments.children('.empty-msg').hide();
+					
+					comment.val('');
+					$(data.fresh).appendTo(comments);
 				}
 			}
 		});
-	},
-	
-	'updateWith': function(comments) {
-		return true;
+		
+		return Comments.fresh;
 	}
 };
