@@ -1,10 +1,88 @@
-<form action="" method="post" enctype="multipart/form-data">
-	Title: {{form.title}}<br/>
-	Photo: {{form.photo}}<br/>
-	{{form.errors.photo.as_text}}
-	Gallery: {{form.gallery}}<br/>
-	Tags: <input type="text" name="tags" /><br/>
-	<input type="submit" />
-</form>
+{% extends 'base.html' %}
 
-{{form.errors.comments.as_text}}
+{% load dates %}
+{% load photos %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.tooltip.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () { Photos.plugins();	});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-most-commented corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			{% include 'photos/_lastphoto-block.html' %}
+		</div>
+	</div>
+			
+	<div class="tpl-galleries corners">
+		<div class="t-r"></div><div class="b-r"></div>
+	
+		<div class="wrap">
+			{% include 'photos/_galleries-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-photo-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			{% include 'photos/_archive-block.html' %}
+		</div>
+	</div>
+	
+	<div class="tpl-content">
+		{% if form.is_valid %}
+			<h2 style="margin: 20px; color: #7b1748;">
+				Изображение загружено и сохранено. После успешной модерации оно появится на нашем сайте.
+			</h2>
+		{% else %}
+			<form enctype="multipart/form-data" method="post" action="">
+			
+				<h1>Добавление нового изображения</h1>
+			
+				<p><span class="required">*</span> - обязательно нужно заполнить</p>
+			
+				<div {% if form.errors.title %}class="erroneus"{% endif %}>
+					<label for="title"><span class="required">*</span>Название</label>
+					{{ form.title }}
+					<span class="error">{{ form.errors.title.as_text|safe|cut:"*" }}</span>
+				</div>
+			
+				<div {% if form.errors.photo %}class="erroneus"{% endif %}>
+					<label for="photo"><span class="required">*</span>Файл с изображением</label>
+					{{ form.photo }}
+					<span class="error">{{ form.errors.photo.as_text|safe|cut:"*" }}</span>
+				</div>
+			
+				<div {% if form.errors.gallery %}class="erroneus"{% endif %}>
+					<label for="gallery"><span class="required">*</span>В какую галлерею добавить?</label>
+					{{ form.gallery }}<br/>
+					<span class="error">{{ form.errors.gallery.as_text|safe|cut:"*" }}</span>
+				</div>
+			
+				<div>
+					<label for="tags">К каким категориям отнести? (через запятую)</label>
+					<input id="tags" type="text" name="tags" />
+				</div>
+			
+				<input style="margin-top: 40px;" type="submit" name="add" value="Добавить" />
+			</form>
+		{% endif %}
+	</div>
+	
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive "/photos" %}
+	</div>
+{% endblock %}

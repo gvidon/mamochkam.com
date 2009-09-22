@@ -1,9 +1,9 @@
-from datetime import datetime
-from PIL      import Image
+from datetime                     import datetime
+from PIL                          import Image
 
-from django.contrib.auth.models import User
-from django.conf                import settings
-from django.db                  import models
+from django.contrib.auth.models   import User
+from django.conf                  import settings
+from django.db                    import models
 
 from mamochkam.apps.common.models import Entity
 

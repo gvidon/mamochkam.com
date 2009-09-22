@@ -1,13 +1,14 @@
 {% load dates %}
+
 <div class="tpl-comments">
 	<h2>Комментарии</h2>
 	
 	<ul>
-	{% if comments %}
-		{% include 'common/_comments-core.html' %}
-	{% else %}
-		<li class="empty-msg">Комментариев пока нет</div>
-	{% endif %}
+		{% if comments %}
+			{% include 'common/_comments-core.html' %}
+		{% else %}
+			<li class="empty-msg">Комментариев пока нет</div>
+		{% endif %}
 	</ul>
 	
 	{% if request.user.id %}

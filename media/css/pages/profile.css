@@ -2,9 +2,9 @@ h1 { font: normal 2em Tahoma, Verdana, sans-serif; color: #377f9d }
 
 .comment { color: gray; font-size: 0.7em; }
 .error { color: red; }
-.required { color: red; float: left; }
+.required { color: red; }
 
-form { margin-left: 10%; }
+form { margin-left: 50px; }
 
 form div.error {
 	padding-bottom: 0px;
@@ -15,8 +15,11 @@ form div.error {
 form div {
 	float: none;
 	display: block;
-	padding-bottom: 40px;
+	margin-top: 40px;
 }
+	form div div {
+		margin-top: 0px;
+	}
 	
 	form div img {
 		float: left;
@@ -40,8 +43,7 @@ form div {
 		font-size: 20px;
 	}
 	
-	form input[type='submit'] {
-	}
+	form input[type='submit'] { margin-top: 10px; }
 	
 	form div textarea {
 		width: 440px;

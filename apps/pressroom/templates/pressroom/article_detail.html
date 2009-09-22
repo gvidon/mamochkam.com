@@ -4,6 +4,22 @@
 {% load photos %}
 {% load blocks %}
 
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/lib/date-format.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
+	
+	<script type="text/javascript">	
+		$(document).ready(function () {
+			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'));
+		});
+	</script>
+{% endblock %}
+
 {% block content %}
 	{% if not object.is_news %}
 		<div class="tpl-article-categories corners">
@@ -41,5 +57,13 @@
 			<a href="javascript:history.go(-1)">назад</a><br/><br/>
 			{% include 'pressroom/_article.html' %}
 		</div>
-	</div>
+	</div><br/><br/>
+	
+	{% with object.id as entry_id %}
+		{% with "article" as entry_type %}
+			{% with object.ordered_comments as comments %}
+				{% include 'common/_comments.html' %}
+			{% endwith %}
+		{% endwith %}
+	{% endwith %}
 {% endblock %}

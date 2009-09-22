@@ -14,11 +14,11 @@
 		
 		<div><span class="date">
 			{{ thread.created_at|date:"d F Y"|ru_months }}
-			<b>создал</b> {{ thread.author.username }}<br/>
+			<b>создал</b> {{ thread.user.username }}<br/>
 			
 			{% ifnotequal thread.comments.count 0 %}
-				{{ thread.last_comment.created_at|date:"d F Y"|ru_months }}
-				<b>последний комментарий</b> от {{ thread.last_comment.author.username }}
+				{{ thread.last_comment.pub_date|date:"d F Y"|ru_months }}
+				<b>последний комментарий</b> от {{ thread.last_comment.user.username }}
 			{% endifnotequal %}
 		</span></div>
 	</li>

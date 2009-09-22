@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime                       import datetime
 
-from django.conf             import settings
-from django.template.context import RequestContext
-from django.views.generic    import list_detail
-from django.shortcuts        import render_to_response
-from django.http             import HttpResponse, Http404
+from django.contrib.auth.decorators import login_required
+from django.conf                    import settings
+from django.template.context        import RequestContext
+from django.views.generic           import list_detail
+from django.shortcuts               import render_to_response
+from django.http                    import HttpResponse, Http404
 
-from models                  import Gallery, Photo
-from forms                   import PhotoForm
+from models                         import Gallery, Photo
+from forms                          import PhotoForm
 
 #GALLERY'S PHOTOS LIST
 def photos(request, slug, page=1):
@@ -47,9 +48,9 @@ def view_gallery(request, slug, page=1):
 	)
 
 #UPLOAD USER'S PHOTO
-#**WARN** @login_required
+@login_required
 def upload(request):
-	form = PhotoForm()
+	form = PhotoForm(auto_id='%s')
 	
 	if(request.POST):
 		form = PhotoForm({

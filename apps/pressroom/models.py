@@ -24,9 +24,9 @@ class ArticleManager(models.Manager):
 '''
 
 class ArticleComment(models.Model):
-	created_at = models.DateTimeField(auto_now_add=True)
-	user       = models.ForeignKey(User)
-	text       = models.TextField()
+	pub_date = models.DateTimeField(auto_now_add=True)
+	user     = models.ForeignKey(User)
+	text     = models.TextField()
 	
 	#META
 	class Meta:

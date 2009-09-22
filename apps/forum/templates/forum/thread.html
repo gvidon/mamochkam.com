@@ -3,8 +3,20 @@
 {% load pages %}
 {% load dates %}
 
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
+{% endblock %}
+
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/lib/date-format.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
+	
+	<script type="text/javascript">	
+		$(document).ready(function () {
+			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'));
+		});
+	</script>
 {% endblock %}
 
 {% block content %}
@@ -25,15 +37,18 @@
 			
 			<p>
 				{{ thread.description }}<br/><br/>
-				<strong>тему создал {{ thread.author.username }}</strong>
+				<strong>тему создал {{ thread.user.username }}</strong>
 			</p>
 		</div>
-		
-		<div class="tpl-comments">
-			<h2>Комментарии({{ thread.comments.count }})</h2>
-			{% include 'forum/_comments.html' %}
-		</div>
 	</div>
+	
+	{% with thread.id as entry_id %}
+		{% with "forum" as entry_type %}
+			{% with thread.ordered_comments as comments %}
+				{% include 'common/_comments.html' %}
+			{% endwith %}
+		{% endwith %}
+	{% endwith %}
 	
 	<div class="tpl-full-archive jqmWindow">
 		{% full_archive '/forum' %}

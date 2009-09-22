@@ -9,6 +9,7 @@ class PhotoForm(ModelForm):
 		'invalid'   : u'Вы использовали запрещенные символы в подписе',
 		'max_length': u'Слишком длинная подпись, более 50-ти символов',
 		'empty'     : u'Слишком короткая подпись, менее 1-го символа',
+		'required'  : u'А где название?',
 	})
 	
 	photo = forms.ImageField(required=True, error_messages={

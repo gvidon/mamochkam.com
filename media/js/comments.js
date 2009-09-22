@@ -46,7 +46,5 @@ Comments = {
 				}
 			}
 		});
-		
-		return Comments.fresh;
 	}
 };

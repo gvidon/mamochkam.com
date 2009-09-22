@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth.models import User
-from django.db                  import models
+from django.contrib.auth.models   import User
+from django.db                    import models
+from mamochkam.apps.common.models import Entity
 
 #THREAD COMMENTS
 class ThreadComment(models.Model):
-	created_at = models.DateTimeField(auto_now_add=True)
-	author     = models.ForeignKey(User)
-	text       = models.TextField()
+	pub_date = models.DateTimeField(auto_now_add=True)
+	user     = models.ForeignKey(User)
+	text     = models.TextField()
 	
 	#META
 	class Meta:
 		db_table = 'thread_comment'
 
 #FORUM THREAD
-class Thread(models.Model):
-	author      = models.ForeignKey(User)
+class Thread(models.Model, Entity):
+	user        = models.ForeignKey(User)
 	created_at  = models.DateTimeField(auto_now_add=True)
 	title       = models.CharField(max_length=128)
 	description = models.TextField()
@@ -23,7 +24,7 @@ class Thread(models.Model):
 	#LAST THREAD COMMENT
 	def last_comment(self):
 		try:
-			return self.comments.order_by('-created_at')[0]
+			return self.comments.order_by('-pub_date')[0]
 		
 		except IndexError:
 			return {}
