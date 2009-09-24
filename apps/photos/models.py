@@ -39,6 +39,7 @@ class PhotoComment(models.Model):
 	
 	#META
 	class Meta:
+		ordering = ['pub_date',]
 		db_table = 'photo_comment'
 
 #MAIN PHOTO MODEL
@@ -65,10 +66,19 @@ class Photo(models.Model, Entity):
 		if image.mode not in ('L', 'RGB'):
 			image = image.convert('RGB')
 	
-		image.thumbnail((100, 100))
+		image.thumbnail((100, 100), Image.ANTIALIAS)
 		image.save(output, image.format)
 	
 		return output
+	
+	#GENERATE PHOTO THUMBNAIL
+	def resize(self):
+		image = Image.open(self.photo.path)
+		
+		image.thumbnail((600, 800), Image.ANTIALIAS)
+		image.save(self.photo.path, image.format)
+	
+		return True
 	
 	#PREPARE URL
 	def url(self):

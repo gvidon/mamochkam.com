@@ -17,7 +17,7 @@ def random_photos(count):
 @register.inclusion_tag('photos/_last-photo.html')
 def last_photo():
 	try:
-		return { 'photo'   : Photo.objects.order_by('-pub_date')[0] }
+		return { 'photo'   : Photo.objects.filter(publish=True).order_by('-pub_date')[0] }
 	
 	except ValueError:
 		return { 'photo': {} }

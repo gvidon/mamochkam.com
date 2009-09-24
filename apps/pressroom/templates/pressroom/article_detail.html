@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
+{% load dates %}
+{% load blocks %}
 {% load bulletins %}
 {% load photos %}
-{% load blocks %}
 
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
@@ -15,6 +16,7 @@
 	
 	<script type="text/javascript">	
 		$(document).ready(function () {
+			$('.tpl-full-archive').jqm();
 			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'));
 		});
 	</script>
@@ -61,9 +63,13 @@
 	
 	{% with object.id as entry_id %}
 		{% with "article" as entry_type %}
-			{% with object.ordered_comments as comments %}
+			{% with object.comments.all as comments %}
 				{% include 'common/_comments.html' %}
 			{% endwith %}
 		{% endwith %}
 	{% endwith %}
+	
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive url %}
+	</div>
 {% endblock %}

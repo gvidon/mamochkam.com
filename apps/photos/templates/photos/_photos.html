@@ -7,7 +7,7 @@
 				<img src="{{ photo.thumb_url }}" title="{{ photo.title }}" />
 			</a></li>
 			
-			<li>Автор <strong>{{ photo.user.username }}</strong></li>
+			<li>{{ photo.title|truncatewords:7 }}</li>
 		</ul>
 	</li>
 {% endfor %}

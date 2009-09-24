@@ -14,6 +14,7 @@
 	
 	<script type="text/javascript">	
 		$(document).ready(function () {
+			$('.tpl-full-archive').jqm();
 			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'));
 		});
 	</script>
@@ -37,14 +38,14 @@
 			
 			<p>
 				{{ thread.description }}<br/><br/>
-				<strong>тему создал {{ thread.user.username }}</strong>
+				<strong>тему создал <a href="{% url public-profile username=thread.user.username %}">{{ thread.user.username }}</a></strong>
 			</p>
 		</div>
 	</div>
 	
 	{% with thread.id as entry_id %}
 		{% with "forum" as entry_type %}
-			{% with thread.ordered_comments as comments %}
+			{% with thread.comments.all as comments %}
 				{% include 'common/_comments.html' %}
 			{% endwith %}
 		{% endwith %}

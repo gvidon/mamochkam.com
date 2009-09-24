@@ -12,7 +12,3 @@ class Entity():
 		
 		return 1
 	
-	#RETURN COMMETNS ORDERED BY PUB_DATE
-	def ordered_comments(self):
-		return self.comments.all().order_by('pub_date')
-	

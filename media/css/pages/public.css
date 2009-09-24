@@ -1,0 +1,34 @@
+h1 { font: normal 2em Tahoma, Verdana, sans-serif; color: #377f9d }
+
+.profile { margin-left: 50px; }
+	
+	.profile div {
+		float: none;
+		display: block;
+		margin-top: 40px;
+	}
+		.profile div div {
+			margin-top: 0px;
+		}
+	
+		.profile div img {
+			float: left;
+			margin-right: 20px;
+		}
+				
+		.profile div h3 {
+			color: #3a5ea0;
+			display: block;
+			font: normal 1.2em Tahoma, Verdana, sans-serif;
+		}
+	
+	.profile .username {
+		float: left;
+		margin-right: 30px;
+		height: 300px;
+	}
+
+		.profile .username img {
+			float: left;
+			margin-right: 20px;
+		}

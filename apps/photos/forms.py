@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django                       import forms
 from django.forms                 import ModelForm
+
+from mamochkam.apps.photos.models import Gallery
 from mamochkam.apps.photos.models import Photo
 
 #FULL PROFILE
@@ -17,7 +19,11 @@ class PhotoForm(ModelForm):
 		'required'     : u'Нужен файл с изображением',
 		'empty'        : u'Пустой файл',
 	})
-
+	
+	gallery = forms.ModelChoiceField(queryset=Gallery.objects.all(), error_messages={
+		'required': u'В какую галлерею добавим изображение?',
+	}, empty_label='')
+	
 	class Meta:
 		model = Photo
 

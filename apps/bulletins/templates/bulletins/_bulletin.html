@@ -5,7 +5,7 @@
 
 <p>
 	{{ object.description }}<br/><br/>
-	<strong>оставил {{ object.user.username }}</strong>
+	<strong>оставил <a href="{% url public-profile username=object.user.username %}">{{ object.user.username }}</a></strong>
 </p>
 
 <a id="reply-button" href="#">ответить на объявление</a>

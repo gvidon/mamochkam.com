@@ -11,3 +11,7 @@ urlpatterns += patterns('',
 	url(r'^login/?$' , 'django.contrib.auth.views.login', { 'template_name': 'user/login.html' }),
 	url(r'^logout/?$', 'django.contrib.auth.views.logout_then_login'),
 )
+
+urlpatterns += patterns('mamochkam.apps.users.views',
+	url(r'^(?P<username>[\w\d\-_\.]+)/?', 'public.profile', name='public-profile'),
+)

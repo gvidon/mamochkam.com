@@ -11,6 +11,7 @@ class ThreadComment(models.Model):
 	
 	#META
 	class Meta:
+		ordering = ['pub_date',]
 		db_table = 'thread_comment'
 
 #FORUM THREAD

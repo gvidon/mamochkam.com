@@ -61,16 +61,11 @@ def upload(request):
 		}, request.FILES)
 		
 		if(form.is_valid()):
-			model = form.save()
+			photo = form.save()
 			
-			model.attach_tags(request.POST['tags'])
-			model.generate_thumb()
-			
-			return render_to_response(
-				'photos/uploaded.html',
-				{ 'img_src': model.url() },
-				context_instance=RequestContext
-			)
+			photo.attach_tags(request.POST['tags'])
+			photo.resize()
+			photo.generate_thumb()
 	
 	return render_to_response(
 		'photos/upload.html',

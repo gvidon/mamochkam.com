@@ -53,8 +53,7 @@
 	
 	<div class="tpl-content">
 		<ul class="tpl-photo-detail">
-			<h1>Фото от наших мамочек</h1>
-			<h3><a href="{% url upload-photo %}">Загрузить свое фото</a></h3>
+			<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
 			
 			<a href="javascript:history.go(-1)">назад</a>
 			
@@ -63,7 +62,7 @@
 				
 				<span>{{ object.title }}</span><br/>
 				<span class="comment">
-					Отправил <a href="#">{{ object.user.username }}</a>
+					Отправил <a href="{% url public-profile username=object.user.username %}">{{ object.user.username }}</a>
 					{{ object.pub_date|date:"j-го F Y"|ru_months }}
 				</span>
 			</li>
@@ -72,7 +71,7 @@
 	
 	{% with object.id as entry_id %}
 		{% with "photo" as entry_type %}
-			{% with object.ordered_comments as comments %}
+			{% with object.comments.all as comments %}
 				{% include 'common/_comments.html' %}
 			{% endwith %}
 		{% endwith %}

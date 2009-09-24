@@ -30,6 +30,7 @@ class ArticleComment(models.Model):
 	
 	#META
 	class Meta:
+		ordering = ['pub_date',]
 		db_table = 'article_comment'
 
 class Article(models.Model, Entity):

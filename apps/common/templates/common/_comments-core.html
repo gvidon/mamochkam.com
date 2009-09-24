@@ -3,7 +3,7 @@
 {% for comment in comments %}
 	<li>
 		<span class="comment">
-			написал <a href="#">{{ comment.user.username }}</a>
+			написал <a href="{% url public-profile username=comment.user.username %}">{{ comment.user.username }}</a>
 			{{ comment.pub_date|date:"j-го F Y H:i"|ru_months }}
 		</span><br/>
 
