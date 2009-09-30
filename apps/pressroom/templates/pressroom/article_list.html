@@ -14,22 +14,27 @@
 {% endblock %}
 
 {% block content %}
-	{% ifequal type 'articles' %}
-		<div class="tpl-article-categories corners">
-			<div class="t-r"></div><div class="b-r"></div>
+
+	<div class="tpl-column-right">
+		{% ifequal type 'articles' %}
+			<div class="tpl-article-categories corners">
+				<div class="t-r"></div><div class="b-r"></div>
+			
+				<div class="wrap">
+					{% include 'pressroom/_sections-block.html' %}
+				</div>
+			</div>
+		{% endifequal %}
 		
+		<div class="tpl-news-archive corners">
+			<div class="t-r"></div><div class="b-r"></div>
+			
 			<div class="wrap">
-				{% include 'pressroom/_sections-block.html' %}
+				{% include 'pressroom/_archive-block.html' %}
 			</div>
 		</div>
-	{% endifequal %}
-	
-	<div class="tpl-news-archive corners">
-		<div class="t-r"></div><div class="b-r"></div>
-		
-		<div class="wrap">
-			{% include 'pressroom/_archive-block.html' %}
-		</div>
+		<div class="banner-240x120"></div>
+		<div class="banner-240x120"></div>
 	</div>
 	
 	<div class="tpl-content">

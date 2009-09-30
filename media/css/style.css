@@ -18,6 +18,10 @@ body {
 	min-width: 1000px;
 }
 
+.tpl-column-right {
+	float: right;
+}
+
 /* Header
 ******************************************************************************/
 
@@ -170,7 +174,7 @@ body {
 .cloud-corner {
 	position: absolute;
 	top: 0; right: 0;
-	width: 152px; height: 82px;
+	width: 152px; padding-top: 82px;
 	
 	background: transparent url('../images/cloud-corner.gif') 0 0 no-repeat;
 }
@@ -250,4 +254,32 @@ div .pages {
 	top: 0; left: 0;
 	width: 110px; height: 43px;
 	background: transparent url('../images/clouds.png') -394px 0 no-repeat;
+}
+
+/* Banners ****************************************************************/
+
+.banner-160x600,
+.banner-468x120,
+.banner-240x120 {
+	margin: 20px;
+	border: 1px solid #999999;
+}
+
+.banner-160x600 {
+	float: left;
+	margin-top: 0;
+	width: 160px; height: 600px;
+}
+
+.banner-468x120 {
+	position: absolute;
+	display: none;
+	margin: 0;
+	width: 468px; height: 120px;
+}
+
+.banner-240x120 {
+	float: right;
+	clear: right;
+	width: 240px; height: 120px;
 }
