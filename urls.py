@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'^bulletins/?'                                            , include('mamochkam.apps.bulletins.urls')),
 	url(r'^pressroom/?'                                            , include('mamochkam.apps.pressroom.urls')),
 	url(r'^photos/'                                                , include('mamochkam.apps.photos.urls')),
+	url(r'^video/'                                                 , include('mamochkam.apps.video.urls')),
 	url(r'^forum/'                                                 , include('mamochkam.apps.forum.urls')),
 	url(r'^user/'                                                  , include('mamochkam.apps.users.urls')),
 )

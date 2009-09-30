@@ -42,9 +42,7 @@ def full_archive(url):
 @stringfilter
 def ru_months(date):
 	try:
-		return [
-			date.replace(month[0], month[2]) for month in months if date.find(month[0]) != -1
-		][0]
+		return [ date.replace(month[0], month[2]) for month in months if date.find(month[0]) != -1 ][0]
 	
 	except IndexError:
 		return ''

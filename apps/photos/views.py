@@ -11,24 +11,6 @@ from django.http                    import HttpResponse, Http404
 from models                         import Gallery, Photo
 from forms                          import PhotoForm
 
-#GALLERY'S PHOTOS LIST
-def photos(request, slug, page=1):
-	try:
-		gallery = Gallery.objects.get(slug__exact=slug)
-		photos = gallery.photos.all()
-	
-	except Gallery.DoesNotExist:
-		raise Http404
-	
-	return list_detail.object_list(request,
-		queryset      = photos,
-		paginate_by   = settings.ITEMS_PER_PAGE,
-		page          = page,
-		allow_empty   = True,
-		template_name = 'photos/photo_list.html',
-		extra_context = { 'gallery': gallery }
-	)
-
 #DISPLAY GALLERY'S PHOTOS
 def view_gallery(request, slug, page=1):
 	try:

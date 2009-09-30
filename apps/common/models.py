@@ -1,6 +1,7 @@
 from django.db                  import models
 from mamochkam.apps.tags.models import Tag
 
+#PORTAL ENTITIES BASE CLASS
 class Entity():
 	#ATTACH TAG TO ENTITY
 	def attach_tags(self, tags_string):

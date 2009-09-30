@@ -10,10 +10,10 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.bgiframe.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.dimensions.js"></script>
 	
-	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/video.js"></script>
 	
 	<script type="text/javascript">
-		$(document).ready(function () { Photos.plugins();	});
+		$(document).ready(function () { Video.plugins();	});
 	</script>
 {% endblock %}
 
@@ -22,15 +22,7 @@
 		<div class="t-r"></div><div class="b-r"></div>
 		
 		<div class="wrap">
-			{% include 'photos/_lastphoto-block.html' %}
-		</div>
-	</div>
-			
-	<div class="tpl-galleries corners">
-		<div class="t-r"></div><div class="b-r"></div>
-	
-		<div class="wrap">
-			{% include 'photos/_galleries-block.html' %}
+			{% include 'video/_lastvideo-block.html' %}
 		</div>
 	</div>
 	
@@ -38,36 +30,29 @@
 		<div class="t-r"></div><div class="b-r"></div>
 		
 		<div class="wrap">
-			{% include 'photos/_archive-block.html' %}
+			{% include 'video/_archive-block.html' %}
 		</div>
 	</div>
 	
 	<div class="tpl-content">
 		<ul class="tpl-photos">
-			<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
+			<h1>Видео для наших мамочек</h1>
 			
 			{% if month %}
 				<h3>
 					архив {{ month|date:"F Y"|ru_months }}
-					<a href="/photos">все фото</a>
+					<a href="/video">все ролики</a>
 				</h3>
-			{% else %}
-				{% if gallery %}
-					<h3>
-						{{ gallery.title }}
-						<a href="/photos">все фото</a>
-					</h3>
-				{% endif %}
 			{% endif %}
 			
 			<br/>
 			
 			{% if object_list %}
-				{% include 'photos/_photos.html' %}
+				{% include 'video/_video.html' %}
 			{% else %}
 			
 				{% if date_list %}
-					<h3 style="color: red">Нет изображений за указанную дату</h3>
+					<h3 style="color: red">Нет роликов за указанную дату</h3>
 				{% else %}
 					<h3 style="color: red">К сожалению эта категория пуста</h3>
 				{% endif %}
@@ -81,6 +66,6 @@
 	</div>
 	
 	<div class="tpl-full-archive jqmWindow">
-		{% full_archive "/photos" %}
+		{% full_archive "/video" %}
 	</div>
 {% endblock %}

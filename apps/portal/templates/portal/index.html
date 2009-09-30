@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
+{% load banners %}
+{% load blocks %}
 {% load bulletins %}
 {% load photos %}
-{% load blocks %}
 
 {% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.tooltip.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/portal.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			Photos.plugins();
 			Portal.bindEvents();
 		})	
 	</script>
@@ -28,6 +33,9 @@
 
 <div class="tpl-news">
 	<h1>Новости от Мамочек</h1><br/>
+	
+	<!-- <img src="{% banner '160x600' request.META.REMOTE_ADDR %}" /> -->
+	
 	<ul>
 		{% last_articles 7 1 %}
 		<li><a href="/pressroom/news">Все новости →</a></li>

@@ -3,9 +3,7 @@ from django.conf.urls.defaults import *
 
 from mamochkam.apps.photos.models import Gallery, Photo
 
-urlpatterns = patterns('mamochkam.apps.photos.views',
-	url(r'upload/?$', 'upload', name='upload-photo'),
-)
+urlpatterns = patterns('mamochkam.apps.photos.views', url(r'upload/?$', 'upload', name='upload-photo'))
 
 # Photo list and details
 urlpatterns += patterns('django.views.generic.list_detail',

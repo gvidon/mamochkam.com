@@ -1,3 +1,5 @@
 {% for photo in photos %}
-	<a href="#" title="{{ photo.title }}"><img src="{{ photo.url }}_thumb" /></a>
+	<a href="/photos/view/{{ photo.id }}" title="{{ photo.title }}" class="photo">
+		<img src="{{ photo.url }}_thumb" title="{{ photo.title }}" />
+	</a>
 {% endfor %}

@@ -4,7 +4,7 @@
 	<li>
 		<ul class="photo">
 			<li><a href="/photos/view/{{ photo.id }}">
-				<img src="{{ photo.thumb_url }}" title="{{ photo.title }}" />
+				<img src="{{ photo.thumb_url }}" title="оставил <b>{{ photo.user }}</b>, {{ photo.pub_date|date:"j-го F"|ru_months }}" />
 			</a></li>
 			
 			<li>{{ photo.title|truncatewords:7 }}</li>
