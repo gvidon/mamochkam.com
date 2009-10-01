@@ -9,23 +9,22 @@ from django.template.context     import RequestContext
 from mamochkam.apps.users.models import Profile, Activation
 
 ACCOUNT_MESSAGE = {
-	'html': lambda username, password: u'''\
-		<html>
-			<head></head>
-			<body>
-				<p>Ваша учетная запись активирована. Теперь вы зарегистрированный пользователь
-				портала mamochkam.com.</p>
+	'html': lambda username, password:
+		'<html>'+
+			'<head></head>'+
+			'<body>'+
+				'<p>Ваша учетная запись активирована. Теперь вы зарегистрированный пользователь'+
+				'портала mamochkam.com.</p>'+
 				
-				Логин: '''+username+u'''<br/>
-				Пароль: '''+password+'''<br/>
-			</body>
-		</html>''',
+				'Логин: '+username.encode('utf8')+'<br/>'+
+				'Пароль: '+password.encode('utf8')+'<br/>'+
+			'</body>'+
+		'</html>',
 		
-	'text': lambda username, password: u'''
-		Ваша учетная запись активирована. Теперь вы зарегистрированный пользователь
-		портала mamochkam.com.
-
-		логин: '''+username+u''' пароль: '''+password
+	'text': lambda username, password:
+		'Ваша учетная запись активирована. Теперь вы зарегистрированный пользователь'+
+		'портала mamochkam.com.\n\n'+
+		'логин: '+username.encode('utf8')+' пароль: '+password.encode('utf8')
 }
 
 #GET ACTIVATION CODE BY URL

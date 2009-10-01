@@ -107,7 +107,7 @@
 			</div>
 			
 			<div {% if form.errors.birthdate %}class="erroneus"{% endif %}>
-				<select id="birthmonth" name="month">
+				<select id="birthmonth" name="month" style="float: left; margin-bottom: 5px;">
 					<option value="1">Января</option>
 					<option value="2">Февраля</option>
 					<option value="3">Марта</option>
@@ -120,12 +120,13 @@
 					<option value="10">Октября</option>
 					<option value="11">Ноября</option>
 					<option value="12">Декабря</option>
-				</select>
+				</select><br/>
+				<span class="comment">месяц</span>
 			</div>
 			
 			<div {% if form.errors.birthdate %}class="erroneus"{% endif %} style="float: none">
 				<input id="birthyear" type="text" name="year" maxlength="4" />
-				<span class="comment">год</span>
+				<span class="comment">год, например 1985</span>
 			</div>
 		</div>
 		
