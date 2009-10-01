@@ -35,7 +35,7 @@
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-board corners">
 		<div class="t-r"></div><div class="b-r"></div>
 
@@ -46,7 +46,9 @@
 			<a class="section-link" href="/bulletins">Все объявления →</a>
 		</div>
 	</div>
-	
+{% endblock %}
+
+{% block content %}
 	<form id="profile" enctype="multipart/form-data" method="post" action="">
 		{{ form.id }}
 		<input  id="full-date" name="birthdate" type="hidden" />

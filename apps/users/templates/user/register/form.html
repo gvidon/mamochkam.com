@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-board corners">
 		<div class="t-r"></div><div class="b-r"></div>
 
@@ -18,7 +18,9 @@
 			<a class="section-link" href="/bulletins">Все объявления →</a>
 		</div>
 	</div>
+{% endblock %}
 	
+{% block content %}
 	<form action="" method="post">
 		<h1>Регистрация нового пользователя</h1>
 		

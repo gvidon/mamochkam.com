@@ -17,7 +17,7 @@
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-most-commented corners">
 		<div class="t-r"></div><div class="b-r"></div>
 		
@@ -33,39 +33,39 @@
 			{% include 'video/_archive-block.html' %}
 		</div>
 	</div>
-	
-	<div class="tpl-content">
-		<ul class="tpl-photos">
-			<h1>Видео для наших мамочек</h1>
-			
-			{% if month %}
-				<h3>
-					архив {{ month|date:"F Y"|ru_months }}
-					<a href="/video">все ролики</a>
-				</h3>
-			{% endif %}
-			
-			<br/>
-			
-			{% if object_list %}
-				{% include 'video/_video.html' %}
-			{% else %}
-			
-				{% if date_list %}
-					<h3 style="color: red">Нет роликов за указанную дату</h3>
-				{% else %}
-					<h3 style="color: red">К сожалению эта категория пуста</h3>
-				{% endif %}
-				
-			{% endif %}
-		</ul>
-		
-		{% if page_obj.has_other_pages %}
-			<div class="pages">{% pages paginator page_obj request.path %}</div>
-		{% endif %}
-	</div>
-	
+
 	<div class="tpl-full-archive jqmWindow">
 		{% full_archive "/video" %}
 	</div>
+{% endblock %}
+	
+{% block content %}
+	<ul class="tpl-photos">
+		<h1>Видео для наших мамочек</h1>
+		
+		{% if month %}
+			<h3>
+				архив {{ month|date:"F Y"|ru_months }}
+				<a href="/video">все ролики</a>
+			</h3>
+		{% endif %}
+		
+		<br/>
+		
+		{% if object_list %}
+			{% include 'video/_video.html' %}
+		{% else %}
+		
+			{% if date_list %}
+				<h3 style="color: red">Нет роликов за указанную дату</h3>
+			{% else %}
+				<h3 style="color: red">К сожалению эта категория пуста</h3>
+			{% endif %}
+			
+		{% endif %}
+	</ul>
+	
+	{% if page_obj.has_other_pages %}
+		<div class="pages">{% pages paginator page_obj request.path %}</div>
+	{% endif %}
 {% endblock %}
