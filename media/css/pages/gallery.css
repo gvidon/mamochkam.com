@@ -1,8 +1,6 @@
 .tpl-most-commented,
 .tpl-galleries,
 .tpl-photo-archive {
-	float: right;
-	clear: right;
 	margin-bottom: 10px;
 }
 

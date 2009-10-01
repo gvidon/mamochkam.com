@@ -50,9 +50,8 @@
 ******************************************************************************/
 
 	.tpl-board {
-		float: right;
+		float: right; clear: right;
 		width: 360px;
-
 		margin-bottom: 10px;
 	}
 		.tpl-board li {

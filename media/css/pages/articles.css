@@ -3,7 +3,6 @@
 
 .tpl-article-categories,
 .tpl-news-archive {
-	float: right; clear: right;
 	margin-bottom: 10px;
 }
 	.tpl-article-categories ul li,
