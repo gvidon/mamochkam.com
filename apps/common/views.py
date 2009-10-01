@@ -9,15 +9,17 @@ from django.template                 import RequestContext
 from django.shortcuts                import render_to_response
 from django.http                     import HttpResponse, Http404
 
-from mamochkam.apps.forum.models     import Thread
 from mamochkam.apps.pressroom.models import Article
 from mamochkam.apps.photos.models    import Photo
+from mamochkam.apps.forum.models     import Thread
+from mamochkam.apps.video.models     import Video
 from mamochkam.apps.tags.models      import Tag
 
 entities = {
 	'photo'  : Photo,
 	'article': Article,
 	'forum'  : Thread,
+	'video'  : Video,
 }
 
 #AJAX: COMMENTING INTERFACE

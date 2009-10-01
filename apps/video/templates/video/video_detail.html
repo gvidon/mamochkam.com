@@ -13,18 +13,14 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.bgiframe.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.dimensions.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/date-format.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/lib/flowplayer-3.1.4.min.js"></script>
 
 	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
-	<script type="text/javascript" src="{{ media_url }}/js/video.js"></script>
 
 	<script type="text/javascript">
-		
-		mediaURL = '{{ media_url }}';
-
 		$(document).ready(function () {
-			Video.bindEvents();
-			Video.plugins();
-			Video.initPlayer('{{ object.video.url }}');
+			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'));
+			flowplayer('video', '{{ media_url }}/flowplayer.swf');
 		});
 	</script>
 {% endblock %}
@@ -52,15 +48,21 @@
 
 {% block content %}
 	<ul class="tpl-photo-detail">
-		<h1>Видео для наших мамочек</h1>
-
-		<a href="javascript:history.go(-1)">назад</a>
-
 		<li>
-			<img src="{{ object.url }}" alt="{{ object.title }}" /><br/>
-
-			<span>{{ object.title }}</span><br/>
-			<span class="comment">{{ object.pub_date|date:"j-го F Y"|ru_months }}</span>
+			<h1>Видео для наших мамочек</h1>
+			<a href="javascript:history.go(-1)">назад</a>
+		</li>
+		
+		<li>
+			<div align="center">
+				<a id="video"
+					href="{{ object.video.url }}"
+					style="display:block;width:520px;height:330px;">
+				</a>
+			</div>
+			
+			<h2>{{ object.title }}</h2>
+			<span class="comment">{{ object.pub_date|date:"j-го F Y"|ru_months }}</span>	
 		</li>
 	</ul>
 

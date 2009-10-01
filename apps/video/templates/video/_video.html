@@ -4,10 +4,10 @@
 	<li>
 		<ul class="photo">
 			<li><a href="/video/view/{{ video.id }}">
-				<img src="{{ video.thumb_url }}" title="{{ video.pub_date|date:"j-го F"|ru_months }}" />
+				<img src="{{ video.thumb.url }}" title="{{ video.pub_date|date:"j-го F"|ru_months }}" />
 			</a></li>
 			
-			<li>{{ photo.title|truncatewords:7 }}</li>
+			<li>{{ video.title|truncatewords:7 }}</li>
 		</ul>
 	</li>
 {% endfor %}
