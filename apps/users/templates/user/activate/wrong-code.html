@@ -3,7 +3,7 @@
 {% load bulletins %}
 {% load blocks %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-board corners">
 		<div class="t-r"></div><div class="b-r"></div>
 
@@ -14,7 +14,9 @@
 			<a class="section-link" href="/bulletins">Все объявления →</a>
 		</div>
 	</div>
+{% endblock %}
 	
+{% block content %}
 	<h1 style="color: red;">Неверный код активации</h1>
 	
 	<p style="margin-left: 40px; width: 60%; height: 280px;">
