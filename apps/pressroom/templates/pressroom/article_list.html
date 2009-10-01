@@ -5,7 +5,7 @@
 
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('.tpl-full-archive').jqm();
@@ -13,66 +13,61 @@
 	</script>
 {% endblock %}
 
-{% block content %}
-
-	<div class="tpl-column-right">
-		{% ifequal type 'articles' %}
-			<div class="tpl-article-categories corners">
-				<div class="t-r"></div><div class="b-r"></div>
-			
-				<div class="wrap">
-					{% include 'pressroom/_sections-block.html' %}
-				</div>
-			</div>
-		{% endifequal %}
-		
-		<div class="tpl-news-archive corners">
+{% block column_right %}
+	{% ifequal type 'articles' %}
+		<div class="tpl-article-categories corners">
 			<div class="t-r"></div><div class="b-r"></div>
-			
+
 			<div class="wrap">
-				{% include 'pressroom/_archive-block.html' %}
+				{% include 'pressroom/_sections-block.html' %}
 			</div>
 		</div>
-		<div class="banner-240x120"></div>
-		<div class="banner-240x120"></div>
+	{% endifequal %}
+
+	<div class="tpl-news-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			{% include 'pressroom/_archive-block.html' %}
+		</div>
 	</div>
-	
-	<div class="tpl-content">
-		<ul class="tpl-articles">
-			<h1>{% ifequal type 'articles' %}Статьи для мамочек{% else %}Новости{% endifequal %}</h1>
-			
-			{% if month %}
-				<h3>
-					архив {{ month|date:"F Y"|ru_months }}
-					{% ifequal type 'news' %} <a href="/pressroom/news">все новости</a>{% endifequal %}
-				</h3>
-			{% else %}
-				{% if section %}
-					<h3>{{ section.title }}</h3>
-				{% endif %}
-			{% endif %}
-			
-			<br/>
-			
-			{% if object_list %}
-				{% include 'pressroom/_articles.html' %}
-			{% else %}
-			
-				{% if date_list %}
-					<h3>Нет материалов за указанную дату</h3>
-				{% else %}
-					<h3 style="color: red">По вашем запросу материалов нет</h3>
-				{% endif %}
-				
-			{% endif %}
-			
-			{% if page_obj.has_other_pages %}
-				<li class="pages">{% pages paginator page_obj request.path %}</li>
-			{% endif %}
-		</ul>
-	</div>
-	
+
 	<div class="tpl-full-archive jqmWindow">
 		{% full_archive url %}
 	</div>
+{% endblock %}
+
+{% block content %}
+	<ul class="tpl-articles">
+		<h1>{% ifequal type 'articles' %}Статьи для мамочек{% else %}Новости{% endifequal %}</h1>
+
+		{% if month %}
+			<h3>
+				архив {{ month|date:"F Y"|ru_months }}
+				{% ifequal type 'news' %} <a href="/pressroom/news">все новости</a>{% endifequal %}
+			</h3>
+		{% else %}
+			{% if section %}
+				<h3>{{ section.title }}</h3>
+			{% endif %}
+		{% endif %}
+
+		<br/>
+
+		{% if object_list %}
+			{% include 'pressroom/_articles.html' %}
+		{% else %}
+
+			{% if date_list %}
+				<h3>Нет материалов за указанную дату</h3>
+			{% else %}
+				<h3 style="color: red">По вашем запросу материалов нет</h3>
+			{% endif %}
+
+		{% endif %}
+
+		{% if page_obj.has_other_pages %}
+			<li class="pages">{% pages paginator page_obj request.path %}</li>
+		{% endif %}
+	</ul>
 {% endblock %}

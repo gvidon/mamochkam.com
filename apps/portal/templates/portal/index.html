@@ -10,44 +10,40 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.tooltip.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/portal.js"></script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			Photos.plugins();
 			Portal.bindEvents();
-		})	
+		})
 	</script>
 {% endblock %}
 
+{% block column_right %}
+	<div class="tpl-other-articles corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Последние статьи</h2>
+			<ul>{% last_articles 5 0 %}</ul><br/>
+
+			<a class="section-link" href="/pressroom/articles">Все статьи →</a>
+		</div>
+	</div>
+{% endblock %}
+
 {% block content %}
-<div class="tpl-column-right">
+	<div class="tpl-news">
+		<h1>Новости от Мамочек</h1>
 
-<div class="tpl-other-articles corners">
-	<div class="t-r"></div><div class="b-r"></div>
-	
-	<div class="wrap">
-		<h2>Последние статьи</h2>
-		<ul>{% last_articles 5 0 %}</ul><br/>
-	
-		<a class="section-link" href="/pressroom/articles">Все статьи →</a>
+		<ul>
+			{% last_articles 7 1 %}
+			<li><a href="/pressroom/news">Все новости →</a></li>
+		</ul>
 	</div>
-</div>
-		<div class="banner-240x120"></div>
-		<div class="banner-240x120"></div>
-	</div>
+{% endblock %}
 
-<div class="tpl-news">
-	<h1>Новости от Мамочек</h1>
-	
-	<!-- <img class="banner-160x600" src="{% banner '160x600' request.META.REMOTE_ADDR %}" /> -->
-	
-	<ul>
-		{% last_articles 7 1 %}
-		<li><a href="/pressroom/news">Все новости →</a></li>
-	</ul>
-</div>
-
-<div class="clear"></div>
+{% block content_bottom %}
 
 <h3>
 	Наши мамочки
@@ -60,11 +56,11 @@
 	<div id="photos" class="digest" style="display: block">
 		{% random_photos 8 %}
 	</div>
-	
+
 	<div id="video" class="digest">
 		видео тут
 	</div>
-	
+
 	<div id="forum" class="digest">
 		сообщения с форума
 	</div>
@@ -76,7 +72,7 @@
 	<div class="wrap">
 		<h2>Объявления пользователей</h2>
 		{% last_bulletins 5 %}
-	
+
 		<a class="section-link" href="/bulletins">Все объявления →</a>
 	</div>
 </div>

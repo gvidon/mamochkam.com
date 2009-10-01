@@ -36,10 +36,10 @@ a {
 	color: #aa6c8b;
 	text-decoration: underline;
 }
-		
+
 a:hover {
 	color: #7b1748;
-	text-decoration: none;		
+	text-decoration: none;
 }
 
 .date, .comment {
@@ -55,4 +55,8 @@ a:hover {
 .selected-link {
 	font-weight: bold;
 	text-decoration: none;
+}
+
+.tpl-content .title a {
+	font-size: 1.65em;
 }

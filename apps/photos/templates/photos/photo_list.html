@@ -9,83 +9,78 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.tooltip.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.bgiframe.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.dimensions.js"></script>
-	
+
 	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function () { Photos.plugins();	});
 	</script>
 {% endblock %}
 
-{% block content %}
-<div class="tpl-column-right">
+{% block column_right %}
 	<div class="tpl-most-commented corners">
 		<div class="t-r"></div><div class="b-r"></div>
-		
+
 		<div class="wrap">
 			{% include 'photos/_lastphoto-block.html' %}
 		</div>
 	</div>
-			
+
 	<div class="tpl-galleries corners">
 		<div class="t-r"></div><div class="b-r"></div>
-	
+
 		<div class="wrap">
 			{% include 'photos/_galleries-block.html' %}
 		</div>
 	</div>
-	
+
 	<div class="tpl-photo-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
-		
+
 		<div class="wrap">
 			{% include 'photos/_archive-block.html' %}
 		</div>
 	</div>
 
-		<div class="banner-240x120"></div>
-		<div class="banner-240x120"></div>
-	</div>
-	
-	<div class="tpl-content">
-		<ul class="tpl-photos">
-			<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
-			
-			{% if month %}
-				<h3>
-					архив {{ month|date:"F Y"|ru_months }}
-					<a href="/photos">все фото</a>
-				</h3>
-			{% else %}
-				{% if gallery %}
-					<h3>
-						{{ gallery.title }}
-						<a href="/photos">все фото</a>
-					</h3>
-				{% endif %}
-			{% endif %}
-			
-			<br/>
-			
-			{% if object_list %}
-				{% include 'photos/_photos.html' %}
-			{% else %}
-			
-				{% if date_list %}
-					<h3 style="color: red">Нет изображений за указанную дату</h3>
-				{% else %}
-					<h3 style="color: red">К сожалению эта категория пуста</h3>
-				{% endif %}
-				
-			{% endif %}
-		</ul>
-		
-		{% if page_obj.has_other_pages %}
-			<div class="pages">{% pages paginator page_obj request.path %}</div>
-		{% endif %}
-	</div>
-	
 	<div class="tpl-full-archive jqmWindow">
 		{% full_archive "/photos" %}
 	</div>
+{% endblock %}
+
+{% block content %}
+	<ul class="tpl-photos">
+		<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
+
+		{% if month %}
+			<h3>
+				архив {{ month|date:"F Y"|ru_months }}
+				<a href="/photos">все фото</a>
+			</h3>
+		{% else %}
+			{% if gallery %}
+				<h3>
+					{{ gallery.title }}
+					<a href="/photos">все фото</a>
+				</h3>
+			{% endif %}
+		{% endif %}
+
+		<br/>
+
+		{% if object_list %}
+			{% include 'photos/_photos.html' %}
+		{% else %}
+
+			{% if date_list %}
+				<h3 style="color: red">Нет изображений за указанную дату</h3>
+			{% else %}
+				<h3 style="color: red">К сожалению эта категория пуста</h3>
+			{% endif %}
+
+		{% endif %}
+	</ul>
+
+	{% if page_obj.has_other_pages %}
+		<div class="pages">{% pages paginator page_obj request.path %}</div>
+	{% endif %}
 {% endblock %}

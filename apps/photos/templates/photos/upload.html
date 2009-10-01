@@ -17,7 +17,7 @@
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-most-commented corners">
 		<div class="t-r"></div><div class="b-r"></div>
 		
@@ -41,7 +41,13 @@
 			{% include 'photos/_archive-block.html' %}
 		</div>
 	</div>
+
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive "/photos" %}
+	</div>
+{% endblock %}
 	
+{% block content %}
 	<div class="tpl-content">
 		{% if form.is_valid %}
 			<h1 style="margin-top: 20px;">Изображение загружено и сохранено.</h1>
@@ -79,9 +85,5 @@
 				<input style="margin-top: 40px;" type="submit" name="add" value="Добавить" />
 			</form>
 		{% endif %}
-	</div>
-	
-	<div class="tpl-full-archive jqmWindow">
-		{% full_archive "/photos" %}
 	</div>
 {% endblock %}

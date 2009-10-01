@@ -13,12 +13,12 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.bgiframe.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.dimensions.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/date-format.js"></script>
-	
+
 	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/photos.js"></script>
-	
+
 	<script type="text/javascript">
-		
+
 		$(document).ready(function () {
 			Photos.bindEvents();
 			Photos.plugins();
@@ -26,49 +26,53 @@
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-most-commented corners">
 		<div class="t-r"></div><div class="b-r"></div>
-		
+
 		<div class="wrap">
 			{% include 'photos/_lastphoto-block.html' %}
 		</div>
 	</div>
-			
+
 	<div class="tpl-galleries corners">
 		<div class="t-r"></div><div class="b-r"></div>
-	
+
 		<div class="wrap">
 			{% include 'photos/_galleries-block.html' %}
 		</div>
 	</div>
-	
+
 	<div class="tpl-photo-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
-		
+
 		<div class="wrap">
 			{% include 'photos/_archive-block.html' %}
 		</div>
 	</div>
-	
-	<div class="tpl-content">
-		<ul class="tpl-photo-detail">
-			<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
-			
-			<a href="javascript:history.go(-1)">назад</a>
-			
-			<li>
-				<img src="{{ object.url }}" alt="{{ object.title }}" /><br/>
-				
-				<span>{{ object.title }}</span><br/>
-				<span class="comment">
-					Отправил <a href="{% url public-profile username=object.user.username %}">{{ object.user.username }}</a>
-					{{ object.pub_date|date:"j-го F Y"|ru_months }}
-				</span>
-			</li>
-		</ul>
+
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive "/photos" %}
 	</div>
-	
+{% endblock %}
+
+{% block content %}
+	<ul class="tpl-photo-detail">
+		<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
+
+		<a href="javascript:history.go(-1)">назад</a>
+
+		<li>
+			<img src="{{ object.url }}" alt="{{ object.title }}" /><br/>
+
+			<span>{{ object.title }}</span><br/>
+			<span class="comment">
+				Отправил <a href="{% url public-profile username=object.user.username %}">{{ object.user.username }}</a>
+				{{ object.pub_date|date:"j-го F Y"|ru_months }}
+			</span>
+		</li>
+	</ul>
+
 	{% with object.id as entry_id %}
 		{% with "photo" as entry_type %}
 			{% with object.comments.all as comments %}
@@ -76,8 +80,4 @@
 			{% endwith %}
 		{% endwith %}
 	{% endwith %}
-	
-	<div class="tpl-full-archive jqmWindow">
-		{% full_archive "/photos" %}
-	</div>
 {% endblock %}

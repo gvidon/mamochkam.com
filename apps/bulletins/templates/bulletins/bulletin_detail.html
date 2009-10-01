@@ -10,7 +10,7 @@
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/bulletins.js"></script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function () {
 			Bulletins.bindEvents();
@@ -18,23 +18,23 @@
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-bulletins-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
-		
+
 		<div class="wrap">
 			{% include 'bulletins/_archive-block.html' %}
 		</div>
 	</div>
-	
-	<div class="tpl-content">
-		<div class="tpl-bulletin">
-			<a href="javascript:history.go(-1)">назад</a><br/><br/>
-			{% include 'bulletins/_bulletin.html' %}
-		</div>
-	</div>
-	
+
 	<div class="tpl-full-archive jqmWindow">
 		{% full_archive '/bulletins' %}
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-bulletin">
+		<a href="javascript:history.go(-1)">назад</a><br/><br/>
+		{% include 'bulletins/_bulletin.html' %}
 	</div>
 {% endblock %}

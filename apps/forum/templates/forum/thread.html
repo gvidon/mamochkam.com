@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/date-format.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
-	
+
 	<script type="text/javascript">	
 		$(document).ready(function () {
 			$('.tpl-full-archive').jqm();
@@ -20,29 +20,33 @@
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-forum-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
-		
+
 		<div class="wrap">
 			{% include 'forum/_archive-block.html' %}
 		</div>
 	</div>
-	
-	<div class="tpl-content">
-		<div class="tpl-thread">
-			<a href="javascript:history.go(-1)">назад</a><br/><br/>
-			
-			<div class="title"><a href="{% url thread-view id=thread.id %}">{{ thread.title }}</a></div>
-			<div><span class="date">{{ thread.created_at|date:"d F Y"|ru_months }}</span></div>
-			
-			<p>
-				{{ thread.description }}<br/><br/>
-				<strong>тему создал <a href="{% url public-profile username=thread.user.username %}">{{ thread.user.username }}</a></strong>
-			</p>
-		</div>
+
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive '/forum' %}
 	</div>
-	
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-thread">
+		<a href="javascript:history.go(-1)">назад</a><br/><br/>
+
+		<div class="title"><a href="{% url thread-view id=thread.id %}">{{ thread.title }}</a></div>
+		<div><span class="date">{{ thread.created_at|date:"d F Y"|ru_months }}</span></div>
+
+		<p>
+			{{ thread.description }}<br/><br/>
+			<strong>тему создал <a href="{% url public-profile username=thread.user.username %}">{{ thread.user.username }}</a></strong>
+		</p>
+	</div>
+
 	{% with thread.id as entry_id %}
 		{% with "forum" as entry_type %}
 			{% with thread.comments.all as comments %}
@@ -50,8 +54,4 @@
 			{% endwith %}
 		{% endwith %}
 	{% endwith %}
-	
-	<div class="tpl-full-archive jqmWindow">
-		{% full_archive '/forum' %}
-	</div>
 {% endblock %}

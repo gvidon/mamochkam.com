@@ -9,7 +9,7 @@
 
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('.tpl-full-archive').jqm();
@@ -17,47 +17,47 @@
 	</script>
 {% endblock %}
 
-{% block content %}
+{% block column_right %}
 	<div class="tpl-bulletins-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
-		
+
 		<div class="wrap">
 			{% include 'bulletins/_archive-block.html' %}
 		</div>
 	</div>
-	
-	<div class="tpl-content">
-		<ul class="tpl-bulletins">
-			<h1>Объявления для мамочек <a href="/bulletins/add">оставить свое</a></h1>
-			
-			{% if month %}
-				<h3>
-					архив {{ month|date:"F Y"|ru_months }}
-					<a href="/bulletins">все объявления</a>
-				</h3>
-			{% endif %}
-			
-			<br/>
-			
-			{% if object_list %}
-				{% include 'bulletins/_bulletins.html' %}
-			{% else %}
-			
-				{% if date_list %}
-					<h3>Нет материалов за указанную дату</h3>
-				{% else %}
-					<h3 style="color: red">По вашем запросу материалов нет</h3>
-				{% endif %}
-				
-			{% endif %}
-			
-			{% if page_obj.has_other_pages %}
-				<li class="pages">{% pages paginator page_obj request.path %}</li>
-			{% endif %}
-		</ul>
-	</div>
-	
+
 	<div class="tpl-full-archive jqmWindow">
 		{% full_archive '/bulletins' %}
 	</div>
+{% endblock %}
+
+{% block content %}
+	<ul class="tpl-bulletins">
+		<h1>Объявления для мамочек <a href="/bulletins/add">оставить свое</a></h1>
+
+		{% if month %}
+			<h3>
+				архив {{ month|date:"F Y"|ru_months }}
+				<a href="/bulletins">все объявления</a>
+			</h3>
+		{% endif %}
+
+		<br/>
+
+		{% if object_list %}
+			{% include 'bulletins/_bulletins.html' %}
+		{% else %}
+
+			{% if date_list %}
+				<h3>Нет материалов за указанную дату</h3>
+			{% else %}
+				<h3 style="color: red">По вашем запросу материалов нет</h3>
+			{% endif %}
+
+		{% endif %}
+
+		{% if page_obj.has_other_pages %}
+			<li class="pages">{% pages paginator page_obj request.path %}</li>
+		{% endif %}
+	</ul>
 {% endblock %}

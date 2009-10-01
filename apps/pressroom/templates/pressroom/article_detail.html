@@ -22,9 +22,7 @@
 	</script>
 {% endblock %}
 
-{% block content %}
-
-	<div class="tpl-column-right">
+{% block column_right %}
 	{% if not object.is_news %}
 		<div class="tpl-article-categories corners">
 			<div class="t-r"></div><div class="b-r"></div>
@@ -55,16 +53,17 @@
 			{% endif %}
 		</div>
 	</div>
-		<div class="banner-240x120"></div>
-		<div class="banner-240x120"></div>
+
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive url %}
 	</div>
-	
-	<div class="tpl-content">
-		<div class="tpl-article">
-			<a href="javascript:history.go(-1)">назад</a><br/><br/>
-			{% include 'pressroom/_article.html' %}
-		</div>
-	</div><br/><br/>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-article">
+		<a href="javascript:history.go(-1)">назад</a><br/><br/>
+		{% include 'pressroom/_article.html' %}
+	</div>
 	
 	{% with object.id as entry_id %}
 		{% with "article" as entry_type %}
@@ -73,8 +72,4 @@
 			{% endwith %}
 		{% endwith %}
 	{% endwith %}
-	
-	<div class="tpl-full-archive jqmWindow">
-		{% full_archive url %}
-	</div>
 {% endblock %}

@@ -1,13 +1,13 @@
 @import url('reset.css');
 @import url('type.css');
 
+@import url('jqModal.css');
+
 @import url('pages/index.css');
 @import url('pages/articles.css');
 @import url('pages/gallery.css');
 @import url('pages/forum.css');
 @import url('pages/comments.css');
-
-@import url('jqModal.css');
 
 /*
 ** Layout
@@ -15,10 +15,11 @@
 
 body {
 	background: #ffffff none;
-	min-width: 1000px;
+	min-width: 1200px;
 }
 
 .tpl-column-right {
+	width: 300px;
 	float: right;
 }
 
@@ -38,7 +39,7 @@ body {
 
 		overflow: hidden; text-indent: -100%;
 	}
-	
+
 	.common-navigation {
 		position: relative;
 		top: 180px;
@@ -65,12 +66,12 @@ body {
 		.common-navigation li a:hover {
 			text-decoration: none;
 		}
-		
-		
+
+
 		.common-navigation li a:active {
 			outline: none !important;
 		}
-		
+
 /* Content
 ******************************************************************************/
 
@@ -80,7 +81,7 @@ body {
 	}
 
 		.tpl-content {
-			margin: 0 350px 0 200px;
+			margin: 0 320px 0 200px;
 		}
 
 /*
@@ -93,7 +94,7 @@ body {
 	padding: 30px 150px;
 
 	background: #fcde7d url('../images/footer-bg.gif') 0 0 repeat-x;
-	
+
 	clear: both;
 	position: relative;
 }
@@ -147,7 +148,7 @@ body {
 
 		background: transparent url('../images/corners-cf.png') 0 0 no-repeat;
 	}
-	
+
 	.corners .b-r {
 		position: absolute; bottom: 0;
 		width: 300px; height: 36px;
@@ -175,7 +176,7 @@ body {
 	position: absolute;
 	top: 0; right: 0;
 	width: 152px; padding-top: 82px;
-	
+
 	background: transparent url('../images/cloud-corner.gif') 0 0 no-repeat;
 }
 
@@ -183,7 +184,7 @@ body {
 	position: absolute;
 	top: -42px; right: 0;
 	width: 220px; height: 252px;
-	
+
 	background: transparent url('../images/guy.png') 0 bottom no-repeat;
 }
 
@@ -207,10 +208,10 @@ div .pages {
 		margin-left: 7px;
 		padding-left: 2px;
 		padding-right: 2px;
-		
+
 		background-color: #e1e1e1;
 		color: #18537c;
-		
+
 		font-size: 2em;
 	}
 
@@ -262,7 +263,15 @@ div .pages {
 .banner-468x120,
 .banner-240x120 {
 	margin: 20px;
+
+/*
+	Вот это убрать можно: */
+
 	border: 1px solid #999999;
+	background: transparent url('op99.png');
+
+/*
+	а можно и оставить, по идее не должно быть видно */
 }
 
 .banner-160x600 {
@@ -273,13 +282,11 @@ div .pages {
 
 .banner-468x120 {
 	position: absolute;
-	display: none;
 	margin: 0;
+	top: 40px; left: 570px;
 	width: 468px; height: 120px;
 }
 
 .banner-240x120 {
-	float: right;
-	clear: right;
 	width: 240px; height: 120px;
 }

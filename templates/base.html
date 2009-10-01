@@ -1,26 +1,26 @@
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>{% block title %}mamochkam.com: материнский портал{% endblock %}</title>
-		
+
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/style.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/jquery.tooltip.css" />
 		<link rel="stylesheet" type="text/css" media="print" href="{{ media_url }}/css/print.css" />
 		{% block css %}{% endblock %}
-		
+
 		<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.min.js"></script>
 		<script type="text/javascript" src="{{ media_url }}/js/lib/livequery.js"></script>
 		{% block js %}{% endblock %}
 	</head>
-	
+
 	<body>
 		<div class="tpl-header">
 			<div class="cloud-corner">
 			</div>
-			
+
 			<h1 class="logo">
 				<a href="/">Мамочка</a>
 			</h1>
@@ -35,9 +35,9 @@
 				<li><a href="/bulletins">Объявления</a></li>
 				<li><a href="/forum">Форум</a></li>
 			</ul>
-			
+
 			<ul class="section-navigation"></ul>
-			
+
 			<div class="cloud-1"></div>
 			<div class="cloud-2"></div>
 			<div class="cloud-3"></div>
@@ -46,7 +46,18 @@
 
 		<div class="tpl-wrap">
 			<div class="banner-160x600"></div>
-		{% block content %}{% endblock %}
+			<div class="tpl-column-right">
+				{% block column_right %}{% endblock %}
+				<div class="banner-240x120"></div>
+				<div class="banner-240x120"></div>
+			</div>
+			<div class="tpl-content">
+				{% block content %}{% endblock %}
+			</div>
+
+			<div class="clear"></div>
+
+			{% block content_bottom %}{% endblock %}
 		</div>
 
 		<div class="tpl-footer">
@@ -59,7 +70,7 @@
 						<li><a href="">Как нас найти</a></li>
 					</ul>
 				</li>
-				
+
 				<li>
 					<div class="title">Помощь</div>
 					<ul>
@@ -69,7 +80,7 @@
 						<li><a href="">Правила пользования</a></li>
 					</ul>
 				</li>
-				
+
 				<li>
 					<div class="title">О журнале</div>
 					<ul>

@@ -14,8 +14,7 @@
 ******************************************************************************/
 
 .tpl-bulletin {
-	margin-left: 40px;
-	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 	.tpl-bulletin p {
@@ -33,8 +32,7 @@
 	}
 
 .tpl-bulletins {
-	margin-left: 40px;
-	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 	.tpl-bulletins li {
@@ -60,24 +58,24 @@
 ******************************************************************************/
 
 .error { color: #7d2d2d; }
-			
+
 form {
 	margin-top: 20px;
 }
 
 form div { padding-bottom: 40px; }
-				
+
 	form .erroneus input, form .erroneus textarea {
 		border: solid red 2px;
 		background-color: #ffbaba;
 	}
-				
+
 	form div label {
 		color: #18537c;
 		display: block;
 		font: normal 1.340em Tahoma, Verdana, sans-serif;
 	}
-	
+
 	form div input {
 		width: 370px;
 		height: 25px;
@@ -88,7 +86,7 @@ form div { padding-bottom: 40px; }
 		background-color: #fcde7d;
 		font-size: 20px;
 	}
-	
+
 	form div textarea {
 		width: 370px;
 		height: 100px;
@@ -96,7 +94,7 @@ form div { padding-bottom: 40px; }
 		border: solid #18537c 1px;
 		background-color: #fcde7d;
 	}
-	
+
 	form .wait {
 		display: none;
 		color: gray;

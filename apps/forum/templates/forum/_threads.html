@@ -5,17 +5,17 @@
 		<div class="title">
 			<a href="{% url thread-view id=thread.id %}">
 				{{ thread.title }}
-				
+
 				{% ifnotequal thread.comments.count 0 %}
 					({{ thread.comments.count }})
 				{% endifnotequal %}
 			</a>
 		</div>
-		
+
 		<div><span class="date">
 			{{ thread.created_at|date:"d F Y"|ru_months }}
 			<b>создал</b> <a href="{% url public-profile username=thread.user.username %}">{{ thread.user.username }}</a><br/>
-			
+
 			{% ifnotequal thread.comments.count 0 %}
 				{{ thread.last_comment.pub_date|date:"d F Y"|ru_months }}
 				<b>последний комментарий</b> от
