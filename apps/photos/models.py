@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime                     import datetime
 from PIL                          import Image
 
@@ -25,7 +26,9 @@ class Gallery(models.Model):
 	
 	#META
 	class Meta:
-		db_table = 'gallery'
+		db_table            = 'gallery'
+		verbose_name        = u'Галлерея'
+		verbose_name_plural = u'Галлереи'
 
 #COMMENTS MODEL
 class PhotoComment(models.Model):
@@ -39,8 +42,10 @@ class PhotoComment(models.Model):
 	
 	#META
 	class Meta:
-		ordering = ['pub_date',]
-		db_table = 'photo_comment'
+		ordering            = ['pub_date',]
+		db_table            = 'photo_comment'
+		verbose_name        = u'Комментарий'
+		verbose_name_plural = u'Комментарии'
 
 #MAIN PHOTO MODEL
 class Photo(models.Model, Entity):
@@ -98,4 +103,6 @@ class Photo(models.Model, Entity):
 	
 	#META
 	class Meta:
-		db_table = 'photo'
+		db_table            = 'photo'
+		verbose_name        = u'Изображение'
+		verbose_name_plural = u'Изображения'

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime                     import datetime
 from PIL                          import Image
 
@@ -18,8 +19,10 @@ class VideoComment(models.Model):
 		return self.text
 	
 	class Meta:
-		ordering = ['pub_date',]
-		db_table = 'video_comment'
+		ordering            = ['pub_date',]
+		db_table            = 'video_comment'
+		verbose_name        = u'Комметарий'
+		verbose_name_plural = u'Комментарии'
 
 #MAIN VIDEO MODEL
 class Video(models.Model, Entity):
@@ -53,4 +56,6 @@ class Video(models.Model, Entity):
 	
 	#META
 	class Meta:
-		db_table = 'video'
+		db_table            = 'video'
+		verbose_name        = u'Видео клип'
+		verbose_name_plural = u'Видео клипы'

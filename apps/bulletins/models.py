@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime                     import datetime
 from django.contrib.auth.models   import User
 from django.db                    import models
@@ -17,4 +18,6 @@ class Bulletin(models.Model, Entity):
 	
 	#META
 	class Meta:
-		db_table = 'bulletin'
+		db_table            = 'bulletin'
+		verbose_name        = u'Объявление'
+		verbose_name_plural = u'Объявления'

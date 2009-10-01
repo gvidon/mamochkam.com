@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django.contrib.auth.models import User
@@ -28,10 +29,16 @@ class ArticleComment(models.Model):
 	user     = models.ForeignKey(User)
 	text     = models.TextField()
 	
+	#СТРОКВОЕ ПРЕДСТАВЛЕНИЕ
+	def __unicode__(self):
+		return self.text
+	
 	#META
 	class Meta:
-		ordering = ['pub_date',]
-		db_table = 'article_comment'
+		ordering            = ['pub_date',]
+		db_table            = 'article_comment'
+		verbose_name        = u'Комментарий'
+		verbose_name_plural = u'Комментарии'
 
 class Article(models.Model, Entity):
 	is_news  = models.BooleanField(default=False)
@@ -44,9 +51,9 @@ class Article(models.Model, Entity):
 	comments = models.ManyToManyField(ArticleComment, blank=True)
 	
 	publish = models.BooleanField(
-		'Publish on site',
+		u'Опубликовать статью',
 		default   = True,
-		help_text = 'Articles will not appear on the site until their "publish date".'
+		help_text = u'Статья не появится на сайте пока н опубликована'
 	)
 	
 	sections = models.ManyToManyField('Section', related_name='articles')
@@ -54,39 +61,36 @@ class Article(models.Model, Entity):
 	# Custom article manager
 	# objects = ArticleManager()
 	
-	class Meta:
-		db_table      = 'article'
-		ordering      = ['-pub_date']
-		get_latest_by = 'pub_date'
-	
-	class Admin:
-		prepopulated_fields = { 'slug': ("headline",)}
-		list_display        = ('headline', 'author', 'pub_date', 'publish')
-		list_filter         = ['pub_date']
-		save_as             = True
-	
+	#СТРОКВОЕ ПРЕДСТАВЛЕНИЕ
 	def __unicode__(self):
 		return self.headline
 	
+	#ССЫЛКА НА СТАТЬЮ
 	def get_absolute_url(self):
 		args = self.pub_date.strftime("%Y/%b/%d").lower().split("/") + [self.slug]
 		return reverse('pr-article-detail', args=args)
+	
+	class Meta:
+		db_table            = 'article'
+		ordering            = ['-pub_date']
+		get_latest_by       = 'pub_date'
+		verbose_name        = u'Статья'
+		verbose_name_plural = u'Статьи'
 
 class Section(models.Model):
 	title = models.CharField(max_length=80, unique=True)
 	slug = models.SlugField()
-
-	class Meta:
-		db_table = 'article_section'
-		ordering = ['title']
-
-	class Admin:
-		prepopulated_fields = {"slug": ("title",)}
-		list_display = ('title',)
-
+	
+	#СТРОКВОЕ ПРЕДСТАВЛЕНИЕ
 	def __unicode__(self):
 		return self.title
 
 	def get_absolute_url(self):
 		return reverse('pr-section', args=[self.slug])
+
+	class Meta:
+		db_table            = 'article_section'
+		ordering            = ['title']
+		verbose_name        = u'Раздел'
+		verbose_name_plural = u'Разделы'
 	

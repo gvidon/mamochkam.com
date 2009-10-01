@@ -19,9 +19,12 @@
 	
 	<script type="text/javascript">
 		
+		mediaURL = '{{ media_url }}';
+		
 		$(document).ready(function () {
 			Video.bindEvents();
 			Video.plugins();
+			Video.initPlayer('{{ object.video.url }}');
 		});
 	</script>
 {% endblock %}

@@ -11,8 +11,10 @@ class ThreadComment(models.Model):
 	
 	#META
 	class Meta:
-		ordering = ['pub_date',]
-		db_table = 'thread_comment'
+		ordering            = ['pub_date',]
+		db_table            = 'thread_comment'
+		verbose_name        = u'Комментарий'
+		verbose_name_plural = u'Комментарии'
 
 #FORUM THREAD
 class Thread(models.Model, Entity):
@@ -32,4 +34,6 @@ class Thread(models.Model, Entity):
 		
 	#META
 	class Meta:
-		db_table = 'thread'
+		db_table            = 'thread'
+		verbose_name        = u'Сообщение'
+		verbose_name_plural = u'Сообщения'
