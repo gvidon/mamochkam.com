@@ -19,7 +19,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'));
+			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'), '{% now "Y-m-d H:i:s" %}');
 			flowplayer('video', '{{ media_url }}/flowplayer.swf');
 		});
 	</script>

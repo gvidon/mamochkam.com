@@ -29,7 +29,7 @@ def banner(size, ip):
 		banner.log.create(ip=ip)
 		banner.counter += 1
 	
-	# проверить активность по временному и кант пределам
+	# проверить активность по временному и каунт пределам
 	banner.is_active = (banner.counter < banner.limit) or (banner.date_limit >= datetime.today())
 	banner.save()
 	

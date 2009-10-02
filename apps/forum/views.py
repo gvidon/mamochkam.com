@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from django.conf             import settings
-from django.template.context import RequestContext
-from django.views.generic    import list_detail
-from django.shortcuts        import render_to_response
-from django.http             import HttpResponse, Http404
+from django.contrib.auth.decorators import login_required
+from django.template.context        import RequestContext
+from django.core.exceptions         import ValidationError
+from django.views.generic           import list_detail
+from django.shortcuts               import render_to_response
+from django.conf                    import settings
+from django.http                    import HttpResponse, Http404
 
 from models import Thread, ThreadComment
 
+#ВСЕ СООБЩЕНИЯ ВЕТКИ
+@login_required
 def thread(request, id, page=1):
 	try:
 		thread = Thread.objects.get(id=id)
@@ -24,3 +28,28 @@ def thread(request, id, page=1):
 		
 	except Thread.DoesNotExist:
 		raise Http404
+
+#СОЗДАТЬ НОВУЮ ТЕМУ
+def new_thread(request):
+	error = {}
+	
+	if request.POST:
+		if not request.POST.get('title'):
+			error['title'] = u'У обсуждения обязательно должна быть тема'
+			
+		if not request.POST.get('description'):
+			error['description'] = u'Нужны подробности'
+		
+		if not error:
+			thread_id = Thread.objects.create(
+				user        = request.user,
+				title       = request.POST['title'],
+				description = request.POST['description']
+			).id
+		
+	return render_to_response('forum/new-thread.html', {
+		'title'      : request.POST.get('title'),
+		'description': request.POST.get('description'),
+		'error'      : error,
+		'thread_id'  : locals().has_key('thread_id') and thread_id or 0
+	}, context_instance=RequestContext(request))

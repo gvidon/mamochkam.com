@@ -1,7 +1,7 @@
 Comments = {
-	'bindTo': function(form, comments) {
-		var date = new Date();
-		this.requestDateTime = date.format('yyyy-mm-dd HH:MM:ss');
+	'bindTo': function(form, comments, date) {
+		//this.requestDateTime = date.format('yyyy-mm-dd HH:MM:ss');
+		this.requestDateTime = date;
 		
 		form.submit(function() {
 			// send comment and recieve all comments since requestDateTime
@@ -36,8 +36,12 @@ Comments = {
 				if( ! data.success)
 					error.html(data.error);
 				else {
+					/*
 					date = new Date();
 					Comments.requestDateTime = date.format('yyyy-mm-dd HH:MM:ss');
+					*/
+					
+					Comments.requestDateTime = data.date;
 					
 					comments.children('.empty-msg').hide();
 					

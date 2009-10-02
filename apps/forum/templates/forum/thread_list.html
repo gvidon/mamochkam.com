@@ -29,7 +29,7 @@
 
 {% block content %}
 	<ul class="tpl-threads">
-		<h1>Наши мамочки обсуждают</h1>
+		<h1>Наши мамочки обсуждают <a href="{% url new-thread %}">новое обсуждение</a></h1>
 
 		{% if month %}
 			<h3>

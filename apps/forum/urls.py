@@ -26,3 +26,6 @@ urlpatterns += patterns('django.views.generic.date_based',
 		'template_name': 'forum/thread_list.html',
 	}, name='forum-archive-month'),
 )
+urlpatterns += patterns('mamochkam.apps.forum.views',
+	url(r'new-thread/?', 'new_thread', name='new-thread'),
+)

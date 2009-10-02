@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block css %}
+		<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.tpl-full-archive').jqm();
+		});
+	</script>
+{% endblock %}
+
+{% block column_right %}
+	<div class="tpl-forum-archive corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			{% include 'forum/_archive-block.html' %}
+		</div>
+	</div>
+
+	<div class="tpl-full-archive jqmWindow">
+		{% full_archive '/forum' %}
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-bulletins">
+		<h1>Новое объявление <a href="/bulletins">все объявления</a></h1>
+
+		{% if not request.POST or error%}
+			<form action="" method="post">
+				<div {% if error.title %}class="erroneus"{% endif %}>
+					<label for="title">Тема обсуждение</label>
+					<input id="title" name="title" type="text" value="{% firstof title '' %}" />
+					<span class="error">{{ error.title }}</span>
+				</div>
+				
+				<div {% if error.description %}class="erroneus"{% endif %}>
+					<label for="description">Подробный текст обсуждения</label>
+					<textarea id="description" name="description">{% firstof description '' %}</textarea>
+					<span class="error">{{ error.description }}</span>
+				</div>
+
+				<input type="submit" value="Добавить" />
+			</form>
+		{% else %}
+			<h2>Новое обсуждение создано. <a href="{% url thread-view id=thread_id %}">Перейти к нему</a> или
+			 обратно <a href="{% url threads %}">на форум.</a></h2>
+		{% endif %}
+	</div>
+{% endblock %}

@@ -20,8 +20,8 @@
 	<script type="text/javascript">
 
 		$(document).ready(function () {
-			Photos.bindEvents();
 			Photos.plugins();
+			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'), '{% now "Y-m-d H:i:s" %}');
 		});
 	</script>
 {% endblock %}
@@ -63,8 +63,8 @@
 		<a href="javascript:history.go(-1)">назад</a>
 
 		<li>
-			<img src="{{ object.url }}" alt="{{ object.title }}" /><br/>
-
+			<img src="{{ object.photo.url }}" alt="{{ object.title }}" /><br/>
+			
 			<span>{{ object.title }}</span><br/>
 			<span class="comment">
 				Отправил <a href="{% url public-profile username=object.user.username %}">{{ object.user.username }}</a>

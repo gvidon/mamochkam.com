@@ -28,14 +28,18 @@ register = template.Library()
 def full_archive(url):
 	year = date.today().year
 	
-	return {
-		'url'        : url,
-		'months'     : months,
-		
-		'past_years' : [year for year in range(
-			Article.objects.exclude(pub_date=None).order_by('pub_date')[0].pub_date.year, date.today().year - 1
-		)],
-	}
+	try:
+		return {
+			'url'        : url,
+			'months'     : months,
+			
+			'past_years' : [year for year in range(
+				Article.objects.exclude(pub_date=None).order_by('pub_date')[0].pub_date.year, date.today().year - 1
+			)],
+		}
+	
+	except IndexError:
+		return { 'url': url, 'months': months, 'past_years': [] }
 
 #TRANSLATE ENG MONTH NAMES
 @register.filter(name='ru_months')

@@ -17,7 +17,7 @@
 	<script type="text/javascript">	
 		$(document).ready(function () {
 			$('.tpl-full-archive').jqm();
-			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'));
+			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'), '{% now "Y-m-d H:i:s" %}');
 		});
 	</script>
 {% endblock %}

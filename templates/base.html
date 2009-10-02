@@ -1,3 +1,5 @@
+{% load banners %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -25,7 +27,7 @@
 				<a href="/">Мамочка</a>
 			</h1>
 
-			<div class="banner-468x120"></div>
+			<div class="banner-468x120"><img src="{% banner '468x120' request.META.REMOTE_ADDR %}" /></div>
 
 			<ul class="common-navigation">
 				<li><a href="/pressroom/articles">Статьи</a></li>
@@ -45,11 +47,11 @@
 		</div>
 
 		<div class="tpl-wrap">
-			<div class="banner-160x600"></div>
+			<div class="banner-160x600"><img src="{% banner '160x600' request.META.REMOTE_ADDR %}" /></div>
 			<div class="tpl-column-right">
 				{% block column_right %}{% endblock %}
-				<div class="banner-240x120"></div>
-				<div class="banner-240x120"></div>
+				<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
+				<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
 			</div>
 			<div class="tpl-content">
 				{% block content %}{% endblock %}

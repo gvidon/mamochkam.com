@@ -86,17 +86,9 @@ class Photo(models.Model, Entity):
 		return True
 	
 	#PREPARE URL
-	def url(self):
-		try:
-			return settings.MEDIA_URL+self.photo.path[len(settings.MEDIA_ROOT)-1:]
-		
-		except KeyError:
-			return ''
-	
-	#PREPARE URL
 	def thumb_url(self):
 		try:
-			return settings.MEDIA_URL+self.photo.path[len(settings.MEDIA_ROOT)-1:]+'_thumb'
+			return self.photo.url+'_thumb'
 		
 		except KeyError:
 			return ''
