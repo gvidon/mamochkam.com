@@ -282,8 +282,8 @@ div .pages {
 
 .banner-468x120 {
 	position: absolute;
+	top: 40px; right: 155px;
 	margin: 0;
-	top: 40px; left: 570px;
 	width: 468px; height: 120px;
 }
 
