@@ -42,6 +42,16 @@
 			display: none;
 		}
 		
+			.digest ul {
+				text-align: left;
+				margin-left: 10%;
+				margin-top: 10px;
+			}
+			
+				.digest ul .title {
+					font-size: 1.65em;
+				}
+		
 		.tpl-gallery img {
 			padding: 20px 27px 20px 20px;
 		}

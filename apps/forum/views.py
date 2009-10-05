@@ -12,7 +12,6 @@ from django.http                    import HttpResponse, Http404
 from models import Thread, ThreadComment
 
 #ВСЕ СООБЩЕНИЯ ВЕТКИ
-@login_required
 def thread(request, id, page=1):
 	try:
 		thread = Thread.objects.get(id=id)
@@ -30,6 +29,7 @@ def thread(request, id, page=1):
 		raise Http404
 
 #СОЗДАТЬ НОВУЮ ТЕМУ
+@login_required
 def new_thread(request):
 	error = {}
 	

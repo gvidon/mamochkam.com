@@ -5,6 +5,7 @@ from django                          import template
 
 from mamochkam.apps.pressroom.models import Article, Section
 from mamochkam.apps.photos.models    import Gallery
+from mamochkam.apps.forum.models     import ThreadComment
 
 # Querysets are executed only when objects are iterated
 queryset = {
@@ -14,16 +15,6 @@ queryset = {
 }
 
 register = template.Library()
-
-@register.inclusion_tag('common/_last-articles.html')
-def last_articles(count, is_news):
-	try:
-		return {
-			'articles': Article.objects.filter(is_news=is_news, publish=1).order_by('-pub_date')[:int(count)]
-		}
-	
-	except ValueError:
-		return { 'articles': [] }
 
 @register.inclusion_tag('common/_categories.html')
 def categories(type, url):
@@ -35,3 +26,17 @@ def categories(type, url):
 	
 	except ValueError:
 		return { 'categories': [] }
+
+@register.inclusion_tag('common/_last-articles.html')
+def last_articles(count, is_news):
+	try:
+		return {
+			'articles': Article.objects.filter(is_news=is_news, publish=1).order_by('-pub_date')[:int(count)]
+		}
+	
+	except ValueError:
+		return { 'articles': [] }
+		
+@register.inclusion_tag('common/_last-messages.html')
+def last_messages(count):
+	return { 'messages': ThreadComment.objects.order_by('-pub_date')[:int(count)] }

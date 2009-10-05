@@ -5,7 +5,7 @@ from mamochkam.apps.video.models import Video
 register = template.Library()
 
 #RANDOM VIDEO
-@register.inclusion_tag('video/_random-video.html')
+@register.inclusion_tag('portal/_random-video.html')
 def random_video(count):
 	try:
 		return { 'video': Video.objects.order_by('?')[:int(count)] }

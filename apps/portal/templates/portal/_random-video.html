@@ -1,5 +1,5 @@
 {% for clip in video %}
 	<a href="/video/view/{{ clip.id }}" title="{{ clip.title }}" class="photo">
-		<img src="{{ clip.thumb_url }}" title="{{ clip.title }}" />
+		<img src="{{ clip.thumb.url }}" title="{{ clip.title }}" />
 	</a>
 {% endfor %}

@@ -15,8 +15,8 @@ class Banner(models.Model):
 	limit        = models.IntegerField(u'Лимит показов', blank=True, null=True)
 	date_limit   = models.DateTimeField(u'Показывать до даты', blank=True, null=True)
 	
-	is_active    = models.BooleanField(u'Включен', blank=True, null=True)
-	is_permanent = models.BooleanField(u'Постоянно занимает место до истечения показов', blank=True, null=True)
+	is_active    = models.BooleanField(u'Включен', default=False)
+	is_permanent = models.BooleanField(u'Постоянно занимает место до истечения показов', default=False)
 	
 	#СТРОКОВОЕ ПРЕДСТАВЛЕНИЕ БАННЕРА
 	def __unicode__(self):

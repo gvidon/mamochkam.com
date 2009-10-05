@@ -58,10 +58,7 @@ body {
 		margin-right: 40px;
 	}
 
-		.common-navigation li a {
-			font-style: italic;
-			text-decoration: underline;
-		}
+		.common-navigation li a { text-decoration: underline; }
 
 		.common-navigation li a:hover {
 			text-decoration: none;

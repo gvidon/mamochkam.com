@@ -4,6 +4,7 @@
 {% load blocks %}
 {% load bulletins %}
 {% load photos %}
+{% load video %}
 
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
@@ -54,15 +55,15 @@
 
 <div class="tpl-gallery">
 	<div id="photos" class="digest" style="display: block">
-		{% random_photos 8 %}
+		{% random_photos 7 %}
 	</div>
 
 	<div id="video" class="digest">
-		видео тут
+		{% random_video 7 %}
 	</div>
 
 	<div id="forum" class="digest">
-		сообщения с форума
+		{% last_messages 5 %}
 	</div>
 </div>
 
