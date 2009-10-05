@@ -169,14 +169,6 @@ body {
 	background: transparent url('../images/logo.png') 0 0 no-repeat;
 }
 
-.cloud-corner {
-	position: absolute;
-	top: 0; right: 0;
-	width: 152px; padding-top: 82px;
-
-	background: transparent url('../images/cloud-corner.gif') 0 0 no-repeat;
-}
-
 .guy {
 	position: absolute;
 	top: -42px; right: 0;
@@ -286,4 +278,30 @@ div .pages {
 
 .banner-240x120 {
 	width: 240px; height: 120px;
+}
+
+/* User bar ****************************************************************/
+
+.tpl-login-bar {
+	position: absolute;
+	top: 0; right: 0;
+	width: 140px; padding: 82px 12px 0 0;
+	text-align: right;
+	font-size: .9em;
+
+	background: transparent url('../images/cloud-corner.gif') 0 0 no-repeat;
+}
+
+.tpl-login-bar li {
+	line-height: 24px;
+}
+
+.tpl-login-bar li a {
+	margin-right: 28px;
+}
+
+.tpl-login-bar-profile img {
+	vertical-align: middle;
+	width: 24px; height: 24px;
+	margin-right: -28px;
 }
