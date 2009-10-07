@@ -65,6 +65,10 @@
 		{% include 'pressroom/_article.html' %}
 	</div>
 	
+	{% with object.tags as tags %}
+		{% include 'common/_tags.html' %}
+	{% endwith %}
+	
 	{% with object.id as entry_id %}
 		{% with "article" as entry_type %}
 			{% with object.comments.all as comments %}

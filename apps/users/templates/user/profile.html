@@ -146,7 +146,7 @@
 		
 		<div {% if form.errors.avatar %}class="erroneus"{% endif %}>
 			<label for="age">Аватар - возможно ваше фото</label>
-			{% if profile.avatar %} <img src="{{ profile.avatar.url }}" /> {% endif %}
+			{% if request.user.get_profile.avatar.url %} <img src="{{ request.user.get_profile.avatar.url }}?{{ 'abcdef1234'|make_list|random }}" alt="avatar" /> {% endif %}
 			{{ form.avatar }}
 			<span class="error">{{ form.errors.avatar.as_text|safe|cut:"*" }}</span>
 		</div>

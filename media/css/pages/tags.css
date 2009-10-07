@@ -1,0 +1,10 @@
+.tpl-tags {
+	width: 50%;
+	margin-left: 50px;
+	margin-top: 40px;
+}
+	.tpl-tags ul li {
+		font-size: 1.171em;
+		float: left;
+		margin-right: 10px;
+	}

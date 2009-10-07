@@ -21,9 +21,21 @@
 	<body>
 		<div class="tpl-header">
 			<ul class="tpl-login-bar">
-				<li><a href="" class="tpl-login-bar-profile">%username% <img src="http://media/upload/avatars/dr_lekter" alt="" /></a></li>
-				<li><a href="">Настройки</a></li>
-				<li><a href="/logout">Выход</a></li>
+				{% if request.user.id %}
+					<li><a href="" class="tpl-login-bar-profile">
+						{{ request.user.username }}
+						
+						{% if request.user.get_profile.avatar.url %}
+							<img src="{{ request.user.get_profile.avatar.url }}?{{ 'abcdef1234'|make_list|random }}" alt="avatar" />
+						{% endif %}
+					</a></li>
+					
+					<li><a href="{% url profile %}">Настройки</a></li>
+					<li><a href="{% url logout %}">Выход</a></li>
+				{% else %}
+					<li><a href="{% url register %}">Тут регистрация</a></li>
+					<li><a href="{% url login %}">Для пользователей</a></li>
+				{% endif %}
 			</ul>
 
 			<h1 class="logo">

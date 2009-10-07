@@ -1,5 +1,5 @@
-from django.db                  import models
-from mamochkam.apps.tags.models import Tag
+from django.db                    import models
+from mamochkam.apps.search.models import Tag
 
 #PORTAL ENTITIES BASE CLASS
 class Entity():

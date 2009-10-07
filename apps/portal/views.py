@@ -8,7 +8,7 @@ from django.shortcuts import render_to_response
 #from mamochkam.apps.forum.models     import Thread
 from mamochkam.apps.pressroom.models import Article
 from mamochkam.apps.photos.models    import Photo
-from mamochkam.apps.tags.models      import Tag
+from mamochkam.apps.search.models    import Tag
 
 comments_mapping = {
 	'photo'  : Photo,

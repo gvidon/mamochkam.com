@@ -42,7 +42,7 @@ class Profile(models.Model):
 		
 		s = smtplib.SMTP('localhost')
 		s.sendmail(msg['From'], msg['To'], msg.as_string())
-		s.quit()
+		s.quit() 
 		
 	class Meta:
 		db_table = 'profile'

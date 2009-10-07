@@ -8,7 +8,7 @@
 			</div>
 			
 			<div><span class="date">последнее сообщение от <b>{{ message.user.username }}</b> {{ message.pub_date|date:"d F Y"|ru_months }}</span></div>
-			{{ message.text|truncatewords_html:14 }}
+			{{ message.text|truncatewords_html:14 }}...
 		</li>
 	{% endfor %}
 </ul>
