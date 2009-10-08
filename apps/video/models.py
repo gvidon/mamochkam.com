@@ -7,6 +7,7 @@ from django.conf                  import settings
 from django.db                    import models
 
 from mamochkam.apps.common.models import Entity
+from mamochkam.apps.search.models import Tag
 
 #COMMENTS MODEL
 class VideoComment(models.Model):
@@ -30,8 +31,10 @@ class Video(models.Model, Entity):
 	video    = models.ImageField(upload_to='upload/video')
 	thumb    = models.ImageField(upload_to='upload/video')
 	title    = models.CharField(max_length=50)
-	comments = models.ManyToManyField(VideoComment, blank=True)
 	publish  = models.BooleanField('Publish on site', default=False)
+	
+	comments = models.ManyToManyField(VideoComment, blank=True)
+	tags     = models.ManyToManyField(Tag, related_name='video', db_table='video_tag', blank=True)
 	
 	#STRING REPRESENTATION
 	def __unicode__(self):

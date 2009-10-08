@@ -16,6 +16,7 @@ urlpatterns = patterns('',
 	url(r'^video/'                                                       , include('mamochkam.apps.video.urls')),
 	url(r'^forum/'                                                       , include('mamochkam.apps.forum.urls')),
 	url(r'^user/'                                                        , include('mamochkam.apps.users.urls')),
+	url(r'^search/'                                                      , include('mamochkam.apps.search.urls')),
 )
 
 urlpatterns += patterns('',

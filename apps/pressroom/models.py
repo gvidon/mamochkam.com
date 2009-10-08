@@ -7,6 +7,7 @@ from django.conf                import settings
 from django.core.urlresolvers   import reverse
 
 from mamochkam.apps.common.models import Entity
+from mamochkam.apps.search.models import Tag
 
 '''
 # Get relative media path
@@ -48,7 +49,9 @@ class Article(models.Model, Entity):
 	summary  = models.TextField(help_text="A single paragraph summary or preview of the article.")
 	body     = models.TextField('Body text')
 	author   = models.CharField(max_length=100, blank=True)
+	
 	comments = models.ManyToManyField(ArticleComment, blank=True)
+	tags     = models.ManyToManyField(Tag, related_name='articles', db_table='article_tag', blank=True)
 	
 	publish = models.BooleanField(
 		u'Опубликовать статью',

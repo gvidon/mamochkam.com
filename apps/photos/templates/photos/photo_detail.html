@@ -72,7 +72,15 @@
 			</span>
 		</li>
 	</ul>
-
+	
+	{% if object.tags.all %}
+		{% with 'photo' as type %}
+			{% with object.tags.all as tags %}
+				{% include 'common/_tags.html' %}
+			{% endwith %}
+		{% endwith %}
+	{% endif %}
+	
 	{% with object.id as entry_id %}
 		{% with "photo" as entry_type %}
 			{% with object.comments.all as comments %}

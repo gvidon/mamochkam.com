@@ -2,8 +2,8 @@
 	<h2>Тэги</h2>
 	
 	<ul>
-		<li><a href="">статьи</a></li>
-		<li><a href="">разные новости</a></li>
-		<li><a href="">начало</a></li>
+		{% for tag in tags %}
+			<li><a href="/search/by-tag/{{ tag.title|urlencode }}/{{ type }}">{{ tag.title }}</a></li>
+		{% endfor %}
 	</ul>
 </div>

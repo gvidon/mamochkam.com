@@ -7,6 +7,7 @@ from django.conf                  import settings
 from django.db                    import models
 
 from mamochkam.apps.common.models import Entity
+from mamochkam.apps.search.models import Tag
 
 #GALLERY MODEL
 class Gallery(models.Model):
@@ -54,8 +55,10 @@ class Photo(models.Model, Entity):
 	gallery  = models.ForeignKey(Gallery)
 	photo    = models.ImageField(upload_to='upload/photos')
 	title    = models.CharField(max_length=50)
-	comments = models.ManyToManyField(PhotoComment, blank=True)
 	publish  = models.BooleanField('Publish on site', default=False)
+	
+	comments = models.ManyToManyField(PhotoComment, blank=True)
+	tags     = models.ManyToManyField(Tag, related_name='photos', db_table='photo_tag', blank=True)
 	
 	#STRING REPRESENTATION
 	def __unicode__(self):

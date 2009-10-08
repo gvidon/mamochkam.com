@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models   import User
 from django.db                    import models
+
 from mamochkam.apps.common.models import Entity
+from mamochkam.apps.search.models import Tag
 
 #THREAD COMMENTS
 class ThreadComment(models.Model):
@@ -22,7 +24,9 @@ class Thread(models.Model, Entity):
 	created_at  = models.DateTimeField(auto_now_add=True)
 	title       = models.CharField(max_length=128)
 	description = models.TextField()
+	
 	comments    = models.ManyToManyField(ThreadComment)
+	tags        = models.ManyToManyField(Tag, related_name='threads', db_table='thread_tag', blank=True)
 	
 	#LAST THREAD COMMENT
 	def last_comment(self):

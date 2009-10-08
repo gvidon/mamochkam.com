@@ -41,7 +41,7 @@
 			{% if object.is_news %}
 			
 				{% with "/pressroom/news" as url %}
-				
+					
 					{% include 'pressroom/_archive-block.html' %}
 				{% endwith %}
 			{% else %}
@@ -65,9 +65,13 @@
 		{% include 'pressroom/_article.html' %}
 	</div>
 	
-	{% with object.tags as tags %}
-		{% include 'common/_tags.html' %}
-	{% endwith %}
+	{% if object.tags.all %}
+		{% with 'article' as type %}
+			{% with object.tags.all as tags %}
+				{% include 'common/_tags.html' %}
+			{% endwith %}
+		{% endwith %}
+	{% endif %}
 	
 	{% with object.id as entry_id %}
 		{% with "article" as entry_type %}

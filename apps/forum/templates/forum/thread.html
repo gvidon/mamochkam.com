@@ -46,6 +46,14 @@
 			<strong>тему создал <a href="{% url public-profile username=thread.user.username %}">{{ thread.user.username }}</a></strong>
 		</p>
 	</div>
+	
+	{% if thread.tags.all %}
+		{% with 'forum' as type %}
+			{% with thread.tags.all as tags %}
+				{% include 'common/_tags.html' %}
+			{% endwith %}
+		{% endwith %}
+	{% endif %}
 
 	{% with thread.id as entry_id %}
 		{% with "forum" as entry_type %}
