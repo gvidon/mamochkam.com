@@ -1,14 +1,15 @@
 {% load dates %}
 
-<ul>
+<ul class="last-messages">
 	{% for message in messages %}
 		<li>
-			<div class="title">
-				<a href="{% url thread-view id=message.thread_set.all.0.id %}">{{ message.thread_set.all.0.title }}</a>
-			</div>
+			{{ message.text|truncatewords_html:17 }}...
 			
-			<div><span class="date">последнее сообщение от <b>{{ message.user.username }}</b> {{ message.pub_date|date:"d F Y"|ru_months }}</span></div>
-			{{ message.text|truncatewords_html:14 }}...
+			<div><span class="date">
+				написал <a href="{% url public-profile username=message.user.username %}"><b>{{ message.user.username }}</b></a>
+				{{ message.pub_date|date:"d F Y в H:i"|ru_months }} в теме
+				<a href="{% url thread-view id=message.thread_set.all.0.id %}">{{ message.thread_set.all.0.title }}</a>
+			</span></div>
 		</li>
 	{% endfor %}
 </ul>

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% load blocks %}
+
+{% block column_right %}
+	<div class="tpl-article-categories corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			<h2>Новости школы</h2>
+			<ul>
+				{% last_articles 7 1 1 %}
+				<li style="margin-top: 10px;"><a class="section-link" href="{% url pr-school-list %}">
+					Все новости школы →
+				</a></li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<ul class="tpl-articles">
+		<h1>Школа семьи "МАМОЧКА" <a href="{% url school-raspisanie %}">как найти</a></h1>
+		
+		<br/>
+		
+		<li>
+			<div class="title"><a href="{% url lyuboznaiki %}">
+				Центр развития детской одаренности "ЛЮБОЗНАЙКИ"
+			</a></div>
+			
+			<p>
+				Группа  «Исследователи» - развивающие занятия для детей от 1,5 до 3 лет<br/>
+				Группа  «Почемучки» - развивающие занятия для детей от 3 до 4 лет<br/>
+				Группа  «Мыслители» - подготовка к школе для детей от 4 до 6,5 лет
+			</p>
+		</li>
+		
+		<li>
+			<div class="title"><a href="{% url nash-malysh %}">
+				Клуб любящих родителей "НАШ МАЛЫШ"
+			</a></div>
+			
+			<p>
+				Занятия для беременных<br/>
+				Практикум для родителей<br/>
+				Беседка: обо всем за чашкой чая
+			</p>
+		</li>
+		
+		<li>
+			<div class="title"><a href="{% url ya-samaya %}">
+				Студия  женского совершенства "Я-САМАЯ!"
+			</a></div>
+			
+			<p>
+				Восточные танцы<br/>
+				Стрип-пластика<br/>
+				Стилист<br/>
+				Изобразительное и декоративно-прикладное искусство<br/>
+			</p>
+		</li>
+		
+		<li>
+			<div class="title"><a href="{% url prazdnik-detstva %}">
+				"Праздник детства"
+			</a></div>
+			
+			<p>Организация и проведение праздников и Дней рождений</p>
+		</li>
+		
+		<li>
+			<div class="title"><a href="{% url mamochka-tv %}">Видеостудия "МАМОЧКА-tv"</a></div>
+			
+			<p>Незабываемые  моменты детства вашей крохи  в красочном видеофильме
+			с любимыми героями из популярных мультфильмов и сказочными спецэффектами.</p>
+		</li>
+	</ul>
+{% endblock %}

@@ -63,3 +63,12 @@
 		padding-left: 7px;
 	}
 
+/*
+******************************************************************************/
+
+.last-messages li {
+	margin-bottom: 7px;
+}
+	.last-messages li .date {
+		color: #7b7070;
+	}

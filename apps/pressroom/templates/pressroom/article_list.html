@@ -14,15 +14,17 @@
 {% endblock %}
 
 {% block column_right %}
-	{% ifequal type 'articles' %}
-		<div class="tpl-article-categories corners">
-			<div class="t-r"></div><div class="b-r"></div>
+	{% ifnotequal type 'news' %}
+		{% ifnotequal type 'school' %}
+			<div class="tpl-article-categories corners">
+				<div class="t-r"></div><div class="b-r"></div>
 
-			<div class="wrap">
-				{% include 'pressroom/_sections-block.html' %}
+				<div class="wrap">
+					{% include 'pressroom/_sections-block.html' %}
+				</div>
 			</div>
-		</div>
-	{% endifequal %}
+		{% endifnotequal %}
+	{% endifnotequal %}
 
 	<div class="tpl-news-archive corners">
 		<div class="t-r"></div><div class="b-r"></div>
@@ -33,14 +35,33 @@
 	</div>
 
 	<div class="tpl-full-archive jqmWindow">
-		{% full_archive url %}
+		{% if url %}
+			{% full_archive url %}
+		{% else %}
+			{% full_archive "/pressroom/articles/" %}
+		{% endif %}
 	</div>
 {% endblock %}
 
 {% block content %}
 	<ul class="tpl-articles">
-		<h1>{% ifequal type 'articles' %}Статьи для мамочек{% else %}Новости{% endifequal %}</h1>
-
+		{% if tag %}
+			<h1>
+				Все статьи с тэгом <strong>{{ tag }}</strong>
+				<a href="{% url search-by-tag tag=tag, object_type="forum" %}">форум</a>
+				<a href="{% url search-by-tag tag=tag, object_type="photo" %}">фото</a>
+				<a href="{% url search-by-tag tag=tag, object_type="video" %}">видео</a>
+			</h1>
+		{% else %}
+			<h1>
+				{% ifequal type 'articles' %}
+					Статьи для мамочек
+				{% else %}
+					Новости {% ifequal type 'school' %}школы "Мамочка"{% endifequal %}
+				{% endifequal %}
+			</h1>
+		{% endif %}
+		
 		{% if month %}
 			<h3>
 				архив {{ month|date:"F Y"|ru_months }}

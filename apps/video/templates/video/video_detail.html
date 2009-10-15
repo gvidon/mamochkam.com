@@ -67,7 +67,7 @@
 	</ul>
 	
 	{% if object.tags.all %}
-		{% with 'video' as type %}
+		{% with "video" as type %}
 			{% with object.tags.all as tags %}
 				{% include 'common/_tags.html' %}
 			{% endwith %}

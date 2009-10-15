@@ -1,0 +1,26 @@
+{% extends 'magazine/base.html' %}
+
+{% block title %}Страница журнала деточки: все выпуски журнала{% endblock %}
+{% block subtitle %}{% endblock %}
+
+{% block text %}
+	{% if volumes.0 %}
+		<h1><a href="/magazine/{{ volumes.0 }}">Последний номер</a></h1><br/>
+		
+		{% if volumes.1 %}
+			<h2>Все выпуски журнала в формате PDF</h2>
+		
+			<ul class="tpl-vertlist">
+				{% for volume in volumes %}
+					{% if not forloop.first %}
+						<li><h2><a href="{{ media_url }}/magazine/{{ volume.0 }}">
+							{{ volume.0|lower|cut:".pdf" }}({{ volume.1 }} кб)
+						</a></h2></li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% else %}
+		<h3 style="color: red">На текущий моменты ни один выпуск не опубликован.</h3>
+	{% endif %}
+{% endblock %}

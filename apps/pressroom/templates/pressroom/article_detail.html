@@ -39,11 +39,19 @@
 		
 		<div class="wrap">
 			{% if object.is_news %}
-			
-				{% with "/pressroom/news" as url %}
+				{% if object.is_school %}
 					
-					{% include 'pressroom/_archive-block.html' %}
-				{% endwith %}
+					{% with "/pressroom/school" as url %}
+					
+						{% include 'pressroom/_archive-block.html' %}
+					{% endwith %}
+				{% else %}
+				
+					{% with "/pressroom/news" as url %}
+					
+						{% include 'pressroom/_archive-block.html' %}
+					{% endwith %}
+				{% endif %}				
 			{% else %}
 			
 				{% with "/pressroom/articles" as url %}
@@ -66,7 +74,7 @@
 	</div>
 	
 	{% if object.tags.all %}
-		{% with 'article' as type %}
+		{% with "article" as type %}
 			{% with object.tags.all as tags %}
 				{% include 'common/_tags.html' %}
 			{% endwith %}

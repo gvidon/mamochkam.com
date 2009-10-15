@@ -48,7 +48,7 @@
 	</div>
 	
 	{% if thread.tags.all %}
-		{% with 'forum' as type %}
+		{% with "forum" as type %}
 			{% with thread.tags.all as tags %}
 				{% include 'common/_tags.html' %}
 			{% endwith %}

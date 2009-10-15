@@ -6,8 +6,8 @@
 			{{ comment.pub_date|date:"j-го F Y H:i"|ru_months }}
 		</span><br/>
 
-		{% if comment.user.get_profile.avatar.url %}
-			<img src="{{ comment.user.get_profile.avatar.url }}?{{ 'abcdef1234'|make_list|random }}" alt="avatar" />
+		{% if comment.user.get_profile.avatar %}
+			<img src="{{ comment.user.get_profile.avatar.url }}?{{ "abcdef1234"|make_list|random }}" alt="avatar" />
 		{% endif %}
 
 		<p>{{ comment.text }}</p>

@@ -49,20 +49,29 @@
 
 {% block content %}
 	<ul class="tpl-photos">
-		<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
-
+		{% if tag %}
+			<h1>
+				Все фото с тэгом <strong>{{ tag }}</strong>
+				<a href="{% url search-by-tag tag=tag, object_type="video" %}">видео</a>
+				<a href="{% url search-by-tag tag=tag, object_type="article" %}">статьи</a>
+				<a href="{% url search-by-tag tag=tag, object_type="forum" %}">форум</a>
+			</h1>
+		{% else %}
+			<h1>Фото от наших мамочек <a href="{% url upload-photo %}">оставить свое</a></h1>
+		{% endif %}
+		
 		{% if month %}
 			<h3>
 				архив {{ month|date:"F Y"|ru_months }}
 				<a href="/photos">все фото</a>
 			</h3>
-		{% else %}
-			{% if gallery %}
-				<h3>
-					{{ gallery.title }}
-					<a href="/photos">все фото</a>
-				</h3>
-			{% endif %}
+		{% endif %}
+		
+		{% if gallery %}
+			<h3>
+				{{ gallery.title }}
+				<a href="/photos">все фото</a>
+			</h3>
 		{% endif %}
 
 		<br/>

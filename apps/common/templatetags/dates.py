@@ -34,7 +34,7 @@ def full_archive(url):
 			'months'     : months,
 			
 			'past_years' : [year for year in range(
-				Article.objects.exclude(pub_date=None).order_by('pub_date')[0].pub_date.year, date.today().year - 1
+				Article.objects.exclude(pub_date=None).order_by('pub_date')[0].pub_date.year, date.today().year
 			)],
 		}
 	

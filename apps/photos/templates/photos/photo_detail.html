@@ -74,7 +74,7 @@
 	</ul>
 	
 	{% if object.tags.all %}
-		{% with 'photo' as type %}
+		{% with "photo" as type %}
 			{% with object.tags.all as tags %}
 				{% include 'common/_tags.html' %}
 			{% endwith %}

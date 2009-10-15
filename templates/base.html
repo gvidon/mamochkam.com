@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>{% block title %}mamochkam.com: материнский портал{% endblock %}</title>
+		<title>{% block title %}МАМОЧКА - информационный портал для любящих родителей{% endblock %}</title>
 
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/style.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/jquery.tooltip.css" />
@@ -22,19 +22,19 @@
 		<div class="tpl-header">
 			<ul class="tpl-login-bar">
 				{% if request.user.id %}
-					<li><a href="" class="tpl-login-bar-profile">
+					<li><a href="{% url profile %}" class="tpl-login-bar-profile">
 						{{ request.user.username }}
 						
-						{% if request.user.get_profile.avatar.url %}
-							<img src="{{ request.user.get_profile.avatar.url }}?{{ 'abcdef1234'|make_list|random }}" alt="avatar" />
+						{% if request.user.get_profile.avatar %}
+							<img src="{{ request.user.get_profile.avatar.url }}?{{ "abcdef1234"|make_list|random }}" alt="avatar" />
 						{% endif %}
 					</a></li>
 					
 					<li><a href="{% url profile %}">Настройки</a></li>
 					<li><a href="{% url logout %}">Выход</a></li>
 				{% else %}
-					<li><a href="{% url register %}">Тут регистрация</a></li>
-					<li><a href="{% url login %}">Для пользователей</a></li>
+					<li><a href="{% url register %}" style="font-size: 1.2em">Тут регистрация</a></li>
+					<li><a href="{% url login %}">Войти</a></li>
 				{% endif %}
 			</ul>
 
@@ -48,9 +48,11 @@
 				<li><a href="/pressroom/articles">Статьи</a></li>
 				<li><a href="/photos">Фото</a></li>
 				<li><a href="/video">Видео</a></li>
-				<li><a href="">Магазин</a></li>
+				<!--<li><a href="">Магазин</a></li>-->
 				<li><a href="/bulletins">Объявления</a></li>
 				<li><a href="/forum">Форум</a></li>
+				<li><a href="{% url magazine-volumes %}">Журнал</a></li>
+				<li><a href="{% url school %}">Школа</a></li>
 			</ul>
 
 			<ul class="section-navigation"></ul>
@@ -69,6 +71,7 @@
 				<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
 				<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
 			</div>
+			
 			<div class="tpl-content">
 				{% block content %}{% endblock %}
 			</div>

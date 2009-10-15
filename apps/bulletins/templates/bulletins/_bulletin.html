@@ -1,12 +1,9 @@
 {% load dates %}
 
-<div class="title"><a href="/bulletins/{{ object.id }}">{{ object.title }}</a></div>
+<div class="title"><a href="">{{ object.title }}</a></div>
 <div><span class="date">{{ object.pub_date|date:"d F Y"|ru_months }}</span></div>
 
-<p>
-	{{ object.description }}<br/><br/>
-	<strong>оставил <a href="{% url public-profile username=object.user.username %}">{{ object.user.username }}</a></strong>
-</p>
+<p>{{ object.description }}</p>
 
 <a id="reply-button" href="#">ответить на объявление</a>
 

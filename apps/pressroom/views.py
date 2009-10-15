@@ -1,10 +1,10 @@
-from datetime import datetime
+from datetime                        import datetime
 
-from django.shortcuts        import render_to_response
-from django.template.context import RequestContext
-from django.views.generic    import list_detail
-from django.http             import Http404
-from django.conf             import settings
+from django.shortcuts                import render_to_response
+from django.template.context         import RequestContext
+from django.views.generic            import list_detail
+from django.http                     import Http404
+from django.conf                     import settings
 
 from mamochkam.apps.pressroom.models import Article, Section
 

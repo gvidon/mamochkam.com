@@ -41,7 +41,16 @@
 	
 {% block content %}
 	<ul class="tpl-photos">
-		<h1>Видео для наших мамочек</h1>
+		{% if tag %}
+			<h1>
+				Все клипы с тэгом <strong>{{ tag }}</strong>
+				<a href="{% url search-by-tag tag=tag, object_type="photo" %}">фото</a>
+				<a href="{% url search-by-tag tag=tag, object_type="article" %}">статьи</a>
+				<a href="{% url search-by-tag tag=tag, object_type="forum" %}">форум</a>
+			</h1>
+		{% else %}
+			<h1>Видео для наших мамочек</h1>
+		{% endif %}
 		
 		{% if month %}
 			<h3>

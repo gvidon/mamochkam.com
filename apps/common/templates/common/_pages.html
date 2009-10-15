@@ -21,6 +21,6 @@
 		{{ next_layer.start }}{% ifnotequal next_layer.start next_layer.end %} - {{ next_layer.end }}{% endifnotequal %}</a>
 	
 	{% ifnotequal next_layer.start next_layer.end %}
-		<a href="{{ url }}/page/{{ page_obj.end_index }}">последняя</a>
+		<a href="{{ url }}/page/{{ num_page }}">последняя</a>
 	{% endifnotequal %}
 {% endif %}

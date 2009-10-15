@@ -44,9 +44,9 @@ body {
 	.common-navigation {
 		position: relative;
 		top: 180px;
-		width: 780px;
+		width: 880px;
 		margin: 0 auto;
-		padding-left: 220px;
+		padding-left: 120px;
 		overflow: hidden;
 	}
 
@@ -79,7 +79,7 @@ body {
 	}
 
 		.tpl-content {
-			margin: 0 320px 0 200px;
+			margin: 15px 320px 0 200px;
 		}
 
 /*
@@ -310,3 +310,10 @@ div .pages {
 .tpl-login-bar-profile img {
 	background: url('../images/avatar.gif') no-repeat;
 }
+
+/* Misc styles *************************************************************/
+.tpl-vertlist li { float: left; margin-right: 10px; }
+
+/* Table styles ************************************************************/
+td { padding: 5px; padding-left: 10px; }
+thead tr td { font-weight: bold; text-align: center; }

@@ -29,7 +29,16 @@
 
 {% block content %}
 	<ul class="tpl-threads">
-		<h1>Наши мамочки обсуждают <a href="{% url new-thread %}">новое обсуждение</a></h1>
+		{% if tag %}
+			<h1>
+				Все обсуждения с тэгом <strong>{{ tag }}</strong>
+				<a href="{% url search-by-tag tag=tag, object_type="photo" %}">фото</a>
+				<a href="{% url search-by-tag tag=tag, object_type="video" %}">видео</a>
+				<a href="{% url search-by-tag tag=tag, object_type="article" %}">статьи</a>
+			</h1>
+		{% else %}
+			<h1>Наши мамочки обсуждают <a href="{% url new-thread %}">новое обсуждение</a></h1>
+		{% endif %}
 
 		{% if month %}
 			<h3>

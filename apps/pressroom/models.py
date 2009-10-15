@@ -42,24 +42,26 @@ class ArticleComment(models.Model):
 		verbose_name_plural = u'Комментарии'
 
 class Article(models.Model, Entity):
-	is_news  = models.BooleanField(default=False)
-	pub_date = models.DateTimeField('Publish date', default=datetime.now)
-	headline = models.CharField(max_length=200)
-	slug     = models.SlugField(help_text='A "Slug" is a unique URL-friendly title for an object.')
-	summary  = models.TextField(help_text="A single paragraph summary or preview of the article.")
-	body     = models.TextField('Body text')
-	author   = models.CharField(max_length=100, blank=True)
+	is_news   = models.BooleanField(default=False)
+	is_school = models.BooleanField(default=False)
 	
-	comments = models.ManyToManyField(ArticleComment, blank=True)
-	tags     = models.ManyToManyField(Tag, related_name='articles', db_table='article_tag', blank=True)
+	pub_date  = models.DateTimeField('Publish date', default=datetime.now)
+	headline  = models.CharField(max_length=200)
+	slug      = models.SlugField(help_text='A "Slug" is a unique URL-friendly title for an object.')
+	summary   = models.TextField(help_text="A single paragraph summary or preview of the article.")
+	body      = models.TextField('Body text')
+	author    = models.CharField(max_length=100, blank=True)
 	
-	publish = models.BooleanField(
+	comments  = models.ManyToManyField(ArticleComment, blank=True)
+	tags      = models.ManyToManyField(Tag, related_name='articles', db_table='article_tag', blank=True)
+	
+	publish   = models.BooleanField(
 		u'Опубликовать статью',
 		default   = True,
 		help_text = u'Статья не появится на сайте пока н опубликована'
 	)
 	
-	sections = models.ManyToManyField('Section', related_name='articles')
+	sections  = models.ManyToManyField('Section', related_name='articles')
 	
 	# Custom article manager
 	# objects = ArticleManager()

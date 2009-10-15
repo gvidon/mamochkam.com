@@ -66,3 +66,9 @@
 		.tpl-board li {
 			margin-bottom: 1em;
 		}
+	
+/* 
+******************************************************************************/
+
+.directions { margin-left: 20px; }
+	.directions li { margin: 10px; }
