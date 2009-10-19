@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load blocks %}
+
+{% block title %}МАМОЧКА - Восстановление пароля{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />	
+{% endblock %}
+
+{% block column_right %}
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Объявления пользователей</h2>
+			{% last_bulletins 5 %}
+	
+			<a class="section-link" href="/bulletins">Все объявления →</a>
+		</div>
+	</div>
+{% endblock %}
+	
+{% block content %}
+	<h1 style="padding-bottom: 0px;">Пароль восстановлен!</h1>
+	<p style="font-size: 1.3em;">На вашу почту выслан новые реквизиты доступа на нашем ресурсе.</p>
+{% endblock %}
+

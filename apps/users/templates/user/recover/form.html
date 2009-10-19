@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load bulletins %}
+{% load blocks %}
+
+{% block title %}МАМОЧКА - Восстановление пароля{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />	
+{% endblock %}
+
+{% block column_right %}
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Объявления пользователей</h2>
+			{% last_bulletins 5 %}
+	
+			<a class="section-link" href="/bulletins">Все объявления →</a>
+		</div>
+	</div>
+{% endblock %}
+	
+{% block content %}
+	<h1 style="padding-bottom: 0px;">Забыли пароль?</h1>
+	
+	{% if not request.POST or error %}
+		<p style="font-size: 1.3em;">Сообщите email, под которым вы регистрировались и мы восстановим ваш пароль.</p>
+	
+		<form action="" method="post">
+			<div {% if error %}class="erroneus"{% endif %}>
+				<label for="email">Ваш <b>email</b>, использованный при регистрации</label>
+				<input type="text" id="email" name="email" value="{{ request.POST.email }}" />
+				<span class="error">{{ error }}</span>
+			</div>
+		
+			<input type="submit" value="Восстановаить" />
+		</form>
+	{% else %}
+		<p style="font-size: 1.3em;">Письмо с инструкциями ушло вам на почту.</p>
+	{% endif %}
+{% endblock %}
+

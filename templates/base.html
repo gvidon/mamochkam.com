@@ -41,9 +41,11 @@
 			<h1 class="logo">
 				<a href="/">Мамочка</a>
 			</h1>
-
-			<div class="banner-468x120"><img src="{% banner '468x120' request.META.REMOTE_ADDR %}" /></div>
-
+			
+			{% if 0 %}
+				<div class="banner-468x120"><img src="{% banner '468x120' request.META.REMOTE_ADDR %}" /></div>
+			{% endif %}
+			
 			<ul class="common-navigation">
 				<li><a href="/pressroom/articles">Статьи</a></li>
 				<li><a href="/photos">Фото</a></li>
@@ -64,12 +66,16 @@
 		</div>
 
 		<div class="tpl-wrap">
-			<div class="banner-160x600"><img src="{% banner '160x600' request.META.REMOTE_ADDR %}" /></div>
+			{% if 0 %}<div class="banner-160x600"><img src="{% banner '160x600' request.META.REMOTE_ADDR %}" /></div>{% endif %}
+			
 			<div class="tpl-column-right">
 				{% block column_right %}{% endblock %}
-				<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
-				<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
-				<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
+				
+				{% if 0 %}
+					<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
+					<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
+					<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
+				{% endif %}
 			</div>
 			
 			<div class="tpl-content">
@@ -86,27 +92,25 @@
 				<li>
 					<div class="title">О нас</div>
 					<ul>
-						<li><a href="">Кто мы</a></li>
-						<li><a href="">Контактная информация</a></li>
-						<li><a href="">Как нас найти</a></li>
+						<li><a href="{% url who-we-r %}">Кто мы</a></li>
+						<li><a href="{% url contacts %}">Контактная информация</a></li>
+						<li><a href="{% url advert %}">Реклама на сайте</a></li>
 					</ul>
 				</li>
 
 				<li>
 					<div class="title">Помощь</div>
 					<ul>
-						<li><a href="">Регистрация</a></li>
-						<li><a href="">Восстановление пароля</a></li>
-						<li><a href="">Использование ресурса</a></li>
-						<li><a href="">Правила пользования</a></li>
+						<li><a href="{% url recover-help %}">Восстановление пароля</a></li>
+						<li><a href="{% url use-help %}">Использование ресурса</a></li>
 					</ul>
 				</li>
 
 				<li>
-					<div class="title">О журнале</div>
+					<div class="title">Соглашения</div>
 					<ul>
-						<li><a href="">Какая-то статья</a></li>
-						<li><a href="">Еще статья</a></li>
+						<li><a href="{% url use-rules %}">Правила пользования</a></li>
+						<li><a href="{% url admin %}">Права администрации</a></li>
 					</ul>
 				</li>
 			</ul>

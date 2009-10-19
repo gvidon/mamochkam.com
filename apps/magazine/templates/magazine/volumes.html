@@ -1,11 +1,11 @@
 {% extends 'magazine/base.html' %}
 
-{% block title %}Страница журнала деточки: все выпуски журнала{% endblock %}
+{% block title %}Семейный журнал "Мамочка": все выпуски журнала{% endblock %}
 {% block subtitle %}{% endblock %}
 
 {% block text %}
 	{% if volumes.0 %}
-		<h1><a href="/magazine/{{ volumes.0 }}">Последний номер</a></h1><br/>
+		<h1><a href="{{ media_url }}/magazine/{{ volumes.0.0 }}">Свежий номер ({{ volumes.0.1|floatformat:"2" }} кб)</a></h1><br/>
 		
 		{% if volumes.1 %}
 			<h2>Все выпуски журнала в формате PDF</h2>
@@ -14,7 +14,7 @@
 				{% for volume in volumes %}
 					{% if not forloop.first %}
 						<li><h2><a href="{{ media_url }}/magazine/{{ volume.0 }}">
-							{{ volume.0|lower|cut:".pdf" }}({{ volume.1 }} кб)
+							{{ volume.0|lower|cut:".pdf" }}({{ volume.1|floatformat:"2" }} кб)
 						</a></h2></li>
 					{% endif %}
 				{% endfor %}
@@ -23,4 +23,6 @@
 	{% else %}
 		<h3 style="color: red">На текущий моменты ни один выпуск не опубликован.</h3>
 	{% endif %}
+	
+	<div style="margin-top: 170px;">&nbsp;</div>
 {% endblock %}

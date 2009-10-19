@@ -19,6 +19,7 @@ urlpatterns = patterns('',
 	url(r'^search/'                                                      , include('mamochkam.apps.search.urls')),
 	url(r'^school/'                                                      , include('mamochkam.apps.school.urls')),
 	url(r'^magazine/'                                                    , include('mamochkam.apps.magazine.urls')),
+	url(r'^info/'                                                        , include('mamochkam.apps.static.urls')),
 )
 
 urlpatterns += patterns('',

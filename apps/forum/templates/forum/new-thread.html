@@ -48,6 +48,11 @@
 					<textarea id="description" name="description">{% firstof description '' %}</textarea>
 					<span class="error">{{ error.description }}</span>
 				</div>
+		
+				<div>
+					<label for="tags">К каким категориям отнести? (через запятую)</label>
+					<input id="tags" type="text" name="tags" value="{{ request.POST.tags }}" />
+				</div>
 
 				<input type="submit" value="Добавить" />
 			</form>

@@ -17,7 +17,7 @@ def form(request):
 	profile = Profile.objects.get(user=request.user)
 	
 	form = ProfileForm(auto_id='%s', initial={
-		'id'        : request.user.get_profile().id,
+		'id'        : request.user.id,
 		'username'  : request.user.username,
 		'email'     : request.user.email,
 		'avatar'    : profile.avatar,
@@ -36,7 +36,7 @@ def form(request):
 	if request.POST:
 		form = ProfileForm(auto_id='%s', data=request.POST, files=request.FILES)
 		
-		if(form.is_valid()):
+		if(form.is_valid()):	
 			# update user info and profile
 			User.objects.filter(id=request.user.id).update(
 				username   = form.cleaned_data.get('username'),
@@ -45,9 +45,9 @@ def form(request):
 				last_name  = form.cleaned_data.get('last_name')
 			)
 			
-			Profile.objects.filter(id=form.cleaned_data.get('id')).update(
+			Profile.objects.filter(id=request.user.get_profile().id).update(
 				user      = request.user,
-				avatar    = request.FILES and 'upload/avatars/'+request.POST['username'] or '',
+				avatar    = request.FILES and 'upload/avatars/'+str(request.user.id) or '',
 				sur_name  = form.cleaned_data.get('sur_name'),
 				gender    = form.cleaned_data.get('gender'),
 				birthdate = form.cleaned_data.get('birthdate'),
@@ -57,7 +57,7 @@ def form(request):
 			
 			# resize and save uploaded avatar
 			if request.FILES:
-				filename = settings.UPLOAD_ROOT+'avatars/'+request.POST['username']
+				filename = settings.UPLOAD_ROOT+'avatars/'+str(request.user.id)
 				
 				avatar = open(filename,'wb+')
 				for chunk in request.FILES['avatar'].chunks(): avatar.write(chunk)
@@ -72,7 +72,7 @@ def form(request):
 				image.save(filename, image.format)
 				
 				Profile.objects.filter(id=form.cleaned_data.get('id')).update(
-					avatar='upload/avatars/'+request.POST['username']
+					avatar='upload/avatars/'+str(request.user.id)
 				)
 			
 			profile = Profile.objects.get(user=request.user)

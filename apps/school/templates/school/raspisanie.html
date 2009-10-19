@@ -1,9 +1,40 @@
-{% extends 'school/detail_base.html' %}
+{% extends 'base.html' %}
 
-{% block direction %}Школа семьи "Мамочка"{% endblock %}
+{% load blocks %}
 
-{% block text %}
-	<div style="font-size: 1.1em; margin-top: 25px;">
-	Мы рады видеть вас <h2>с 9:00 до 21:00 ежедневно</h2> без перерывов  и выходных.<br/><br/>
-	По адресу <h2>г.Ростов-на-Дону, ул.ЗЗ9-й Стрелковой Дивизии, д.23-В</h2> (район  Областной детской больницы)</div>
+{% block column_right %}
+	<div class="tpl-article-categories corners">
+		<div class="t-r"></div><div class="b-r"></div>
+		
+		<div class="wrap">
+			<h2>Новости школы</h2>
+			
+			<ul>
+				{% last_articles 7 1 1 %}	
+				<li style="margin-top: 20px;"><a class="section-link" href="{% url pr-school-list %}">
+					Все новости школы →
+				</a></li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-article">
+		<a href="javascript:history.go(-1)">назад</a><br/><br/>
+		
+		<div class="title"><a href="">Школа семьи "Мамочка"</a></div>
+		
+		<div style="font-size: 1.1em; margin-top: 25px;">
+			Мы рады видеть вас <h2>с 9:00 до 21:00 ежедневно</h2> без перерывов  и выходных.<br/><br/>
+			По адресу <h2>г.Ростов-на-Дону, ул.ЗЗ9-й Стрелковой Дивизии, д.23-В</h2> (район  Областной детской больницы)<br/><br/>
+			Телефоны школы
+			<h2><ul class="directions">
+				<li>(863)225-24-55</li>
+				<li>(863)225-32-25</li>
+				<li>(863)256-01-31</li>
+				<li>(863)256-89-19</li>
+			</ul></h2>
+		</div>
+	</div>
 {% endblock %}

@@ -1,10 +1,12 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('mamochkam.apps.users.views',
-	url(r'^register/?'                        , 'register.form'     , name='register'),
-	url(r'^activate/(?P<code>[0-9a-zA-Z]+)/?$', 'activate.by_url'   , name='activate'),
+	url(r'^register/?'                        , 'register.form'  , name='register'),
+	url(r'^activate/(?P<code>[0-9a-zA-Z]+)/?$', 'activate.by_url', name='activate'),
+	url(r'^recover/?$'                        , 'recover.form'   , name='recover'),
+	url(r'^recover/(?P<code>[0-9a-zA-Z]+)/?$' , 'recover.confirm', name='recover-confirm'),
 	
-	url(r'^profile/?$'                        , 'profile.form'      , name='profile'),
+	url(r'^profile/?$'                        , 'profile.form'   , name='profile'),
 )
 
 urlpatterns += patterns('',

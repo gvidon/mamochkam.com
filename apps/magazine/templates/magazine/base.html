@@ -9,6 +9,7 @@
 		<div class="wrap">
 			<h2>Рекламодателю</h2>
 			<ul>
+				<li><a href="{% url magazine-volumes %}">Выпуски</a></li>
 				<li><a href="{% url magazine-price %}">Услуги и цены</a></li>
 				<li><a href="{% url magazine-oreol %}">География распростанения</a></li>
 				<li><br/></li>
@@ -19,7 +20,7 @@
 
 {% block content %}
 	<div class="tpl-article">
-		<h1 style="margin-bottom: 0px;">Страница журнала "Деточки"</h1>
+		<h1 style="margin-bottom: 0px;">Семейный журнал "Мамочка"</h1>
 		<h2>{% block subtitle %}{% endblock %}</h2>
 		
 		{% block text %}{% endblock %}

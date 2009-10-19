@@ -1,0 +1,17 @@
+{% extends 'static/base.html' %}
+
+{% block title %}МАМОЧКА - Восстановление пароля{% endblock %}
+{% block subtitle %}Восстановление пароля{% endblock %}
+
+{% block section %}Помощь{% endblock %}
+
+{% block nav %}
+	<li><a href="{% url recover-help %}">Восстановление пароля</a></li>
+	<li><a href="{% url use-help %}">Использование ресурса</a></li>
+	<li>&nbsp;</li>
+{% endblock %}
+
+{% block text %}
+	<h2 style="color: red;">Извините, информация временно не доступна.</h2>
+	<div style="margin-top: 150px;">&nbsp;</div>
+{% endblock %}

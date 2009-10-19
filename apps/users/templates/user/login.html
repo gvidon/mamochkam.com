@@ -22,12 +22,13 @@
 	
 {% block content %}
 	<form action="" method="post">
-		<h1>Скажите нам кто вы?</h1>
+		<h1 style="padding-bottom: 0px;">Скажите нам кто вы?</h1>
 		
 		{% if form.errors %}
 			<h2 class="error">Неверные реквизиты</h2>
 		{% endif %}
-			<div>
+		
+		<div>
 			<label for="email">Ваш <b>логин</b>, использованный при регистрации</label>
 			{{ form.username }}
 		</div>
@@ -37,7 +38,8 @@
 			{{ form.password }}
 		</div>
 		
-		<input type="submit" value="Войти" /> <!--или <a href="/user/recover">вспомнить пароль</a>-->
+		<input type="submit" value="Войти" />
+		<a href="{% url recover %}" style="margin-left: 10px;">забыли?</a>
 	</form>
 {% endblock %}
 

@@ -1,0 +1,17 @@
+{% extends 'static/base.html' %}
+
+{% block title %}МАМОЧКА - Правила пользования{% endblock %}
+{% block subtitle %}Правила пользования{% endblock %}
+
+{% block section %}Соглашения{% endblock %}
+
+{% block nav %}
+	<li><a href="{% url use-rules %}">Правила пользования</a></li>
+	<li><a href="{% url admin %}">Права администрации</a></li>
+	<li>&nbsp;</li>
+{% endblock %}
+
+{% block text %}
+	<h2 style="color: red;">Извините, информация временно не доступна.</h2>
+	<div style="margin-top: 150px;">&nbsp;</div>
+{% endblock %}

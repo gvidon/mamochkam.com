@@ -61,7 +61,7 @@ class Article(models.Model, Entity):
 		help_text = u'Статья не появится на сайте пока н опубликована'
 	)
 	
-	sections  = models.ManyToManyField('Section', related_name='articles')
+	sections  = models.ManyToManyField('Section', related_name='articles', blank=True, null=True)
 	
 	# Custom article manager
 	# objects = ArticleManager()

@@ -28,7 +28,7 @@ class VideoComment(models.Model):
 #MAIN VIDEO MODEL
 class Video(models.Model, Entity):
 	pub_date = models.DateTimeField(default=datetime.now)
-	video    = models.ImageField(upload_to='upload/video')
+	video    = models.FileField(upload_to='upload/video')
 	thumb    = models.ImageField(upload_to='upload/video')
 	title    = models.CharField(max_length=50)
 	publish  = models.BooleanField('Publish on site', default=False)

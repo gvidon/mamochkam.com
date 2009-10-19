@@ -11,8 +11,10 @@
 			
 			<ul>
 				{% block nav %}
-					<li><a href="">Кто мы</a></li>
-					<li><a href="">Контактная информация</a></li>
+					<li><a href="{% url who-we-r %}">Кто мы</a></li>
+					<li><a href="{% url contacts %}">Контактная информация</a></li>
+					<li><a href="{% url advert %}">Реклама на сайте</a></li>
+					<li>&nbsp;</li>
 				{% endblock %}
 			</ul>
 		</div>
@@ -21,8 +23,8 @@
 
 {% block content %}
 	<div class="tpl-article">
-		<div class="title"><a href="">{% block subtitle %}{% endblock %}</a></div>
+		<h1 style="margin-bottom: 10px;">{% block subtitle %}{% endblock %}</h1>
 		
-		<p>{% block text %}{% endblock %}</p>
+		{% block text %}{% endblock %}
 	</div>
 {% endblock %}

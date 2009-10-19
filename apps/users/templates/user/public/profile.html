@@ -31,17 +31,21 @@
 			<h1>{{ user.username }}</h1>
 		</div>
 		
-		<div>
-			<h3>Полное имя</h3>
-			{{ user.first_name|capfirst }}
-			{{ user.get_profile.sur_name|capfirst }}
-			{{ user.last_name|capfirst }}
-		</div>
+		{% if user.first_name or user.last_name %}
+			<div>
+				<h3>Полное имя</h3>
+				{{ user.first_name|capfirst }}
+				{{ user.get_profile.sur_name|capfirst }}
+				{{ user.last_name|capfirst }}
+			</div>
+		{% endif %}
 		
-		<div>
-			<h3>Дата рождения</h3>
-			{{ user.get_profile.birthdate|date:"d F Y"|ru_months }}
-		</div>
+		{% if user.get_profile.birthdate %}
+			<div>
+				<h3>Дата рождения</h3>
+				{{ user.get_profile.birthdate|date:"d F Y"|ru_months }}
+			</div>
+		{% endif %}
 		
 		{% if user.get_profile.icq %}
 			<div>

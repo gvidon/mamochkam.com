@@ -5,11 +5,12 @@ from mamochkam.apps.search.models import Tag
 class Entity():
 	#ATTACH TAG TO ENTITY
 	def attach_tags(self, tags_string):
-		[Tag.objects.create(
-			title       = tag.strip(),
-			object_id   = self.id,
-			object_type = self.__class__.__name__.lower()
-		) for tag in set(tags_string.split(',')) if tag.strip()]
-		
+		for tag in filter(lambda t: t.strip(), set(tags_string.split(','))):
+			try:
+				self.tags.add(Tag.objects.get(title=tag.strip()))
+			
+			except Tag.DoesNotExist:
+				self.tags.create(title=tag.strip())
+			
 		return 1
 	

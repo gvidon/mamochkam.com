@@ -1,6 +1,8 @@
 {% load dates %}
 
 <div class="title"><a href="/pressroom/{{ object.slug }}">{{ object.headline }}</a></div>
-<div><span class="date">{{ object.pub_date|date:"d F Y"|ru_months }}{% if object.author %}, автор {{ object.author }}{% endif %}</span></div>
+<div><span class="date">{{ object.pub_date|date:"d F Y"|ru_months }}</span></div>
 
-<p>{{ object.body|safe }}</p>
+{% if object.author %}<b>Автор:</b> {{ object.author }}{% endif %}
+
+<p style="margin-top: 20px;">{{ object.body|safe }}</p>

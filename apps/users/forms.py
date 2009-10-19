@@ -84,27 +84,23 @@ class ProfileForm(forms.Form):
 	#CHECK USERNAME FOR UNIQUENESS
 	def clean_username(self):
 		try:
-			Profile.objects.exclude(id=self.cleaned_data['id']).get(
-				user__username=self.cleaned_data['username']
-			)
+			User.objects.exclude(id=self.cleaned_data['id']).get(username=self.cleaned_data['username'])
 			
 			raise forms.ValidationError(u'Пользователь с таким псевдонимом уже есть в нашей базе.')
 			
-		except Profile.DoesNotExist:
+		except User.DoesNotExist:
 			return self.cleaned_data['username']
 	
 	#CHECK EMAIL FOR UNIQUENESS
 	def clean_email(self):
 		try:
-			Profile.objects.exclude(id=self.cleaned_data['id']).get(
-				user__email=self.cleaned_data['email']
-			)
+			User.objects.exclude(id=self.cleaned_data['id']).get(email=self.cleaned_data['email'])
 			
 			raise forms.ValidationError(
 				u'Такой email уже есть в базе. Хотите <a href="/user/recover">восстановить пароль</a> ?'
 			)
 			
-		except Profile.DoesNotExist:
+		except User.DoesNotExist:
 			return self.cleaned_data['email']
 	
 	#VALIDATE ICQ NUM LENGTH

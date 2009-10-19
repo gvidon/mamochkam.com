@@ -8,7 +8,7 @@ register = template.Library()
 @register.inclusion_tag('portal/_random-photos.html')
 def random_photos(count):
 	try:
-		return { 'photos': Photo.objects.order_by('?')[:int(count)] }
+		return { 'photos': Photo.objects.filter(publish=True).order_by('?')[:int(count)] }
 	
 	except IndexError:
 		return { 'photos': [] }

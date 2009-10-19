@@ -5,7 +5,7 @@ class ArticleCommentAdmin(admin.ModelAdmin):
 	pass
 	
 class ArticleAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('headline', 'pub_date', 'is_news', 'is_school')
 	
 class SectionAdmin(admin.ModelAdmin):
 	pass

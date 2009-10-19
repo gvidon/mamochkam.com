@@ -6,7 +6,7 @@
 			<a href="/pressroom/{{ article.slug }}">{{ article.headline }}</a>
 		</div>
 		
-		<div><span class="date">{{ article.pub_date|date:"d F Y"|ru_months }}{% if article.author %}, автор {{ article.author }}{% endif %}</span></div>
+		<div><span class="date">{{ article.pub_date|date:"d F Y"|ru_months }}</span></div>
 		{{ article.summary|safe }} <a href="/pressroom/{{ article.slug }}">Читать далее&#8594;</a>
 	</li>
 {% endfor %}

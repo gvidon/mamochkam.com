@@ -5,7 +5,7 @@ class PhotoCommentAdmin(admin.ModelAdmin):
 	pass
 	
 class PhotoAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('title', 'pub_date', 'publish')
 
 class GalleryAdmin(admin.ModelAdmin):
 	pass

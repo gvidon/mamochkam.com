@@ -41,15 +41,17 @@ def new_thread(request):
 			error['description'] = u'Нужны подробности'
 		
 		if not error:
-			thread_id = Thread.objects.create(
+			thread = Thread.objects.create(
 				user        = request.user,
 				title       = request.POST['title'],
 				description = request.POST['description']
-			).id
+			)
+			
+			thread.attach_tags(request.POST['tags'])
 		
 	return render_to_response('forum/new-thread.html', {
 		'title'      : request.POST.get('title'),
 		'description': request.POST.get('description'),
 		'error'      : error,
-		'thread_id'  : locals().has_key('thread_id') and thread_id or 0
+		'thread_id'  : locals().has_key('thread') and thread.id or 0
 	}, context_instance=RequestContext(request))
