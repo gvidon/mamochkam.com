@@ -28,11 +28,14 @@ def categories(type, url):
 		return { 'categories': [] }
 
 @register.inclusion_tag('common/_last-articles.html')
-def last_articles(count, is_news, is_school=False):
+def last_articles(count, is_news, is_school=None):
 	try:
-		return {'articles': Article.objects.filter(
-			is_news=is_news, is_school=is_school, publish=1
-		).order_by('-pub_date')[:int(count)]}
+		articles = Article.objects.filter(is_news=is_news, publish=1)
+		
+		if is_school != None:
+			articles = articles.filter(is_school=is_school)
+		
+		return {'articles': articles.order_by('-pub_date')[:int(count)]}
 	
 	except ValueError:
 		return { 'articles': [] }

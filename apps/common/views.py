@@ -4,7 +4,7 @@ try:
 except ImportError:
 	from json import write as dumps
 	
-import datetime
+from datetime                        import datetime
 
 from django.contrib.auth.decorators  import login_required
 from django.core.exceptions          import ValidationError
@@ -33,7 +33,18 @@ def comment(request, type, id):
 		try:
 			
 			if not request.POST['comment']:
+				error = u'Нужен комментарий'
 				raise ValidationError
+			
+			try:
+				#ограничить количество комментариев в минуту до одного
+				if (datetime.today() - entities[type].objects.get(id=id).comments.filter(
+				user=request.user).order_by('-pub_date')[0].pub_date).seconds < 60:
+					error = u'Вы не можете оставлять более одного комментария в минуту'
+					raise ValidationError
+			
+			except IndexError:
+				pass
 			
 			pub_date = entities[type].objects.get(id=id).comments.create(
 				user=request.user,
@@ -50,10 +61,10 @@ def comment(request, type, id):
 				}, context_instance=RequestContext(request)).decode('utf8')
 			}))
 			
-		except (KeyError, Article.DoesNotExist, Photo.DoesNotExist):
+		except (KeyError, Article.DoesNotExist, Photo.DoesNotExist, Thread.DoesNotExist, Video.DoesNotExist):
 			return HttpResponse(u'{ success: 0, error: "Ошибка в переданных параметрах" }')
 			
 		except ValidationError:
-			return HttpResponse(u'{ success: 0, error: "Нужен комментарий" }')
+			return HttpResponse(u'{ success: 0, error: "'+error+'" }')
 	
 	return HttpResponse(u'Объект не предназначен для просмотра браузером')

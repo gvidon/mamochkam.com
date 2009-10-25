@@ -4,6 +4,7 @@ from django.db import models
 #BANNER DESCRIPTION
 class Banner(models.Model):
 	image        = models.ImageField(u'Изображение баннер', upload_to='upload/banners')
+	url          = models.CharField(u'Ссылка на сайт рекламодателя', max_length=255, blank=True, null=True)
 	
 	size         = models.CharField(u'Положение на сайте', max_length=16, choices=(
 		('160x600', u'Слева'),
@@ -11,7 +12,9 @@ class Banner(models.Model):
 		('240x120', u'Справа'),
 	))
 	
-	counter      = models.IntegerField(u'Счетчик посещений', blank=True, default=0)
+	counter      = models.IntegerField(u'Счетчик показов', blank=True, default=0)
+	hits         = models.IntegerField(u'Счетчик переходов', blank=True, default=0)
+	
 	limit        = models.IntegerField(u'Лимит показов', blank=True, null=True)
 	date_limit   = models.DateTimeField(u'Показывать до даты', blank=True, null=True)
 	

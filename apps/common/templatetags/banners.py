@@ -22,7 +22,7 @@ def banner(size, ip):
 			banner = queryset.order_by('?')[0]
 		
 	except IndexError:
-		return 'images/default-'+size+'-banner.jpg'
+		return ''
 		
 	# отметиться в логах если этот IP еще не смотрел баннер
 	if not banner.log.filter(ip=ip).count():
@@ -33,4 +33,4 @@ def banner(size, ip):
 	banner.is_active = (banner.counter < banner.limit) or (banner.date_limit >= datetime.today())
 	banner.save()
 	
-	return banner.image.url
+	return '<a href="/advert-redirect/'+str(banner.id)+'"><img src="'+banner.image.url+'" /></a>' 

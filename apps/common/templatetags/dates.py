@@ -44,9 +44,12 @@ def full_archive(url):
 #TRANSLATE ENG MONTH NAMES
 @register.filter(name='ru_months')
 @stringfilter
-def ru_months(date):
+def ru_months(date, simple=None):
 	try:
-		return [ date.replace(month[0], month[2]) for month in months if date.find(month[0]) != -1 ][0]
+		return [
+			date.replace(month[0], (simple and month[1] or month[2]))
+			for month in months if date.find(month[0]) != -1
+		][0]
 	
 	except IndexError:
 		return ''

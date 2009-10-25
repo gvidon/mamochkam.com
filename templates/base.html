@@ -42,9 +42,7 @@
 				<a href="/">Мамочка</a>
 			</h1>
 			
-			{% if 0 %}
-				<div class="banner-468x120"><img src="{% banner '468x120' request.META.REMOTE_ADDR %}" /></div>
-			{% endif %}
+			<div class="banner-468x120">{% banner '468x120' request.META.REMOTE_ADDR %}</div>
 			
 			<ul class="common-navigation">
 				<li><a href="/pressroom/articles">Статьи</a></li>
@@ -66,15 +64,15 @@
 		</div>
 
 		<div class="tpl-wrap">
-			{% if 0 %}<div class="banner-160x600"><img src="{% banner '160x600' request.META.REMOTE_ADDR %}" /></div>{% endif %}
+			{% if 0 %}<div class="banner-160x600">{% banner '160x600' request.META.REMOTE_ADDR %}</div>{% endif %}
 			
 			<div class="tpl-column-right">
 				{% block column_right %}{% endblock %}
 				
 				{% if 0 %}
-					<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
-					<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
-					<div class="banner-240x120"><img src="{% banner '240x120' request.META.REMOTE_ADDR %}" /></div>
+					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
+					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
+					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
 				{% endif %}
 			</div>
 			

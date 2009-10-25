@@ -1,14 +1,15 @@
 from django.conf.urls.defaults   import *
 from django.contrib              import admin
 
-from mamochkam.apps.portal.views import index
+from mamochkam.apps.portal.views import advert_redirect, index
 from mamochkam.apps.common.views import comment
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^comment/(?P<type>article|photo|forum|video)/(?P<id>[0-9]+)/?$', comment, name='make-comment'),
-	url(r'^/?$'                                                          , index  , name='index'),
+	url(r'^comment/(?P<type>article|photo|forum|video)/(?P<id>[0-9]+)/?$', comment        , name='make-comment'),
+	url(r'^advert-redirect/(?P<banner_id>[0-9]+)/?$'                     , advert_redirect, name='advert-redirect'),
+	url(r'^/?$'                                                          , index          , name='index'),
 	
 	url(r'^bulletins/?'                                                  , include('mamochkam.apps.bulletins.urls')),
 	url(r'^pressroom/'                                                   , include('mamochkam.apps.pressroom.urls')),

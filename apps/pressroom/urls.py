@@ -11,7 +11,7 @@ urlpatterns = patterns('mamochkam.apps.pressroom.views',
 # Articles and news querysets
 querysets = {
 	'articles': Article.objects.filter(is_news=False, publish=True, is_school=False),
-	'news'    : Article.objects.filter(is_news=True, publish=True, is_school=False),
+	'news'    : Article.objects.filter(is_news=True, publish=True),
 	'school'  : Article.objects.filter(is_news=True, publish=True, is_school=True),
 }
 
