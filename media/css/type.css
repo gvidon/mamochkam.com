@@ -60,3 +60,11 @@ a:hover {
 .tpl-content .title a {
 	font-size: 1.65em;
 }
+
+em {
+	font-style: oblique;
+}
+
+strong {
+	font-weight: bold;
+}
