@@ -50,7 +50,9 @@ class Article(models.Model, Entity):
 	slug      = models.SlugField(help_text='A "Slug" is a unique URL-friendly title for an object.')
 	summary   = models.TextField(help_text="A single paragraph summary or preview of the article.")
 	body      = models.TextField('Body text')
-	author    = models.CharField(max_length=100, blank=True)
+	
+	author    = models.CharField(max_length=128, blank=True, null=True)
+	source    = models.CharField(max_length=128, blank=True, null=True)
 	
 	comments  = models.ManyToManyField(ArticleComment, blank=True)
 	tags      = models.ManyToManyField(Tag, related_name='articles', db_table='article_tag', blank=True)

@@ -1,0 +1,17 @@
+{% load dates %}
+
+{% for product in products %}
+	<li>
+		<ul class="product">
+			<li><a href="{% url candy-product category=product.category.all.0.slug, product=product.slug %}">
+				<img src="{{ product.thumb_url }}" title="{{ product.title }}" />
+			</a></li>
+			
+			<li>
+				<h3><a href="{% url candy-product category=product.category.all.0.slug, product=product.slug %}">
+				{{ product.title|truncatewords:7|lower }}</a>&nbsp;{{ product.price }} руб.</h3>				
+				<a href="" class="add-to-cart">в корзину</a>
+			</li>
+		</ul>
+	</li>
+{% endfor %}

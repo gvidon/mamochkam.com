@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+{% load photos %}
+
+{% block column_right %}
+	<div class="tpl-categories corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Разделы магазина</h2>
+			{% include 'candy/_categories-tree.html' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-product-detail">
+		<div>
+			<img src="{{ product.thumb_url }}" /><br/>
+			
+			{% for photo in product.photos.all %}
+				<img src="{{ photo.photo.url }}_thumb" style="width: 50px;" />
+			{% endfor %}
+		</div>
+		
+		<h2>{{ product.title|lower|capfirst }}</h2>
+		
+		<p>{{ product.description|safe }}</p>
+		
+		{% if product.size %}<span>Размер</span>: {{ product.size }}<br/>{% endif %}
+		{% if product.madeof %}<span>Материал</span>: {{ product.madeof }}<br/>{% endif %}
+		
+		<span>Цена</span>: {{ product.price }} руб.
+	</div>
+{% endblock %}

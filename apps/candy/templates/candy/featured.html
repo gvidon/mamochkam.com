@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+{% load photos %}
+
+{% block column_right %}
+	<div class="tpl-categories corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap">
+			<h2>Разделы магазина</h2>
+			{% include 'candy/_categories-tree.html' %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<h1>Мы рекомендуем!</h1>
+	
+	<ul class="tpl-products">{% with featured_items as products %}
+		{% include 'candy/_products.html' %}
+	{% endwith %}</ul>
+{% endblock %}

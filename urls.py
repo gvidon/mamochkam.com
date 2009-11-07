@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls.defaults   import *
 from django.contrib              import admin
 
@@ -21,9 +22,11 @@ urlpatterns = patterns('',
 	url(r'^school/'                                                      , include('mamochkam.apps.school.urls')),
 	url(r'^magazine/'                                                    , include('mamochkam.apps.magazine.urls')),
 	url(r'^info/'                                                        , include('mamochkam.apps.static.urls')),
+	url(r'^shop/'                                                        , include('mamochkam.apps.candy.urls')),
 )
 
 urlpatterns += patterns('',
+
 	url('^admin/(.*)', admin.site.root),
 )
 

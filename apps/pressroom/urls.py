@@ -1,6 +1,6 @@
-from django.conf.urls.defaults    import *
-from django.conf                  import settings
-from models                       import Article
+from django.conf.urls.defaults import *
+from django.conf               import settings
+from models                    import Article
 
 # Section urls
 urlpatterns = patterns('mamochkam.apps.pressroom.views',

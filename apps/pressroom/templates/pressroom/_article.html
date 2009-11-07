@@ -6,3 +6,5 @@
 {% if object.author %}<b>Автор:</b> {{ object.author }}{% endif %}
 
 <p style="margin-top: 20px;">{{ object.body|safe }}</p>
+
+{% if object.source %}<p style="color: #cbc5c4">{{ object.source }}</p>{% endif %}
