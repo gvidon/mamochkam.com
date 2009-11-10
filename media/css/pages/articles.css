@@ -46,3 +46,22 @@
 		float: left;
 		padding-left: 7px;
 	}
+
+/*
+******************************************************************************/
+
+.tpl-news ul li {
+}
+
+	.tpl-news ul li .thumb {
+		margin-right: 10px;
+		float: left;
+	}
+
+		.tpl-news ul li .thumb img {
+			width: 70px;
+		}
+
+	.tpl-news ul li .title {
+		padding-top: 5px;
+	}

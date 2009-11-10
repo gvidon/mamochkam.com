@@ -36,7 +36,7 @@ def upload(request):
 	
 	if(request.POST):
 		form = PhotoForm({
-			'user'    : 1,
+			'user'    : request.user.id,
 			'pub_date': datetime.now(),
 			'gallery' : request.POST['gallery'],
 			'title'   : request.POST['title'],
@@ -48,7 +48,7 @@ def upload(request):
 			photo.attach_tags(request.POST['tags'])
 			photo.resize()
 			photo.generate_thumb()
-	
+			
 	return render_to_response(
 		'photos/upload.html',
 		{'form': form,},

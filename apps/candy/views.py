@@ -14,7 +14,10 @@ from models                         import Product
 
 #ОБЗОР ЗАКАЗАННЫХ АЙТЕМОВ
 def cart(request):
-	return HttpResponse('1')
+	#!!УДАЛИТЬ!! как тетовые
+	request.session.cart = Product.objects.all()
+	
+	return render_to_response('candy/cart.html', context_instance=RequestContext(request))
 
 #ПРОЦЕДУРА ПОДТВЕРЖДЕНИЯ ДАННЫХ ЗАКАЗА
 def confirm(request):

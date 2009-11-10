@@ -10,6 +10,13 @@ urlpatterns = patterns('',
 	# главная - топовые товары и лист категорий
 	url(r'^$', featured, name='candy'),
 	
+	#корзина и оформление заказа
+	url(r'^cart/?$'                                            , cart   , name='candy-cart'),
+	url(r'^order/(?P<id>[0-9]+)/?$'                            , order  , name='candy-order'),
+	url(r'^order/(?P<id>[0-9]+)/confirm/?$'                    , confirm, name='candy-confirm'),
+	
+	url(r'^orders/?$'                                          , orders , name='candy-orders'),
+	
 	# серфинг по каталогу
 	url(r'^(?P<slug>[\w\d\-_]+)/?(page/(?P<page>[0-9]+)/?)?$', object_detail, {
 		'slug_field'   : 'slug',
@@ -20,12 +27,5 @@ urlpatterns = patterns('',
 	}, name='candy-category'),
 	
 	url(r'^(?P<category>[\w\d\-_]+)/(?P<product>[\w\d\-_]+)/?$', product, name='candy-product'),
-	
-	#корзина и оформление заказа
-	url(r'^cart/?$'                                            , cart   , name='candy-cart'),
-	url(r'^order/(?P<id>[0-9]+)/?$'                            , order  , name='candy-order'),
-	url(r'^order/(?P<id>[0-9]+)/confirm/?$'                    , confirm, name='candy-confirm'),
-	
-	url(r'^orders/?$'                                          , orders , name='candy-orders'),
 )
 

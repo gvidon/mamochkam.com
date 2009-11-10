@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime                     import datetime
 
-from django.contrib.auth.models import User
-from django.db                  import models
-from django.conf                import settings
-from django.core.urlresolvers   import reverse
+from django.contrib.auth.models   import User
+from django.db                    import models
+from django.conf                  import settings
+from django.core.urlresolvers     import reverse
 
 from mamochkam.apps.common.models import Entity
 from mamochkam.apps.search.models import Tag
+from mamochkam.apps.utils         import images
 
 '''
 # Get relative media path
@@ -40,6 +41,32 @@ class ArticleComment(models.Model):
 		db_table            = 'article_comment'
 		verbose_name        = u'Комментарий'
 		verbose_name_plural = u'Комментарии'
+
+#ФОТОГРАФИИ СТАТЬИ
+class ArticlePhoto(models.Model):
+	article = models.ForeignKey('Article', related_name='photos')
+	photo   = models.ImageField(upload_to='upload/photos')
+	
+	#СОХРАНИТЬ ФОТО И СОЗДАТЬ THUMB
+	def save(self):
+		super(ArticlePhoto, self).save()
+		
+		images.resize(self.photo.path)
+		images.generate_thumb(self.photo.path, (150, 110))
+	
+	#ССЫЛКА НА ТУМБ
+	def thumb_url(self):
+		return self.photo.url+'_thumb'
+	
+	#СТРОКОВОЕ ПРЕДСТАВЛЕНИЕ
+	def __unicode__(self):
+		return self.photo.path
+	
+	#META
+	class Meta:
+		db_table            = 'article_photo'
+		verbose_name        = u'Фото для статьи'
+		verbose_name_plural = u'Фотографии статьи'
 
 class Article(models.Model, Entity):
 	is_news   = models.BooleanField(default=False)
@@ -76,6 +103,14 @@ class Article(models.Model, Entity):
 	def get_absolute_url(self):
 		args = self.pub_date.strftime("%Y/%b/%d").lower().split("/") + [self.slug]
 		return reverse('pr-article-detail', args=args)
+	
+	#ССЫЛКА НА ТУМБ
+	def thumb_url(self):
+		try:
+			return self.photos.all()[0].thumb_url()
+		
+		except IndexError:
+			return 'default-candy-thumb'
 	
 	class Meta:
 		db_table            = 'article'

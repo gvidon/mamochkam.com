@@ -21,7 +21,7 @@
 			<img src="{{ product.thumb_url }}" /><br/>
 			
 			{% for photo in product.photos.all %}
-				<img src="{{ photo.photo.url }}_thumb" style="width: 50px;" />
+				<img class="mini-thumb" src="{{ photo.photo.url }}_thumb" />
 			{% endfor %}
 		</div>
 		

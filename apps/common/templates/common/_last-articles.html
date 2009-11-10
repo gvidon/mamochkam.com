@@ -2,6 +2,8 @@
 
 {% for article in articles %}
 	<li>
+		{% if article.thumb_url %}<div class="thumb"><img src="{{ article.thumb_url }}" /></div>{% endif %}
+		
 		<div class="title"><a href="/pressroom/{{ article.slug }}">{{ article.headline }}</a></div>
 		<div><span class="date">{{ article.pub_date|date:"d F Y"|ru_months }}</span></div>
 		{% if show_summary %}
