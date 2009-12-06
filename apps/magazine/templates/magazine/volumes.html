@@ -7,10 +7,12 @@
 
 {% block text %}
 	{% if volumes.0 %}
-		<h1><a href="{{ media_url }}/magazine/{{ volumes.0.0 }}">Свежий номер ({{ volumes.0.2|floatformat:"2" }} кб)</a></h1><br/>
+		<h1 style="margin-bottom: 0px;"><a href="{{ media_url }}/magazine/{{ volumes.0.0 }}">Свежий номер ({{ volumes.0.2|floatformat:"2" }} кб)</a></h1>
+		
+		{% if volumes.0.3 %}<img src="{{ media_url }}/magazine/{{ volumes.0.3 }}" />{% endif %}
 		
 		{% if volumes.1 %}
-			<h2>Все выпуски журнала в формате PDF</h2>
+			<h2 style="margin-top: 40px;">Все выпуски журнала в формате PDF</h2>
 		
 			<ul class="tpl-vertlist">
 				{% for volume in volumes %}

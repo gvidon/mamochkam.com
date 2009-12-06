@@ -1,8 +1,31 @@
 {% extends 'base.html' %}
 
+{% load candy %}
 {% load pages %}
 {% load dates %}
 {% load photos %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.keyfilter.min.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/candy.js"></script>
+	
+	<script type="text/javascript">	
+		$(document).ready(function () {
+			$('.quantity input').keyfilter(/[\d]/);
+			
+			Candy.bindCartEvents(
+				$('#cart'),
+				$('.add-to-cart'),
+				$('.remove-from-cart'),
+				$('.clear-cart'),
+				{ }
+			);
+			
+			Candy.bindOrderEvents($('#confirm-order'), $('#cart'));
+			
+		});
+	</script>
+{% endblock %}
 
 {% block column_right %}
 	<div class="tpl-categories corners">
@@ -13,21 +36,57 @@
 			{% include 'candy/_categories-tree.html' %}
 		</div>
 	</div>
+	
+	{% orders_preview 5 request.user.id %}
 {% endblock %}
 
 {% block content %}
 	<h1>Корзина заказа</h1>
 	
-	<ul class="tpl-cart">{% for product in request.session.cart %}
-		<li>
-			<a href="{% url candy-product category=product.category.all.0.slug, product=product.slug %}">
-				<img class="mini-thumb" src="{{ product.thumb_url }}" title="{{ product.title }}" />
-			</a>
+	{% if request.session.cart %}
+		<form action="{% url candy-update-cart %}" class="cart" style="margin-bottom: 0px;">
+			<ul id="cart" class="tpl-cart">
+				{% for id, item in request.session.cart.iteritems %}
+					<li id="i{{ id }}">
+						<div>{% if item.thumb_url %}
+							<img class="mini-thumb" src="{{ item.thumb_url }}" />
+						{% endif %}</div>
+				
+						<h2><a href="{% url candy-product category=item.category.all.0.slug, product=item.slug %}">
+							{{ item.title|capfirst }}
+						</a></h2><br/><br/>
+				
+						<span class="quantity">
+							количество:
+							<input name="quantity" type="text" size="4" maxlength="4" value="{{ item.quantity }}" />
+						</span>
+					
+						<span class="price">цена: {{ item.price }} руб.</span>
+						<a class="remove remove-from-cart" href="{% url candy-remove-item id=id %}">удалить</a><br/>
+				
+						<div class="comments">
+							комментарий
+							<textarea name="comments">{{ item.comments }}</textarea>
+						</div>
+					</li>
+				{% endfor %}
 			
-			<a href="{% url candy-product category=product.category.all.0.slug, product=product.slug %}">
-			{{ product.title|truncatewords:7|lower }}</a><br/>{{ product.price }} руб.
-		</li>
-	{% endfor %}</ul>
+				<li>
+					<img class="ajax-loader" src="{{ media_url }}/images/ajax-loader.gif" />
+					<input style="width: 100px; height: 30px; float: left; margin-right: 20px" type="submit" value="сохранить" />
+					<h3 class="action-note" style="display: none; margin-top: 5px;">Данные обновлены</h3>
+				</li>
+			</ul>
+		</form>
 	
-	<h2><a href="">Оформить заказ</a></h2>
+		<h2>Всего на сумму: <strong id="total">{{ total }} руб.</strong></h2>
+		
+		<h2>
+			<a id="confirm-order" href="{% url candy-create-order %}">оформить заказ&nbsp;&rarr;</a>
+			<img class="ajax-loader" src="{{ media_url }}/images/ajax-loader.gif" />
+		</h2>
+	{% else %}
+		<p style="font-size: 1.4em"><strong>Корзина пуста</strong><br/><br/>
+		А ведь у нас можно <a href="{% url candy %}">купить что-то интересное</a></p>
+	{% endif %}
 {% endblock %}

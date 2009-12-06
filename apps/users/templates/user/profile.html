@@ -8,8 +8,11 @@
 {% endblock %}
 
 {% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.keyfilter.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			$('#phone').keyfilter(/[\d]/);
+			
 			{% if request.POST %}
 				$('#birthday').val('{{ request.POST.day }}');
 				$('#birthmonth').val('{{ request.POST.month }}');

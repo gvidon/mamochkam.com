@@ -32,6 +32,12 @@
 		margin-left: 15px;
 		margin-bottom: 40px;
 	}
+		
+		.tpl-articles li .thumb img {
+			float: left;
+			margin-right: 10px;
+			width: 80px;
+		}
 
 /*
 ******************************************************************************/
@@ -51,6 +57,7 @@
 ******************************************************************************/
 
 .tpl-news ul li {
+	overflow: hidden;
 }
 
 	.tpl-news ul li .thumb {
@@ -59,9 +66,10 @@
 	}
 
 		.tpl-news ul li .thumb img {
-			width: 70px;
+			width: 80px;
 		}
 
 	.tpl-news ul li .title {
 		padding-top: 5px;
 	}
+	

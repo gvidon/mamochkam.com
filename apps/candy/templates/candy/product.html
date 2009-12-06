@@ -1,10 +1,33 @@
 {% extends 'base.html' %}
 
-{% load pages %}
 {% load dates %}
-{% load photos %}
+{% load candy %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/candy.js"></script>
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.fancybox.js"></script>
+	
+	<script type="text/javascript">	
+		$(document).ready(function () {
+			Candy.bindCartEvents(
+				$('#cart'),
+				$('.add-to-cart'),
+				$('.remove-from-cart'),
+				$('.clear-cart'),
+				{ }
+			);
+			
+			$('div a.group').fancybox({
+				'enableEscapeButton': true,
+				'hideOnContentClick': false,
+			});
+		});
+	</script>
+{% endblock %}
 
 {% block column_right %}
+	{% include 'candy/cart-preview.html' %}</ul>
+	
 	<div class="tpl-categories corners">
 		<div class="t-r"></div><div class="b-r"></div>
 
@@ -13,16 +36,18 @@
 			{% include 'candy/_categories-tree.html' %}
 		</div>
 	</div>
+	
+	{% orders_preview 5 request.user.id %}
 {% endblock %}
 
 {% block content %}
 	<div class="tpl-product-detail">
-		<div>
-			<img src="{{ product.thumb_url }}" /><br/>
+		<div >
+			<a href="{{ product.photos.all.0.photo.url }}" class="group" rel="group"><img src="{{ product.thumb_url }}" /></a><br/>
 			
-			{% for photo in product.photos.all %}
-				<img class="mini-thumb" src="{{ photo.photo.url }}_thumb" />
-			{% endfor %}
+			{% for photo in product.photos.all %}{% if not forloop.first %}
+				<a href="{{ photo.photo.url }}" class="group" rel="group"><img class="mini-thumb" src="{{ photo.photo.url }}_thumb" /></a>
+			{% endif %}{% endfor %}
 		</div>
 		
 		<h2>{{ product.title|lower|capfirst }}</h2>
@@ -32,6 +57,9 @@
 		{% if product.size %}<span>Размер</span>: {{ product.size }}<br/>{% endif %}
 		{% if product.madeof %}<span>Материал</span>: {{ product.madeof }}<br/>{% endif %}
 		
-		<span>Цена</span>: {{ product.price }} руб.
+		<span>Цена</span>: {{ product.price }} руб.<br/>
+		
+		<img class="ajax-loader" src="{{ media_url }}/images/ajax-loader.gif" />
+		<a id="b{{ product.id }}" href="{% url candy-add-item id=product.id %}" class="add-to-cart">в корзину</a>
 	</div>
 {% endblock %}

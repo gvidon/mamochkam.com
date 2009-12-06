@@ -9,7 +9,12 @@
 @import url('pages/forum.css');
 @import url('pages/comments.css');
 @import url('pages/tags.css');
-@import url('pages/candy.css');
+
+@import url('candy/catalog.css');
+@import url('candy/cart.css');
+@import url('candy/order.css');
+
+@import url('fancybox.css');
 
 /*
 ** Layout
@@ -314,6 +319,11 @@ div .pages {
 
 /* Misc styles *************************************************************/
 .tpl-vertlist li { float: left; margin-right: 10px; }
+
+.magazine-advances li { margin: 0px 0px 20px 20px; }
+.magazine-cities li { margin: 0px 0px 10px 20px; font-size: 1.4em; }
+
+.ajax-loader { display: none; }
 
 /* Table styles ************************************************************/
 td { padding: 5px; padding-left: 10px; }

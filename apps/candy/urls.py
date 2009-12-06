@@ -4,28 +4,29 @@ from django.conf.urls.defaults        import *
 from django.views.generic.list_detail import object_detail
 
 from mamochkam.apps.candy.models      import Category, Product
-from mamochkam.apps.candy.views       import featured, cart, confirm, order, orders, product
+from mamochkam.apps.candy.views       import *
 
 urlpatterns = patterns('',
 	# главная - топовые товары и лист категорий
-	url(r'^$', featured, name='candy'),
+	url(r'^$'                                                          , featured   , name='candy'),
 	
-	#корзина и оформление заказа
-	url(r'^cart/?$'                                            , cart   , name='candy-cart'),
-	url(r'^order/(?P<id>[0-9]+)/?$'                            , order  , name='candy-order'),
-	url(r'^order/(?P<id>[0-9]+)/confirm/?$'                    , confirm, name='candy-confirm'),
+	# просмотр и управление корзиной
+	url(r'^cart/?$'                                                    , cart       , name='candy-cart'),
 	
-	url(r'^orders/?$'                                          , orders , name='candy-orders'),
+	url(r'^cart/add/(?P<id>[0-9]+)/?$'                                 , add_item   , name='candy-add-item'),
+	url(r'^cart/remove/(?P<id>[0-9]+)/?$'                              , remove_item, name='candy-remove-item'),
+	url(r'^cart/clear/?$'                                              , clear_cart , name='candy-clear-cart'),
+	url(r'^cart/update/?$'                                             , update_cart, name='candy-update-cart'),
+	
+	# заказы
+	url(r'^order/?$'                                                   , order      , name='candy-create-order'),
+	url(r'^order/(?P<id>[0-9]+)/?$'                                    , order      , name='candy-view-order'),
+	url(r'^order/(?P<id>[0-9]+)/cancel/?$'                             , cancel     , name='candy-cancel'),
+	
+	url(r'^orders/?$'                                                  , orders     , name='candy-orders'),
 	
 	# серфинг по каталогу
-	url(r'^(?P<slug>[\w\d\-_]+)/?(page/(?P<page>[0-9]+)/?)?$', object_detail, {
-		'slug_field'   : 'slug',
-		'paginate_by'  : settings.ITEMS_PER_PAGE,
-		'allow_empty'  : True,
-		'queryset'     : Category.objects.all(),
-		'template_name': 'category.html',
-	}, name='candy-category'),
-	
-	url(r'^(?P<category>[\w\d\-_]+)/(?P<product>[\w\d\-_]+)/?$', product, name='candy-product'),
+	url(r'^category/(?P<slug>[\w\d\-_\/]+)(/page/(?P<page>[0-9]+)/?)?$', category   , name='candy-category'),
+	url(r'^product/(?P<category>[\w\d\-_]+)/(?P<product>[\w\d\-_]+)/?$', product    , name='candy-product'),
 )
 

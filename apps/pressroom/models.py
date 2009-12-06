@@ -110,7 +110,7 @@ class Article(models.Model, Entity):
 			return self.photos.all()[0].thumb_url()
 		
 		except IndexError:
-			return 'default-candy-thumb'
+			return None
 	
 	class Meta:
 		db_table            = 'article'

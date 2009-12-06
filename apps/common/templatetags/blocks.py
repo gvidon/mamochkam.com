@@ -16,6 +16,20 @@ queryset = {
 
 register = template.Library()
 
+#ВЫБРАТЬ СТАТЬИ ПО КРИЕТРИЮ
+def articles(count, is_news, is_school=None):
+	try:
+		articles = Article.objects.filter(is_news=is_news, publish=1)
+		
+		if is_school != None:
+			articles = articles.filter(is_school=is_school)
+		
+		return {'articles': articles.order_by('-pub_date')[:int(count)]}
+	
+	except ValueError:
+		return { 'articles': [] }
+
+#СПИСОК КАТЕГОРИЙ ЧЕГО УГОДНО
 @register.inclusion_tag('common/_categories.html')
 def categories(type, url):
 	try:
@@ -27,19 +41,17 @@ def categories(type, url):
 	except ValueError:
 		return { 'categories': [] }
 
+#ДАЙДЖЕСТ СТАТЕЙ БЕЗ САММАРИ
 @register.inclusion_tag('common/_last-articles.html')
 def last_articles(count, is_news, is_school=None):
-	try:
-		articles = Article.objects.filter(is_news=is_news, publish=1)
-		
-		if is_school != None:
-			articles = articles.filter(is_school=is_school)
-		
-		return {'articles': articles.order_by('-pub_date')[:int(count)]}
-	
-	except ValueError:
-		return { 'articles': [] }
-		
+	return { 'articles' : articles(count, is_news, is_school)['articles'], 'is_short': False }
+
+#ДАЙДЖЕСТ СТАТЕЙ С САММАРИ
+@register.inclusion_tag('common/_last-articles.html')
+def last_articles_short(count, is_news, is_school=None):
+	return { 'articles' : articles(count, is_news, is_school)['articles'], 'is_short': True }
+
+#ПОСЛЕДНИЕ СООБЩЕНИЯ ФОРУМА
 @register.inclusion_tag('common/_last-messages.html')
 def last_messages(count):
 	return { 'messages': ThreadComment.objects.order_by('-pub_date')[:int(count)] }

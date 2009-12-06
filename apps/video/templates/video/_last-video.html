@@ -1,7 +1,7 @@
 {% load dates %}
 
 <div align="center">
-	<a href="/video/view/{{ video.id }}"><img src="{{ video.thumb_url }}" alt="" /></a>
+	<a href="/video/view/{{ video.id }}"><img src="{{ video.thumb.url }}" alt="" /></a>
 	 
 	<div><span class="comment">
 		{{ video.pub_date|date:"d F Y"|ru_months }}

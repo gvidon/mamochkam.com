@@ -15,7 +15,8 @@ urlpatterns = patterns('django.views.generic.simple',
 			
 			[entry,
 				datetime.strptime(entry, '%m.%Y.pdf'),
-				float(os.stat(settings.PDF_ROOT+entry)[6])/1000
+				float(os.stat(settings.PDF_ROOT+entry)[6])/1000,
+				os.path.exists(settings.PDF_ROOT+entry.replace('pdf', 'jpg')) and entry.replace('pdf', 'jpg') or ''
 			]
 			
 			for entry in os.listdir(settings.PDF_ROOT)

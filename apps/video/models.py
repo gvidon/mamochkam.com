@@ -52,7 +52,7 @@ class Video(models.Model, Entity):
 	#PREPARE URL
 	def thumb_url(self):
 		try:
-			return settings.MEDIA_URL+self.photo.path[len(settings.MEDIA_ROOT)-1:]+'_thumb'
+			return settings.MEDIA_URL+self.thumb.path[len(settings.MEDIA_ROOT)-1:]
 		
 		except KeyError:
 			return ''

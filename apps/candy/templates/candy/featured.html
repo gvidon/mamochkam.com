@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 
-{% load pages %}
 {% load dates %}
-{% load photos %}
+{% load candy %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/candy.js"></script>
+	
+	<script type="text/javascript">	
+		$(document).ready(function () {
+			Candy.bindCartEvents(
+				$('#cart'),
+				$('.add-to-cart'),
+				$('.remove-from-cart'),
+				$('.clear-cart'),
+				{ }
+			);
+		});
+	</script>
+{% endblock %}
 
 {% block column_right %}
+	{% include 'candy/cart-preview.html' %}
+	
 	<div class="tpl-categories corners">
 		<div class="t-r"></div><div class="b-r"></div>
 
@@ -13,6 +30,8 @@
 			{% include 'candy/_categories-tree.html' %}
 		</div>
 	</div>
+	
+	{% orders_preview 5 request.user.id %}
 {% endblock %}
 
 {% block content %}
