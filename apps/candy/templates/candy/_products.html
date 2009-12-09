@@ -7,7 +7,7 @@
 			
 			<li>
 				<h3><a href="{% url candy-product category=product.category.all.0.slug, product=product.slug %}">
-				{{ product.title|truncatewords:7|lower }}</a>&nbsp;{{ product.price }} руб.</h3>
+				{{ product.title|truncatewords:7|lower }}</a><br/>&nbsp;{{ product.price }} руб.</h3>
 				
 				<img class="ajax-loader" src="{{ media_url }}/images/ajax-loader.gif" />
 				<a id="b{{ product.id }}" href="{% url candy-add-item id=product.id %}" class="add-to-cart">в корзину</a>

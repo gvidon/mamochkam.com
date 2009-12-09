@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 
 {% load candy %}
-{% load pages %}
 {% load dates %}
-{% load photos %}
 
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.keyfilter.min.js"></script>
@@ -28,15 +26,7 @@
 {% endblock %}
 
 {% block column_right %}
-	<div class="tpl-categories corners">
-		<div class="t-r"></div><div class="b-r"></div>
-
-		<div class="wrap">
-			<h2>Разделы магазина</h2>
-			{% include 'candy/_categories-tree.html' %}
-		</div>
-	</div>
-	
+	{% categories_tree 0 %}
 	{% orders_preview 5 request.user.id %}
 {% endblock %}
 

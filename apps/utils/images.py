@@ -11,8 +11,9 @@ def generate_thumb(input, size=(100, 100), output=None):
 	if image.mode not in ('L', 'RGB'):
 		image = image.convert('RGB')
 	
-	image.thumbnail(size, Image.ANTIALIAS)
-	image.save(output, image.format)
+	box = image.size[0] > image.size[1] and image.size[1] or image.size[0]
+	
+	image.crop((0, 0, box, box)).resize(size, Image.ANTIALIAS).save(output, image.format)
 	
 	return output
 

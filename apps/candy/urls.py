@@ -26,7 +26,9 @@ urlpatterns = patterns('',
 	url(r'^orders/?$'                                                  , orders     , name='candy-orders'),
 	
 	# серфинг по каталогу
-	url(r'^category/(?P<slug>[\w\d\-_\/]+)(/page/(?P<page>[0-9]+)/?)?$', category   , name='candy-category'),
+	url(r'^category/(?P<slug>[\w\d\-_\/]+)/page/(?P<page>[0-9]+)/?$'   , category   , name='candy-category-page'),
+	url(r'^category/(?P<slug>[\w\d\-_\/]+)/$'                          , category   , name='candy-category'),
+	
 	url(r'^product/(?P<category>[\w\d\-_]+)/(?P<product>[\w\d\-_]+)/?$', product    , name='candy-product'),
 )
 

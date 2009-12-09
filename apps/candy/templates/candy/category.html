@@ -1,63 +1,40 @@
 {% extends 'base.html' %}
 
-{% load pages %}
 {% load dates %}
-
-{% block css %}
-		<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/candy.css" />
-{% endblock %}
+{% load pages %}
+{% load candy %}
 
 {% block js %}
-	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
-
-	<script type="text/javascript">
+	<script type="text/javascript" src="{{ media_url }}/js/candy.js"></script>
+	
+	<script type="text/javascript">	
 		$(document).ready(function () {
-			$('.tpl-full-archive').jqm();
+			Candy.bindCartEvents(
+				$('#cart'),
+				$('.add-to-cart'),
+				$('.remove-from-cart'),
+				$('.clear-cart'),
+				{ }
+			);
 		});
 	</script>
 {% endblock %}
 
 {% block column_right %}
-	<div class="tpl-top-products corners">
-		<div class="t-r"></div><div class="b-r"></div>
-
-		<div class="wrap">
-			{% include 'candy/_archive-block.html' %}
-		</div>
-	</div>
-
-	<div class="tpl-full-archive jqmWindow">
-		{% full_archive '/bulletins' %}
-	</div>
+	{% include 'candy/cart-preview.html' %}
+	
+	{% categories_tree category.id %}
+	{% orders_preview 5 request.user.id %}
 {% endblock %}
 
 {% block content %}
-	<ul class="tpl-bulletins">
-		<h1>Объявления для мамочек <a href="/bulletins/add">оставить свое</a></h1>
-
-		{% if month %}
-			<h3>
-				архив {{ month|date:"F Y"|ru_months }}
-				<a href="/bulletins">все объявления</a>
-			</h3>
-		{% endif %}
-
-		<br/>
-
-		{% if object_list %}
-			{% include 'bulletins/_bulletins.html' %}
-		{% else %}
-
-			{% if date_list %}
-				<h3>Нет материалов за указанную дату</h3>
-			{% else %}
-				<h3 style="color: red">По вашем запросу материалов нет</h3>
-			{% endif %}
-
-		{% endif %}
-
-		{% if page_obj.has_other_pages %}
-			<li class="pages">{% pages paginator page_obj request.path %}</li>
-		{% endif %}
-	</ul>
+	<h1>{{ category.title }}</h1>
+	
+	<ul class="tpl-products">{% with object_list as products %}
+		{% include 'candy/_products.html' %}
+	{% endwith %}</ul>
+	
+	{% if page_obj.has_other_pages %}
+		<div class="pages">{% pages paginator page_obj request.path %}</div>
+	{% endif %}
 {% endblock %}

@@ -57,17 +57,17 @@ def cart_total(cart):
 	return sum([ float(item.quantity) * item.price for id, item in cart.iteritems() ])
 
 #ОБЗОР КАТЕГОРИИ
-def category(request, slug, page):
-	
-	print slug[:slug.index('/page')].split('/')
+def category(request, slug, page=None):
+	for slug in slug.split('/'):
+		category = get_object_or_404(Category, slug=slug, parent=locals().get('category'))
 	
 	return list_detail.object_list(request,
-		queryset      = Category.objects.get(slug=slug).products.all(),
+		queryset      = category.products.all(),
 		paginate_by   = settings.ITEMS_PER_PAGE,
 		page          = page,
 		allow_empty   = True,
-		template_name = 'pressroom/article_list.html',
-		extra_context = { 'section': section, 'type': 'articles', 'url': '/pressroom/articles/' }
+		template_name = 'candy/category.html',
+		extra_context = { 'category': category }
 	)
 
 #ПОЛНОСТЬЮ ОЧИСТИТЬ КОРЗИНУ
@@ -104,7 +104,7 @@ def order(request, id=None):
 		except IndexError:
 			last_order = None
 		
-		form  = OrderForm(auto_id='%s', initial={
+		form = OrderForm(auto_id='%s', initial={
 			'name'   : request.user.first_name+' '+request.user.last_name,
 			'email'  : request.user.email,
 			'phone'  : request.user.get_profile().phone,
@@ -180,8 +180,14 @@ def orders(request):
 
 #СТРАНИЦА ПРОДУКТА
 def product(request, category, product):
+	try:
+		history =  bool(request.META['HTTP_REFERER'].find('/shop') + 1) and request.META['HTTP_REFERER']
+	except KeyError:
+		pass
+	
 	return render_to_response('candy/product.html', {
-		'product': get_object_or_404(Product, category__slug=category, slug=product)
+		'product': get_object_or_404(Product, category__slug=category, slug=product),
+		'history': locals().get('history'),
 	}, context_instance=RequestContext(request))
 
 #УДАЛИТЬ АЙТЕМ ИЗ КОРЗИНЫ
@@ -200,12 +206,15 @@ def remove_item(request, id):
 def update_cart(request):
 	cart = request.session['cart']
 	
+	# в POST хэш с ключами вида q34, c78 и т.д.
 	try:
 		for id, value in request.POST.iteritems():
+			
+			# если устанвливает значение количества, то привести к целому
 			cart[id[1:]].__setattr__({
 				'q': 'quantity',
 				'c': 'comments',
-			}[id[0]], value)
+			}[id[0]], id[0] == 'q' and int(value) or value)
 			
 			cart[id[1:]].sum = cart[id[1:]].price * float(cart[id[1:]].quantity)
 		

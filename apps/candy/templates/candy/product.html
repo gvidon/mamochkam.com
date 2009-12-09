@@ -28,15 +28,7 @@
 {% block column_right %}
 	{% include 'candy/cart-preview.html' %}</ul>
 	
-	<div class="tpl-categories corners">
-		<div class="t-r"></div><div class="b-r"></div>
-
-		<div class="wrap">
-			<h2>Разделы магазина</h2>
-			{% include 'candy/_categories-tree.html' %}
-		</div>
-	</div>
-	
+	{% categories_tree 0 %}
 	{% orders_preview 5 request.user.id %}
 {% endblock %}
 
@@ -50,16 +42,16 @@
 			{% endif %}{% endfor %}
 		</div>
 		
-		<h2>{{ product.title|lower|capfirst }}</h2>
+		<h2>{{ product.title|lower|capfirst }}{% if history %}&nbsp;<a href="{{ history }}">назад</a>{% endif %}</h2>
 		
 		<p>{{ product.description|safe }}</p>
 		
 		{% if product.size %}<span>Размер</span>: {{ product.size }}<br/>{% endif %}
 		{% if product.madeof %}<span>Материал</span>: {{ product.madeof }}<br/>{% endif %}
 		
-		<span>Цена</span>: {{ product.price }} руб.<br/>
+		<span>Цена</span>: {{ product.price }} руб.<br/><br/>
 		
 		<img class="ajax-loader" src="{{ media_url }}/images/ajax-loader.gif" />
-		<a id="b{{ product.id }}" href="{% url candy-add-item id=product.id %}" class="add-to-cart">в корзину</a>
+		<a id="b{{ product.id }}" href="{% url candy-add-item id=product.id %}" class="add-to-cart">добавить <strong>в корзину</strong></a>
 	</div>
 {% endblock %}
