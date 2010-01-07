@@ -52,7 +52,7 @@ class ArticlePhoto(models.Model):
 		super(ArticlePhoto, self).save()
 		
 		images.resize(self.photo.path)
-		images.generate_thumb(self.photo.path, (150, 110))
+		images.generate_thumb(self.photo.path, (150, 150))
 	
 	#ССЫЛКА НА ТУМБ
 	def thumb_url(self):
@@ -78,7 +78,7 @@ class Article(models.Model, Entity):
 	summary   = models.TextField(help_text="A single paragraph summary or preview of the article.")
 	body      = models.TextField('Body text')
 	
-	author    = models.CharField(max_length=128, blank=True, null=True)
+	author    = models.CharField(max_length=255, blank=True, null=True)
 	source    = models.CharField(max_length=128, blank=True, null=True)
 	
 	comments  = models.ManyToManyField(ArticleComment, blank=True)

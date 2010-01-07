@@ -2,7 +2,7 @@
 
 {% load pages %}
 {% load dates %}
-{% load photos %}
+{% load candy %}
 
 {% block js %}
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.keyfilter.min.js"></script>
@@ -13,15 +13,7 @@
 {% endblock %}
 
 {% block column_right %}
-	<div class="tpl-categories corners">
-		<div class="t-r"></div><div class="b-r"></div>
-
-		<div class="wrap">
-			<h2>Разделы магазина</h2>
-			{% include 'candy/_categories-tree.html' %}
-		</div>
-	</div>
-	
+	{% categories_tree 0 %}
 	{% orders_preview 5 request.user.id %}
 {% endblock %}
 
@@ -31,5 +23,5 @@
 	<p style="font-size: 1.4em; line-height: 27px;">Вы совершили заказ (#{{ order.id }})
 	на общую сумму <strong>{{ order.sum }} руб.</strong>. Теперь необходимо 
 	определить условия оплаты заказа. Наши менеджеры свяжутся с вами по телефону
-	<strong>{{ order.phone }}</strong> и по email <strong>{{ order.email }}</strong></p>
+	<strong>+7 {{ order.phone }}</strong> и по email <strong>{{ order.email }}</strong></p>
 {% endblock %}

@@ -10,12 +10,18 @@
 {% endblock %}
 
 {% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.fancybox.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/jqModal.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/lib/date-format.js"></script>
 	<script type="text/javascript" src="{{ media_url }}/js/comments.js"></script>
 	
 	<script type="text/javascript">	
 		$(document).ready(function () {
+			$('div a.group').fancybox({
+				'enableEscapeButton': true,
+				'hideOnContentClick': false,
+			});
+			
 			$('.tpl-full-archive').jqm();
 			Comments.bindTo($('#comment-form'), $('.tpl-comments ul'), '{% now "Y-m-d H:i:s" %}');
 		});
@@ -81,11 +87,9 @@
 		{% endwith %}
 	{% endif %}
 	
-	{% with object.id as entry_id %}
-		{% with "article" as entry_type %}
-			{% with object.comments.all as comments %}
-				{% include 'common/_comments.html' %}
-			{% endwith %}
+	{% with object.id as entry_id %}{% with "article" as entry_type %}
+		{% with object.comments.all as comments %}
+			{% include 'common/_comments.html' %}
 		{% endwith %}
-	{% endwith %}
+	{% endwith %}{% endwith %}
 {% endblock %}

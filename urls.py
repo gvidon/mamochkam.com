@@ -25,8 +25,5 @@ urlpatterns = patterns('',
 	url(r'^shop/'                                                        , include('mamochkam.apps.candy.urls')),
 )
 
-urlpatterns += patterns('',
-
-	url('^admin/(.*)', admin.site.root),
-)
+urlpatterns += patterns('',	url('^admin/(.*)', admin.site.root))
 

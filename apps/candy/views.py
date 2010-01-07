@@ -149,12 +149,11 @@ def order(request, id=None):
 				
 				del(request.session['cart'])
 				
-				mail_managers(
-					u'Новый заказ номер '+str(order.id),
-					u'Поступил новый заказ на сумму  руб. Контактные данные: '+
-					order.name+' ('+str(order.phone)+', '+order.email+u'). Доставка по адрессу '+order.city+', '+
+				mail_managers(u'Новый заказ номер '+str(order.id), unicode(
+					'Поступил новый заказ на сумму '+str(order.sum)+' руб. Контактные данные: '+
+					order.name+' ('+str(order.phone)+', '+order.email+'). Доставка по адрессу '+order.city+', '+
 					order.address
-				)
+				))
 				
 				return render_to_response('candy/order-confirmed.html', {'order': order}, context_instance=RequestContext(request))
 				

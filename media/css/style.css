@@ -318,7 +318,7 @@ div .pages {
 }
 
 /* Misc styles *************************************************************/
-.tpl-vertlist li { float: left; margin-right: 10px; }
+.tpl-vertlist li { float: left; margin-right: 30px; height: 180px; text-align: center; }
 
 .magazine-advances li { margin: 0px 0px 20px 20px; }
 .magazine-cities li { margin: 0px 0px 10px 20px; font-size: 1.4em; }

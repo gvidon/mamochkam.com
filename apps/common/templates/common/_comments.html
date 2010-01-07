@@ -1,6 +1,11 @@
 {% load dates %}
 
-<div class="tpl-comments">
+<div class="tpl-comments" style="clear: right; {% if object.photos.all %}
+	{% ifnotequal object.photos.all.count 1 %}
+		padding-left: 180px;
+	{% endifnotequal %}
+{% endif %}">
+
 	<h2>Комментарии</h2>
 	
 	<ul>
@@ -12,7 +17,12 @@
 	</ul>
 	
 	{% if request.user.id %}
-		<form id="comment-form" action="/comment/{{ entry_type }}/{{ entry_id }}">
+		<form id="comment-form" action="/comment/{{ entry_type }}/{{ entry_id }}" style="{% if object.photos.all %}
+			{% ifnotequal object.photos.all.count 1 %}{% if not comments %}
+				margin-left: 230px;
+			{% endif %}{% endifnotequal %}
+		{% endif %}">
+		
 			<div>
 				<label for="comment">Оставить свой комментарий</label>
 				<textarea class="text" name="comment"></textarea>

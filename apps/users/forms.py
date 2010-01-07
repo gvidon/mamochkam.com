@@ -83,6 +83,12 @@ class ProfileForm(forms.Form):
 	
 	#CHECK USERNAME FOR UNIQUENESS
 	def clean_username(self):
+		
+		# не пускать пробелы
+		if self.cleaned_data['username'].find(' ') >= 0:
+			raise forms.ValidationError(u'Имя пользователя не может содержать пробелов.')
+		
+		# проверить на уникальность
 		try:
 			User.objects.exclude(id=self.cleaned_data['id']).get(username=self.cleaned_data['username'])
 			

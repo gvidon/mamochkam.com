@@ -34,7 +34,7 @@
 
 {% block content %}
 	<div class="tpl-product-detail">
-		<div >
+		<div>
 			<a href="{{ product.photos.all.0.photo.url }}" class="group" rel="group"><img src="{{ product.thumb_url }}" /></a><br/>
 			
 			{% for photo in product.photos.all %}{% if not forloop.first %}

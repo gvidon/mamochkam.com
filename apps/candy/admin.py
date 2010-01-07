@@ -9,10 +9,10 @@ class CategoryAdmin(admin.ModelAdmin):
 	exclude = ('parent',)
 	
 class OrderAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('name', 'email', 'city', 'sum')
 	
 class OrderItemAdmin(admin.ModelAdmin):
-	pass
+	list_display = ('title', 'price', 'quantity', 'sum')
 
 class ProductAdmin(admin.ModelAdmin):
 	list_display = ('title', 'price', 'is_active', 'is_featured')

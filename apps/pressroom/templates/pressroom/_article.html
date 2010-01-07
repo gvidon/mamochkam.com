@@ -5,6 +5,20 @@
 
 {% if object.author %}<b>Автор:</b> {{ object.author }}{% endif %}
 
+{% if object.photos.all and object.photos.all.1 %}
+		<div style="float: left; margin-right: 20px; width: 160px;">
+			<a href="{{ object.photos.all.0.photo.url }}" class="group" rel="group">
+				<img src="{{ object.thumb_url }}" />
+			</a><br/>
+			
+			{% for photo in object.photos.all %}{% if not forloop.first %}
+				<a href="{{ photo.photo.url }}" class="group" rel="group">
+					<img class="mini-thumb" src="{{ photo.photo.url }}_thumb" />
+				</a>
+			{% endif %}{% endfor %}
+		</div>
+{% endif %}
+
 <p style="margin-top: 20px;">{{ object.body|safe }}</p>
 
 {% if object.source %}<p style="color: #cbc5c4">{{ object.source }}</p>{% endif %}
