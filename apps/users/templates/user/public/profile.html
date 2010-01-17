@@ -27,7 +27,10 @@
 		<h1>Анкета мамочек</h1>
 		
 		<div class="username">
-			<img src="{{ media_url }}/{{ user.get_profile.avatar }}" />
+			{% if user.get_profile.avatar %}
+				<img src="{{ media_url }}/{{ user.get_profile.avatar }}" />
+			{% endif %}
+			
 			<h1>{{ user.username }}</h1>
 		</div>
 		

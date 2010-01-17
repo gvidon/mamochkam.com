@@ -3,8 +3,8 @@ from django.conf               import settings
 from models                    import Bulletin
 
 urlpatterns = patterns('mamochkam.apps.bulletins.views',
-	url(r'reply/?', 'reply'),
-	url(r'add/?'  , 'add'),
+	url(r'reply/?', 'reply', name='bt-reply'),
+	url(r'add/?'  , 'add'  , name='bt-add'),
 )
 
 # Bulletins list and details

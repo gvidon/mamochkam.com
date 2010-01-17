@@ -34,30 +34,39 @@
 
 {% block content %}
 	<div class="tpl-bulletins">
-		<h1>Новое объявление <a href="/bulletins">все объявления</a></h1>
+		{% if request.user.is_authenticated %}
+			<h1>Новое объявление <a href="/bulletins">все объявления</a></h1>
+		
+			{% if form %}
+				<form action="" method="post">
+					<div {% if form.errors.title %}class="erroneus"{% endif %}>
+						<label for="email">Заголовок</label>
+						{{ form.title }}
+						<span class="error">{{ form.errors.title.as_text|safe|cut:"*" }}</span>
+					</div>
 
-		{% if form %}
-			<form action="" method="post">
-				<div {% if form.errors.title %}class="erroneus"{% endif %}>
-					<label for="email">Заголовок</label>
-					{{ form.title }}
-					<span class="error">{{ form.errors.title.as_text|safe|cut:"*" }}</span>
-				</div>
+					{% for error in form.non_field_errors %}
+						<div class="error">{{ error|safe }}</div>
+					{% endfor %}
 
-				{% for error in form.non_field_errors %}
-					<div class="error">{{ error|safe }}</div>
-				{% endfor %}
+					<div class="phone {% if form.errors.description %}erroneus{% endif %}">
+						<label for="phone">Текст объявления</label>
+						{{ form.description }}
+						<span class="error">{{ form.errors.description.as_text|safe|cut:"*" }}</span>
+					</div>
 
-				<div class="phone {% if form.errors.description %}erroneus{% endif %}">
-					<label for="phone">Текст объявления</label>
-					{{ form.description }}
-					<span class="error">{{ form.errors.description.as_text|safe|cut:"*" }}</span>
-				</div>
-
-				<input type="submit" value="Добавить" />
-			</form>
+					<input type="submit" value="Добавить" />
+				</form>
+			{% else %}
+				<h2>Ваше объявление сохранено и после модерации будет опубликовано либо отвергнуто.</h2>
+			{% endif %}
 		{% else %}
-			<h2>Ваше объявление сохранено и после модерации будет опубликовано либо отвергнуто.</h2>
+			<h1>Доступно только пользователям <a href="{% url bt-list %}">все объявления</a></h1>
+			
+			<p style="font-size: 1.29em; line-height: 22px; width: 700px;">Чтобы оставить объявление вам
+			необходимо быть <strong>зарегистрированным</strong> пользователем "Мамочек". Если вы уже
+		  регистрировались - <a href="{% url login %}?next={{ request.path }}">войдите здесь</a>.
+		  Если нет - <a href="{% url register %}">регистрируйтесь</a></p>
 		{% endif %}
 	</div>
 {% endblock %}

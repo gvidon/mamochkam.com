@@ -7,7 +7,7 @@ from email.MIMEImage     import MIMEImage
 
 from django.template.context import RequestContext
 from django.shortcuts        import render_to_response
-from django.http             import HttpResponse
+from django.http             import HttpResponse, Http404
 from django.template         import RequestContext
 
 from models import Bulletin
@@ -17,7 +17,7 @@ from forms  import BulletinForm
 def add(request):
 	form = BulletinForm()
 	
-	if request.POST:
+	if request.POST and request.user.is_authenticated():
 		form = BulletinForm(request.POST)
 		
 		if form.is_valid():
