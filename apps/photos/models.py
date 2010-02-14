@@ -8,6 +8,7 @@ from django.db                    import models
 
 from mamochkam.apps.common.models import Entity
 from mamochkam.apps.search.models import Tag
+from mamochkam.apps.utils         import images
 
 #GALLERY MODEL
 class Gallery(models.Model):
@@ -50,7 +51,7 @@ class PhotoComment(models.Model):
 
 #MAIN PHOTO MODEL
 class Photo(models.Model, Entity):
-	user     = models.ForeignKey(User)
+	user     = models.ForeignKey(User, related_name='photos')
 	pub_date = models.DateTimeField(default=datetime.now)
 	gallery  = models.ForeignKey(Gallery)
 	photo    = models.ImageField(upload_to='upload/photos')
@@ -64,29 +65,12 @@ class Photo(models.Model, Entity):
 	def __unicode__(self):
 		return self.title
 	
-	#GENERATE PHOTO THUMBNAIL
-	def generate_thumb(self, output=None):
-		image = Image.open(self.photo.path)
+	#СОХРАНИТЬ ФОТО И СОЗДАТЬ THUMB
+	def save(self):
+		super(Photo, self).save()
 		
-		if(not output):
-			output = self.photo.path+'_thumb'
-		
-		if image.mode not in ('L', 'RGB'):
-			image = image.convert('RGB')
-	
-		image.thumbnail((100, 100), Image.ANTIALIAS)
-		image.save(output, image.format)
-	
-		return output
-	
-	#GENERATE PHOTO THUMBNAIL
-	def resize(self):
-		image = Image.open(self.photo.path)
-		
-		image.thumbnail((600, 800), Image.ANTIALIAS)
-		image.save(self.photo.path, image.format)
-	
-		return True
+		images.resize(self.photo.path)
+		images.generate_thumb(self.photo.path, (100, 100))
 	
 	#PREPARE URL
 	def thumb_url(self):

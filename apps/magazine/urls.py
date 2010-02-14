@@ -24,7 +24,6 @@ urlpatterns = patterns('django.views.generic.simple',
 			if not os.path.isdir(settings.PDF_ROOT+entry)
 				and re.match(r'^\d{2}\.\d{4}\.pdf$', entry, re.IGNORECASE)
 		
-		], reverse=True)
+		], key=lambda P: P[1], reverse=True)
 	}}, name='magazine-volumes'),
 )
-

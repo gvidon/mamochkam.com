@@ -9,7 +9,7 @@ from django.shortcuts               import render_to_response
 from django.conf                    import settings
 from django.http                    import HttpResponse, Http404
 
-from models import Thread, ThreadComment
+from models                         import Thread, ThreadComment
 
 #ВСЕ СООБЩЕНИЯ ВЕТКИ
 def thread(request, id, page=1):

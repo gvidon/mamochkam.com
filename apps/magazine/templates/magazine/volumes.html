@@ -7,7 +7,10 @@
 
 {% block text %}
 	{% if volumes.0 %}
-		<h1 style="margin-bottom: 0px;"><a href="{{ media_url }}/magazine/{{ volumes.0.0 }}">Свежий номер ({{ volumes.0.2|floatformat:"2" }} кб)</a></h1>
+		<h3>Для просмотра журнала вам понадобится программа
+		<a href="http://get.adobe.com/reader/"><strong>Adobe Acrobat</strong></a></h3>
+		
+		<h1 style="margin-bottom: 0px; margin-top: 20px;"><a href="{{ media_url }}/magazine/{{ volumes.0.0 }}">Свежий номер ({{ volumes.0.2|floatformat:"2" }} кб)</a></h1>
 		
 		{% if volumes.0.3 %}<a href="{{ media_url }}/magazine/{{ volumes.0.0 }}">
 			<img src="{{ media_url }}/magazine/{{ volumes.0.3 }}" />
@@ -17,6 +20,8 @@
 			<h2 style="margin-top: 40px;">Все выпуски журнала в формате PDF</h2>
 		
 			<ul class="tpl-vertlist">{% for volume in volumes %}{% if not forloop.first %}
+				<li><h2>{% ifchanged volume.1|date:"Y" %}{{ volume.1|date:"Y" }} год{% endifchanged %}</h2></li>
+				
 				<li {% if not volume.3 %}style="margin: 30px; height: 140px;"{% endif %}>
 					{% if volume.3 %}<a href="{{ media_url }}/magazine/{{ volume.0 }}">
 						<img src="{{ media_url }}/magazine/{{ volume.3 }}_thumb" width="100" />

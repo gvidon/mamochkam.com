@@ -44,10 +44,7 @@ def upload(request):
 		
 		if(form.is_valid()):
 			photo = form.save()
-			
 			photo.attach_tags(request.POST['tags'])
-			photo.resize()
-			photo.generate_thumb()
 			
 	return render_to_response(
 		'photos/upload.html',

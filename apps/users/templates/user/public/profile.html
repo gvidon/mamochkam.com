@@ -9,6 +9,19 @@
 		<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/public.css" />
 {% endblock %}
 
+{% block js %}
+	<script type="text/javascript" src="{{ media_url }}/js/lib/jquery.fancybox.js"></script>
+	
+	<script type="text/javascript">	
+		$(document).ready(function () {
+			$('div a.group').fancybox({
+				'enableEscapeButton': true,
+				'hideOnContentClick': false,
+			});
+		});
+	</script>
+{% endblock %}
+
 {% block column_right %}
 	<div class="tpl-board corners">
 		<div class="t-r"></div><div class="b-r"></div>
@@ -24,38 +37,50 @@
 	
 {% block content %}
 	<div class="profile">
-		<h1>Анкета мамочек</h1>
-		
-		<div class="username">
-			{% if user.get_profile.avatar %}
-				<img src="{{ media_url }}/{{ user.get_profile.avatar }}" />
-			{% endif %}
+		<h1>Анкета пользователя</h1>
+
+		<div style="margin-top: 20px">
+			<div class="username">
+				{% if user.get_profile.avatar %}
+					<img src="{{ media_url }}/{{ user.get_profile.avatar }}" />
+				{% endif %}
 			
-			<h1>{{ user.username }}</h1>
+				<h1>{{ user.username }}</h1>
+			</div>
+		
+			{% if user.first_name or user.last_name %}
+				<div>
+					<h3>Полное имя</h3>
+					{{ user.first_name|capfirst }}
+					{{ user.get_profile.sur_name|capfirst }}
+					{{ user.last_name|capfirst }}
+				</div><br/>
+			{% endif %}
+		
+			{% if user.get_profile.birthdate %}
+				<div>
+					<h3>Дата рождения</h3>
+					{{ user.get_profile.birthdate|date:"d F Y"|ru_months }}
+				</div><br/>
+			{% endif %}
+		
+			{% if user.get_profile.icq %}
+				<div>
+					<h3>Номер ICQ</h3>
+					{{ user.get_profile.icq }}
+				</div>
+			{% endif %}
 		</div>
 		
-		{% if user.first_name or user.last_name %}
-			<div>
-				<h3>Полное имя</h3>
-				{{ user.first_name|capfirst }}
-				{{ user.get_profile.sur_name|capfirst }}
-				{{ user.last_name|capfirst }}
-			</div>
-		{% endif %}
-		
-		{% if user.get_profile.birthdate %}
-			<div>
-				<h3>Дата рождения</h3>
-				{{ user.get_profile.birthdate|date:"d F Y"|ru_months }}
-			</div>
-		{% endif %}
-		
-		{% if user.get_profile.icq %}
-			<div>
-				<h3>Номер ICQ</h3>
-				{{ user.get_profile.icq }}
-			</div>
-		{% endif %}
+		{% if user.photos.all %}<div style="width: 570px;">
+			<h3>Загруженные изображения</h3>
+			
+			{% for photo in user.photos.all %}{% if photo.photo.path %}
+				<a href="{{ photo.photo.url }}" class="group" rel="group">
+					<img class="mini-thumb" src="{{ photo.photo.url }}_thumb" />
+				</a>
+			{% endif %}{% endfor %}
+		</div>{% endif %}
 	</div>
 {% endblock %}
 

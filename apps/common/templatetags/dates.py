@@ -20,7 +20,6 @@ months = [month + [month[0][0:3]] for month in [
 	[ 'December' , u'Декабрь' , u'Декабря'  ],
 ]]
 
-
 register = template.Library()
 
 #ALL MONTHES LIST SINCE FIRST ITEM PUB DATE
