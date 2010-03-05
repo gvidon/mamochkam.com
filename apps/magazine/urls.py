@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import os, re
 
-from datetime                     import datetime
-from django.conf                  import settings
-from django.conf.urls.defaults    import *
+from django.conf.urls.defaults import *
+from django.conf               import settings
+from datetime                  import datetime
 
 urlpatterns = patterns('django.views.generic.simple',
 	url(r'^price/?$', 'direct_to_template', {'template': 'magazine/price.html'}, name='magazine-price'),

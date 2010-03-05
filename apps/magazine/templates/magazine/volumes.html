@@ -20,7 +20,13 @@
 			<h2 style="margin-top: 40px;">Все выпуски журнала в формате PDF</h2>
 		
 			<ul class="tpl-vertlist">{% for volume in volumes %}{% if not forloop.first %}
-				<li><h2>{% ifchanged volume.1|date:"Y" %}{{ volume.1|date:"Y" }} год{% endifchanged %}</h2></li>
+				{% ifnotequal forloop.counter 2 %}
+					{% with volume.1|date:"Y" as year %}{% ifchanged year %}
+						</ul><br/><ul class="tpl-vertlist" style="margin-top: 200px;"><li><h2>
+							{{ year }} год
+						</h2></li>
+					{% endifchanged %}{% endwith %}
+				{% endifnotequal %}
 				
 				<li {% if not volume.3 %}style="margin: 30px; height: 140px;"{% endif %}>
 					{% if volume.3 %}<a href="{{ media_url }}/magazine/{{ volume.0 }}">
