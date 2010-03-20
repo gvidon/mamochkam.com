@@ -15,7 +15,7 @@ from forms                          import PhotoForm
 def view_gallery(request, slug, page=1):
 	try:
 		gallery = Gallery.objects.get(slug__exact=slug)
-		photos  = Photo.objects.filter(gallery=gallery, publish=True)
+		photos  = Photo.objects.filter(gallery=gallery, publish=True).order_by('-id')
 	
 	except Gallery.DoesNotExist:
 		raise Http404

@@ -10,7 +10,7 @@ urlpatterns += patterns('django.views.generic.list_detail',
 	url(r'^(page/(?P<page>[0-9]+))?/?$', 'object_list', {
 		'paginate_by': settings.ITEMS_PER_PAGE,
 		'allow_empty': True,
-		'queryset'   : Photo.objects.filter(publish=True),
+		'queryset'   : Photo.objects.filter(publish=True).order_by('-id'),
 	}, name='ph-photo-list'),
 	
 	url(r'view/(?P<object_id>[0-9]+)/?$', 'object_detail', {
@@ -28,7 +28,7 @@ urlpatterns += patterns('django.views.generic.date_based',
 	url(r'archive/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'archive_month', {
 		'date_field'   : 'pub_date',
 		'allow_empty'  : True,
-		'queryset'     : Photo.objects.filter(publish=True),
+		'queryset'     : Photo.objects.filter(publish=True).order_by('-id'),
 		'template_name': 'photos/photo_list.html',
 	}, name='ph-archive-month'),
 )

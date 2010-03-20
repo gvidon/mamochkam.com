@@ -12,7 +12,12 @@ from models                          import Banner
 
 #РЕДИРЕКТ С БАННЕРА
 def advert_redirect(request, banner_id):
-	return HttpResponseRedirect(get_object_or_404(Banner, pk=banner_id).url)
+	banner = get_object_or_404(Banner, pk=banner_id)
+	
+	banner.hits = int(banner.hits or 0) + 1
+	banner.save()
+	
+	return HttpResponseRedirect(banner.url)
 
 #PORTAL MAIN PAGE
 def index(request):

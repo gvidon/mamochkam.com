@@ -18,17 +18,14 @@
 		
 		{% if volumes.1 %}
 			<h2 style="margin-top: 40px;">Все выпуски журнала в формате PDF</h2>
-		
-			<ul class="tpl-vertlist">{% for volume in volumes %}{% if not forloop.first %}
-				{% ifnotequal forloop.counter 2 %}
+			
+			<table><tbody>{% for volume in volumes %}{% if not forloop.first %}
 					{% with volume.1|date:"Y" as year %}{% ifchanged year %}
-						</ul><br/><ul class="tpl-vertlist" style="margin-top: 200px;"><li><h2>
-							{{ year }} год
-						</h2></li>
+						</tr><tr><td colspa="4"><h2>{{ year }} год</h2></td></tr><tr>
 					{% endifchanged %}{% endwith %}
-				{% endifnotequal %}
 				
-				<li {% if not volume.3 %}style="margin: 30px; height: 140px;"{% endif %}>
+				{% cycle <tr>,,, %}
+				<td align="center">
 					{% if volume.3 %}<a href="{{ media_url }}/magazine/{{ volume.0 }}">
 						<img src="{{ media_url }}/magazine/{{ volume.3 }}_thumb" width="100" />
 					</a>{% endif %}
@@ -36,8 +33,9 @@
 					<h2><a href="{{ media_url }}/magazine/{{ volume.0 }}">
 						{{ volume.1|date:"F"|ru_months:"1" }} ({{ volume.2|floatformat:"2" }} кб)
 					</a></h2>
-				</li>
-			{% endif %}{% endfor %}</ul>
+				</td>
+				{% cycle ,,,<tr> %}
+			{% endif %}{% endfor %}</tbody></table>
 		{% endif %}
 	{% else %}
 		<h3 style="color: red">На текущий моменты ни один выпуск не опубликован.</h3>
