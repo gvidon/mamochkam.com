@@ -8,6 +8,7 @@ from datetime                  import datetime
 urlpatterns = patterns('django.views.generic.simple',
 	url(r'^price/?$', 'direct_to_template', {'template': 'magazine/price.html'}, name='magazine-price'),
 	url(r'^oreol/?$', 'direct_to_template', {'template': 'magazine/oreol.html'}, name='magazine-oreol'),
+	url(r'^dates/?$', 'direct_to_template', {'template': 'magazine/dates.html'}, name='magazine-dates'),
 	
 	# страница с номерами журнала, номера в листе (номер, размер в килобайтах)
 	url(r'^/?$', 'direct_to_template', {'template': 'magazine/volumes.html', 'extra_context': {

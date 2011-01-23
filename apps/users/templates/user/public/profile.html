@@ -52,7 +52,7 @@
 				<div>
 					<h3>Полное имя</h3>
 					{{ user.first_name|capfirst }}
-					{{ user.get_profile.sur_name|capfirst }}
+					{% firstof user.get_profile.sur_name|capfirst '' %}
 					{{ user.last_name|capfirst }}
 				</div><br/>
 			{% endif %}

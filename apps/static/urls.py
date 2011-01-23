@@ -1,4 +1,4 @@
-from django.conf.urls.defaults   import *
+from django.conf.urls.defaults import *
 
 urlpatterns = patterns('django.views.generic.simple',
 	url(r'^$'                , 'direct_to_template', {'template': 'static/who-we-r.html'} , name='who-we-r'),
@@ -10,4 +10,6 @@ urlpatterns = patterns('django.views.generic.simple',
 	
 	url(r'^help/?$'          , 'direct_to_template', {'template': 'static/use-help.html'} , name='use-help'),
 	url(r'^recover/?$'       , 'direct_to_template', {'template': 'static/recover.html' } , name='recover-help'),
+	
+	url(r'^training/?$'      , 'direct_to_template', {'template': 'static/training.html' } , name='training'),
 )

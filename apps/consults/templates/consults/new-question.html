@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block css %}
+		<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-bulletins">
+		<h1>Новый вопрос <a href="{% url questions %}">все вопросы</a></h1>
+
+		{% if not request.POST or error%}
+			<form action="" method="post">
+				<div {% if error.title %}class="erroneus"{% endif %}>
+					<label for="title">Тема вопроса</label>
+					<input id="title" name="title" type="text" value="{% firstof title '' %}" />
+					<span class="error">{{ error.title }}</span>
+				</div>
+				
+				<div>
+					<label for="master">Кто отвечает?</label>
+					
+					<select id="master" name="master">{% for master in masters %}
+						<option value="{{ master.pk }}">{{ master.get_profile.consults_in }}</option>
+					{% endfor %}</select>
+				</div>
+				
+				<div {% if error.text %}class="erroneus"{% endif %}>
+					<label for="text">Подробный текст вопроса</label>
+					<textarea id="text" name="text">{% firstof text '' %}</textarea>
+					<span class="error">{{ error.text }}</span>
+				</div>
+
+				<input type="submit" value="Добавить" />
+			</form>
+		{% else %}
+			<h2>Новый вопрос добавлен. <a href="{% url questions %}">Обратно к вопросам.</a></h2>
+		{% endif %}
+	</div>
+{% endblock %}

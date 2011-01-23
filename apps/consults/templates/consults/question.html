@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load pages %}
+{% load dates %}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="{{ media_url }}/css/pages/profile.css" />
+{% endblock %}
+
+{% block content %}
+	<div class="tpl-thread">
+		<div class="title"><a href="{% url question id=question.id %}">{{ question.title }}</a></div>
+		<div><span class="date">{{ question.created_at|date:"d F Y"|ru_months }}</span></div>
+
+		<p>
+			{{ question.text }}<br/><br/>
+			<strong>спросил <a href="{% url public-profile username=question.user.username %}">{{ question.user.username }}</a></strong>
+		</p>
+
+		<div class="tpl-comments" style="width: 400px;"><ul>{% for answer in question.answers.all %}<li>
+			<span class="comment">{% if answer.user.get_profile.consults_in %}
+				<strong>отвечает</strong>
+				<a href="{% url public-profile username=answer.user.username %}">
+					{{ answer.user.first_name }} {{ answer.user.last_name }}
+				</a>
+			{% else %}
+				написал <a href="{% url public-profile username=answer.user.username %}">{{ answer.user.username }}</a>
+				{{ answer.created_at|date:"j-го F Y H:i"|ru_months }}:
+			{% endif %}</span><br/>
+			
+			{% if answer.user.get_profile.avatar %}
+				<img src="{{ answer.user.get_profile.avatar.url }}?{{ "abcdef1234"|make_list|random }}" alt="avatar" />
+			{% endif %}
+			
+			<p>{{ answer.text }}</p>
+		</li>{% endfor %}</ul></div>
+		
+		{% if is_author or is_master %}
+			<form action="{% url answer id=question.id %}" method="post" style="margin-left: 0px;">
+		
+				<div>
+					<label for="text">Оставить свой комментарий</label>
+					<textarea class="text" name="text"></textarea>
+				</div>
+			
+				<input type="submit" value="Оставить" />
+			</form>
+		{% endif %}
+	</div>
+{% endblock %}

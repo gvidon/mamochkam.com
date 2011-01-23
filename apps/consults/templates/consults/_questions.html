@@ -1,0 +1,17 @@
+{% load dates %}
+
+{% for question in object_list %}
+	{% ifchanged question.master.get_profile.consults_in %}<li style="margin-bottom: 7px;">
+		<h2>{{ question.master.get_profile.consults_in }}</h2>
+	</li>{% endifchanged %}
+	
+	<li>
+		<div class="title"><a href="{% url question id=question.id %}">{{ question.title }}</a></div>
+		
+		<div><span class="date">
+			{{ question.created_at|date:"d F Y"|ru_months }}
+			<b>спросил</b> <a href="{% url public-profile username=question.user.username %}">{{ question.user.username }}</a><br/>
+			{% if question.answers.all %}<b>есть ответ</b>{% endif %}
+		</span></div>
+	</li>
+{% endfor %}

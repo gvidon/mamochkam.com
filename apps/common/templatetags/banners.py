@@ -30,7 +30,7 @@ def banner(size, ip):
 		banner.counter += 1
 	
 	# проверить активность по временному и каунт пределам
-	banner.is_active = (banner.counter < banner.limit) or (banner.date_limit >= datetime.today())
+	banner.is_active = (banner.counter < banner.limit) or ((banner.date_limit or datetime.today()) >= datetime.today())
 	banner.save()
 	
 	return '<a href="/advert-redirect/'+str(banner.id)+'"><img src="'+banner.image.url+'" /></a>' 

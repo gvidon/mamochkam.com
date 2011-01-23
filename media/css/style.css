@@ -52,7 +52,7 @@ body {
 		top: 180px;
 		width: 880px;
 		margin: 0 auto;
-		padding-left: 90px;
+		padding-left: 190px;
 		overflow: hidden;
 	}
 
@@ -62,7 +62,7 @@ body {
 		font-size: 1.571em;
 		line-height: 1em;
 
-		margin-right: 27px;
+		margin-right: 17px;
 	}
 
 		.common-navigation li a { text-decoration: underline; }
@@ -324,6 +324,8 @@ div .pages {
 .magazine-cities li { margin: 0px 0px 10px 20px; font-size: 1.4em; }
 
 .ajax-loader { display: none; }
+
+.slogans { margin-top: 40px;font-size: 1.2em; line-height: 25px; width: 540px; }
 
 /* Table styles ************************************************************/
 td { padding: 5px; padding-left: 10px; }

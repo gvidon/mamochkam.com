@@ -2,6 +2,8 @@
 
 {% load blocks %}
 
+{% block title %}Школа семейного воспитания "МАМОЧКА"{% endblock %}
+
 {% block column_right %}
 	<div class="tpl-article-categories corners">
 		<div class="t-r"></div><div class="b-r"></div>
@@ -19,16 +21,20 @@
 {% endblock %}
 
 {% block content %}
+	<h1>Школа семейного воспитания "МАМОЧКА" <a href="{% url school-raspisanie %}">как найти</a></h1>
+	
+	<br/>
+	
 	<ul class="tpl-articles">
-		<h1>Школа семьи "МАМОЧКА" <a href="{% url school-raspisanie %}">как найти</a></h1>
-		
-		<br/>
-		
 		{% for direction in object_list %}
 			<li>
+				<div class="thumb"><img src="{{ MEDIA_URL }}/images/school/{{ direction.slug }}.jpg" /></div>
+				
 				<div class="title"><a href="{% url school-direction slug=direction.slug %}">
 					{{ direction.title }}
-				</a></div>
+				</a></div><br/>
+				
+				{% if direction.announce %}<p>{{ direction.announce|safe }}</p>{% else %}<br/>{% endif %}
 			</li>
 		{% endfor %}
 	</ul>

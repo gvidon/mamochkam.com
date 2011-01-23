@@ -36,7 +36,7 @@
 					<li><a href="{% url profile %}">Настройки</a></li>
 					<li><a href="{% url logout %}">Выход</a></li>
 				{% else %}
-					<li><a href="{% url register %}" style="font-size: 1.2em">Тут регистрация</a></li>
+					<li><a href="{% url register %}" style="font-size: 1.4em">Регистрация</a></li>
 					<li><a href="{% url login %}">Войти</a></li>
 				{% endif %}
 			</ul>
@@ -51,7 +51,9 @@
 				<li><a href="/pressroom/articles">Статьи</a></li>
 				<li><a href="/photos">Фото</a></li>
 				<li><a href="/video">Видео</a></li>
-				<li><a href="/shop">Магазин</a></li>
+				
+				{% comment %}<li><a href="/shop">Магазин</a></li>{% endcomment %}
+				
 				<li><a href="/bulletins">Объявления</a></li>
 				<li><a href="/forum">Форум</a></li>
 				<li><a href="{% url magazine-volumes %}">Журнал</a></li>
@@ -72,11 +74,14 @@
 			<div class="tpl-column-right">
 				{% block column_right %}{% endblock %}
 				
-				{% if 0 %}
+				{% ifequal request.path "/" %}
 					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
-					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
-					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
-				{% endif %}
+				{% endifequal %}
+				
+				{% comment %}
+				<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
+				<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
+				{% endcomment %}
 			</div>
 			
 			<div class="tpl-content">

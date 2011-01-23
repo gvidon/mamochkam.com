@@ -10,23 +10,28 @@ from django.db                  import models
 
 #ADDITIONAL USER ATTRIBUTES AND FLAGS
 class Profile(models.Model):
-	user       = models.ForeignKey(User)
-	avatar     = models.ImageField(upload_to='upload/avatars', blank=True, null=True)
+	user        = models.ForeignKey(User, verbose_name=u'Системный пользователь', related_name='profiles')
+	avatar      = models.ImageField(upload_to='upload/avatars', verbose_name=u'Автар', blank=True, null=True)
 	
-	auth_type  = models.CharField(max_length=6, choices=(
+	auth_type   = models.CharField(max_length=6, choices=(
 		('Local' , 'local'),
 		('OpenId', 'openid'),
-	), blank=True, default='local')
+	), verbose_name=u'Способ авторизации', blank=True, default='local')
 	
-	sur_name   = models.CharField(max_length=64, blank=True, null=True)
+	sur_name    = models.CharField(max_length=64, verbose_name=u'Отчество', blank=True, null=True)
 	
-	gender     = models.CharField(max_length=6, choices=[
+	gender      = models.CharField(max_length=6, choices=[
 		('male', u'Мужской'), ('female', u'Женский')
-	], blank=True, null=True)
+	], verbose_name=u'Пол', blank=True, null=True)
 	
-	birthdate  = models.DateTimeField(blank=True, null=True)
-	phone      = models.CharField(max_length=10, blank=True, null=True)
-	icq        = models.CharField(max_length=12, blank=True, null=True)
+	birthdate   = models.DateTimeField(verbose_name=u'Дата рождения', blank=True, null=True)
+	phone       = models.CharField(max_length=10, verbose_name=u'Телефон', blank=True, null=True)
+	icq         = models.CharField(max_length=12, blank=True, null=True)
+	
+	consults_in = models.CharField(max_length=64, verbose_name=u'Область в которой может консультировать', blank=True, null=True)
+	
+	def __unicode__(self):
+		return (' ').join((self.user.first_name, self.user.last_name,))
 	
 	#SEND CUSTOM EMAIL FROM SYSTEM TO USER
 	def send_email(self, subject, text_part, html_part):
@@ -45,7 +50,8 @@ class Profile(models.Model):
 		s.quit() 
 		
 	class Meta:
-		db_table = 'profile'
+		app_label = 'auth'
+		db_table  = 'profile'
 
 #ACTIVATION VALUES
 class Activation(models.Model):
