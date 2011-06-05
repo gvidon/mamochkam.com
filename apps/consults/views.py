@@ -48,6 +48,8 @@ def question(request, id):
 @login_required
 def new_question(request):
 	from django.contrib.auth.models import User
+	from django.template.loader     import render_to_string
+	from django.core.mail           import EmailMessage
 	
 	error = {}
 	
@@ -58,17 +60,26 @@ def new_question(request):
 		if not request.POST.get('text'):
 			error['text'] = u'Нужны подробности'
 		
+		# Сохранить вопрос и оповестить причастных
 		try:
+		
 			if not error:
-				Question.objects.create(
+				question = Question.objects.create(
 					user   = request.user,
 					master = get_object_or_404(User, pk=request.POST['master']),
-					
 					title  = request.POST['title'],
 					text   = request.POST['text']
 				)
+				
+				EmailMessage(u'Для вас есть новый вопрос на сайте',
+					render_to_string('mail/new-question.html', {'id': question.id}),
+					'do-not-reply@mamochkam.com',
+					[question.master.email, 'elena-donec@yandex.ru']
+				).send()
+				
 		except KeyError:
 			raise Http404
+		
 		
 	return render_to_response('consults/new-question.html', {
 		'masters': User.objects.exclude(profiles__consults_in=None),

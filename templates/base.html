@@ -1,12 +1,31 @@
 {% load banners %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>{% block title %}МАМОЧКА - информационный портал для любящих родителей{% endblock %}</title>
+		
+		{% ifequal request.path '/pressroom/sad/' %}
+			<title>Солнышко, частный детский сад Ростов, детсад, садик, подготовка к школе, центр развития детей</title>
+			<meta name="description" content="Солнышко, частный детский сад Ростов, детсад, садик, подготовка к школе, развитие детей" />
+		{% else %}
+		
+			<title>{% block title %}{% ifequal direction.slug 'nash-malish' %}
+				
+				Курсы для беременных, беременность, роды, подготовка
+			
+			{% else %}
+				
+				{% ifequal direction.slug 'mini-sad' %}
+					Солнышко, частный детский сад Ростов, детсад, садик, подготовка к школе, центр развития детей
+				{% else %}
+					МАМОЧКА - информационный портал для любящих родителей
+				{% endifequal %}
+			
+			{% endifequal %}{% endblock %}</title>
+			
+		{% endifequal %}
 
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/style.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="{{ media_url }}/css/jquery.tooltip.css" />
@@ -58,6 +77,7 @@
 				<li><a href="/forum">Форум</a></li>
 				<li><a href="{% url magazine-volumes %}">Журнал</a></li>
 				<li><a href="{% url school %}">Школа</a></li>
+				<li><a href="http://mamochkam.com/school/direction/mini-sad/">Сад</a></li>
 			</ul>
 
 			<ul class="section-navigation"></ul>
@@ -76,10 +96,10 @@
 				
 				{% ifequal request.path "/" %}
 					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
+					<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
 				{% endifequal %}
 				
 				{% comment %}
-				<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
 				<div class="banner-240x120">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
 				{% endcomment %}
 			</div>

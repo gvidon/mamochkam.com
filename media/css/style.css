@@ -325,8 +325,12 @@ div .pages {
 
 .ajax-loader { display: none; }
 
-.slogans { margin-top: 40px;font-size: 1.2em; line-height: 25px; width: 540px; }
+.slogans { margin-top: 40px;font-size: 1.2em; line-height: 25px; width: 300px; }
 
 /* Table styles ************************************************************/
 td { padding: 5px; padding-left: 10px; }
 thead tr td { font-weight: bold; text-align: center; }
+
+/* Consulting block ********************************************************/
+.consulting p { margin-top: 10px; height: 110px; }
+.consulting img { float: left; padding-right: 10px; }

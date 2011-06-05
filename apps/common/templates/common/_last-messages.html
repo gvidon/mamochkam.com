@@ -3,7 +3,7 @@
 <ul class="last-messages">
 	{% for message in messages %}
 		<li>
-			{{ message.text|truncatewords_html:17 }}...
+			{{ message.text|truncatewords_html:17 }}
 			
 			<div><span class="date">
 				написал <a href="{% url public-profile username=message.user.username %}"><b>{{ message.user.username }}</b></a>

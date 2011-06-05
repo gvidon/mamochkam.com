@@ -67,8 +67,8 @@
 	</div>
 </div>
 
-<div class="tpl-column-right">
-	<div class="tpl-board corners">
+<div class="tpl-column-right" style="width: 630px">
+	<div class="tpl-board corners" style="float: right">
 		<div class="t-r"></div><div class="b-r"></div>
 
 		<div class="wrap">
@@ -78,9 +78,32 @@
 			<a class="section-link" href="/bulletins">Все объявления →</a>
 		</div>
 	</div>
+	
+	<div class="tpl-board corners">
+		<div class="t-r"></div><div class="b-r"></div>
+
+		<div class="wrap consulting">
+			<h2>Задай вопрос специалисту</h2>
+			
+			<p>
+				<img src="{{ media_url }}/images/cheremnova.jpg" />
+				<a href="{% url questions %}">Черемнова Елена Юрьевна</a><br/>
+				<strong>педагог</strong> высшей категории, психолог
+			</p>
+			
+			<p>
+				<img src="{{ media_url }}/images/kobyakov.jpg" />
+				<a href="{% url questions %}">Кобяков Дмитрий Вячеславович</a><br/>
+				участковый <strong>врач-педиатр</strong> первой врачебной категории
+			</p>
+		</div>
+	</div>
 </div>
 
 <div class="tpl-article">
+	<div class="banner-240x120" style="margin-top: 1px; padding-top: 1px; float: left; display: inline;">{% banner '240x120' request.META.REMOTE_ADDR %}</div>
+	<div class="banner-240x120" style="margin-top: 1px; padding-top: 1px; float: left; display: inline;">{% banner '240x120' request.META.REMOTE_ADDR %}</div><br/>
+	
 	<p class="slogans">{{ slogans|random|safe }}</p>
 </div>
 {% endblock %}

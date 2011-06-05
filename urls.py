@@ -27,5 +27,9 @@ urlpatterns = patterns('',
 	url(r'^nanny/'     , include('mamochkam.apps.nanny.urls')),
 )
 
-urlpatterns += patterns('',	url('^admin/(.*)', admin.site.root))
+try:
+	urlpatterns += patterns('',	url('^admin/(.*)', admin.site.root))
+except AttributeError:
+	urlpatterns += patterns('',	url('^admin/(.*)', admin.site.urls))
+
 
